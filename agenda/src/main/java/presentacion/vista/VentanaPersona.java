@@ -1,6 +1,5 @@
 package presentacion.vista;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -13,8 +12,8 @@ public class VentanaPersona extends JFrame
 	private JPanel contentPane;
 	private JTextField txtNombre;
 	private JTextField txtTelefono;
-	private JButton btnAgregarPersona;
 	private static VentanaPersona INSTANCE;
+	private JPanel panel;
 	
 	public static VentanaPersona getInstance()
 	{
@@ -27,9 +26,10 @@ public class VentanaPersona extends JFrame
 			return INSTANCE;
 	}
 
-	private VentanaPersona() 
+	protected VentanaPersona() 
 	{
 		super();
+		super.setTitle("Agregar Contacto");
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 343, 183);
@@ -38,7 +38,7 @@ public class VentanaPersona extends JFrame
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBounds(10, 11, 307, 123);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -61,16 +61,16 @@ public class VentanaPersona extends JFrame
 		panel.add(txtTelefono);
 		txtTelefono.setColumns(10);
 		
-		btnAgregarPersona = new JButton("Agregar");
-		btnAgregarPersona.setBounds(208, 92, 89, 23);
-		panel.add(btnAgregarPersona);
-		
 		this.setVisible(false);
 	}
 	
 	public void mostrarVentana()
 	{
 		this.setVisible(true);
+	}
+	
+	public JPanel getPanel() {
+		return this.panel;
 	}
 	
 	public JTextField getTxtNombre() 
@@ -83,16 +83,21 @@ public class VentanaPersona extends JFrame
 		return txtTelefono;
 	}
 
-	public JButton getBtnAgregarPersona() 
-	{
-		return btnAgregarPersona;
-	}
-
 	public void cerrar()
 	{
 		this.txtNombre.setText(null);
 		this.txtTelefono.setText(null);
 		this.dispose();
+	}
+	
+	public boolean validarRequeridos() {
+		if (txtNombre.getText().isBlank()) {
+			return false;
+		}
+		if (txtTelefono.getText().isBlank()) {
+			return false;
+		}
+		return true;
 	}
 	
 }

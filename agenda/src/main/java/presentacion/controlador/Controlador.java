@@ -7,6 +7,7 @@ import java.util.List;
 import modelo.Agenda;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaPersona;
+import presentacion.vista.VentanaPersonaAgregar;
 import presentacion.vista.VentanaPersonaEditar;
 import presentacion.vista.Vista;
 import dto.PersonaDTO;
@@ -15,9 +16,10 @@ public class Controlador implements ActionListener
 {
 		private Vista vista;
 		private List<PersonaDTO> personasEnTabla;
-		private VentanaPersona ventanaPersona;
+		private VentanaPersonaAgregar ventanaPersonaAgregar;
 		private VentanaPersonaEditar ventanaPersonaEditar;
 		private Agenda agenda;
+		private int[] filasSeleccionadas = null;
 		
 		public Controlador(Vista vista, Agenda agenda)
 		{
@@ -26,8 +28,8 @@ public class Controlador implements ActionListener
 			this.vista.getBtnEditar().addActionListener(e->ventanaEditarPersona(e)); //*
 			this.vista.getBtnBorrar().addActionListener(s->borrarPersona(s));
 			this.vista.getBtnReporte().addActionListener(r->mostrarReporte(r));
-			this.ventanaPersona = VentanaPersona.getInstance();
-			this.ventanaPersona.getBtnAgregarPersona().addActionListener(p->guardarPersona(p));
+			this.ventanaPersonaAgregar = VentanaPersonaAgregar.getInstance();
+			this.ventanaPersonaAgregar.getBtnAgregarPersona().addActionListener(p->guardarPersona(p));
 			
 			this.ventanaPersonaEditar = VentanaPersonaEditar.getInstance();
 			this.ventanaPersonaEditar.getBtnEditarPersona().addActionListener(ep->editarPersona(ep));
@@ -36,31 +38,41 @@ public class Controlador implements ActionListener
 		}
 		
 		private void ventanaAgregarPersona(ActionEvent a) {
-			this.ventanaPersona.mostrarVentana();
+			this.ventanaPersonaAgregar.mostrarVentana();
 		}
 				
 		private void guardarPersona(ActionEvent p) {
-			String nombre = this.ventanaPersona.getTxtNombre().getText();
-			String tel = ventanaPersona.getTxtTelefono().getText();
-			PersonaDTO nuevaPersona = new PersonaDTO(0, nombre, tel);
-			this.agenda.agregarPersona(nuevaPersona);
+			if (!ventanaPersonaAgregar.validarRequeridos()) {
+				//crear una ventana con mensaje de campos vacios
+			}else {
+				String nombre = this.ventanaPersonaAgregar.getTxtNombre().getText();
+				String tel = ventanaPersonaAgregar.getTxtTelefono().getText();
+				PersonaDTO nuevaPersona = new PersonaDTO(0, nombre, tel);
+				this.agenda.agregarPersona(nuevaPersona);
+				
+			}
 			this.refrescarTabla();
-			this.ventanaPersona.cerrar();
+			this.ventanaPersonaAgregar.cerrar();
 		}
 		
 		private void ventanaEditarPersona(ActionEvent e) {
-			if(this.vista.getTablaPersonas().getSelectedRows().length > 0) {
+			if(this.vista.getTablaPersonas().getSelectedRows().length == 1) {
+				filasSeleccionadas = this.vista.getTablaPersonas().getSelectedRows();
+				this.ventanaPersonaEditar.setCampos(this.personasEnTabla.get(filasSeleccionadas[0]));
 				this.ventanaPersonaEditar.mostrarVentana();
 			}
 		}
 		
-		private void editarPersona(ActionEvent ep) {
-			int[] filasSeleccionadas = this.vista.getTablaPersonas().getSelectedRows();		
-			int id = this.personasEnTabla.get(filasSeleccionadas[0]).getIdPersona();
-			String nombre = this.ventanaPersonaEditar.getTxtNombre().getText();
-			String tel = ventanaPersonaEditar.getTxtTelefono().getText();
-			PersonaDTO personaEditada = new PersonaDTO(id, nombre, tel);
-			this.agenda.editarPersona(personaEditada);
+		private void editarPersona(ActionEvent ep) {	
+			if (!ventanaPersonaAgregar.validarRequeridos()) {
+				//crear una ventana con mensaje de campos vacios
+			}else {
+				int id = this.personasEnTabla.get(filasSeleccionadas[0]).getIdPersona();
+				String nombre = this.ventanaPersonaEditar.getTxtNombre().getText();
+				String tel = ventanaPersonaEditar.getTxtTelefono().getText();
+				PersonaDTO personaEditada = new PersonaDTO(id, nombre, tel);
+				this.agenda.editarPersona(personaEditada);
+			}
 			this.refrescarTabla();
 			this.ventanaPersonaEditar.cerrar();
 		}
@@ -72,7 +84,7 @@ public class Controlador implements ActionListener
 
 		public void borrarPersona(ActionEvent s)
 		{
-			int[] filasSeleccionadas = this.vista.getTablaPersonas().getSelectedRows();
+			filasSeleccionadas = this.vista.getTablaPersonas().getSelectedRows();
 			for (int fila : filasSeleccionadas)
 			{
 				this.agenda.borrarPersona(this.personasEnTabla.get(fila));
@@ -92,7 +104,7 @@ public class Controlador implements ActionListener
 			this.personasEnTabla = agenda.obtenerPersonas();
 			this.vista.llenarTabla(this.personasEnTabla);
 		}
-
+		
 		@Override
 		public void actionPerformed(ActionEvent e) { }
 		
