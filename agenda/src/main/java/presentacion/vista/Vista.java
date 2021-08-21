@@ -15,6 +15,7 @@ import dto.PersonaDTO;
 
 import javax.swing.JButton;
 
+/*import persistencia.conexion.Conexion;*/
 import persistencia.conexion.Conexion;
 
 public class Vista
@@ -86,7 +87,7 @@ public class Vista
 			@Override
 		    public void windowClosing(WindowEvent e) {
 		        int confirm = JOptionPane.showOptionDialog(
-		             null, "¿Estas seguro que quieres salir de la Agenda?", 
+		             null, "ï¿½Estas seguro que quieres salir de la Agenda?", 
 		             "ConfirmaciÃ³n", JOptionPane.YES_NO_OPTION,
 		             JOptionPane.QUESTION_MESSAGE, null, null, null);
 		        if (confirm == 0) {
