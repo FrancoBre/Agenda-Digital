@@ -1,5 +1,9 @@
 package persistencia.dao.interfaz;
 
-public interface PaisDAO {
+import java.util.List;
 
+import dto.PaisDTO;
+
+public interface PaisDAO {
+	public List<PaisDTO> readAll();
 }

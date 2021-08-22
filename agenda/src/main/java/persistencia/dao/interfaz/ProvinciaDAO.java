@@ -1,5 +1,9 @@
 package persistencia.dao.interfaz;
 
-public interface ProvinciaDAO {
+import java.util.List;
 
+import dto.ProvinciaDTO;
+
+public interface ProvinciaDAO {
+	public List<ProvinciaDTO> readByPais(int idPais);
 }

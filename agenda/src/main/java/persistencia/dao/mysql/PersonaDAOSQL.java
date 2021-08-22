@@ -65,8 +65,7 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement.setString(2, persona_a_editar.getTelefono());
 			statement.setInt(3, persona_a_editar.getDomicilio());
 			statement.setInt(4, persona_a_editar.getTipoContacto());
-			
-			//Por que el id va a lo ultimo??
+
 			statement.setInt(5, persona_a_editar.getIdPersona());
 			if(statement.executeUpdate() > 0)
 			{
