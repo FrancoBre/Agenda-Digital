@@ -51,32 +51,85 @@ PRIMARY KEY (idPersona),
 CONSTRAINT fk_per_domicilio FOREIGN KEY (Domicilio) REFERENCES domicilio(idDomicilio), 
 CONSTRAINT fk_per_tipo FOREIGN KEY (Tipo_contacto) REFERENCES tipo_contacto(idTipo_contacto));
 
+<<<<<<< HEAD
 INSERT INTO pais (idPais, Nombre) VALUES (1, 'Argentina');
+=======
+INSERT INTO pais (idPais, Nombre) VALUES (1, Argentina);
+>>>>>>> branch 'master' of https://github.com/FrancoBre/Agenda-Digital
 
+<<<<<<< HEAD
 INSERT INTO pais (idPais, Nombre) VALUES (2, 'Uruguay');
+=======
+INSERT INTO pais (idPais, Nombre) VALUES (2, Uruguay);
+>>>>>>> branch 'master' of https://github.com/FrancoBre/Agenda-Digital
 
+<<<<<<< HEAD
 INSERT INTO pais (idPais, Nombre) VALUES (3, 'Chile');
+=======
+INSERT INTO pais (idPais, Nombre) VALUES (3, Chile);
+>>>>>>> branch 'master' of https://github.com/FrancoBre/Agenda-Digital
 
+<<<<<<< HEAD
 INSERT INTO provincia (idProvincia, Nombre, Pais) VALUES (1, 'Buenos Aires', 1);
+=======
+INSERT INTO provincia (idProvincia, Nombre, Pais) VALUES (1, Buenos Aires, 1);
+>>>>>>> branch 'master' of https://github.com/FrancoBre/Agenda-Digital
 
+<<<<<<< HEAD
 INSERT INTO provincia (idProvincia, Nombre, Pais) VALUES (2, 'Santa Fe', 1);
+=======
+INSERT INTO provincia (idProvincia, Nombre, Pais) VALUES (2, Santa Fe, 1);
+>>>>>>> branch 'master' of https://github.com/FrancoBre/Agenda-Digital
 
+<<<<<<< HEAD
 INSERT INTO provincia (idProvincia, Nombre, Pais) VALUES (3, 'Cordoba', 1);
+=======
+INSERT INTO provincia (idProvincia, Nombre, Pais) VALUES (3, Cordoba, 1);
+>>>>>>> branch 'master' of https://github.com/FrancoBre/Agenda-Digital
 
+<<<<<<< HEAD
 INSERT INTO provincia (idProvincia, Nombre, Pais) VALUES (4, 'Artigas', 2);
+=======
+INSERT INTO provincia (idProvincia, Nombre, Pais) VALUES (4, Artigas, 2);
+>>>>>>> branch 'master' of https://github.com/FrancoBre/Agenda-Digital
 
+<<<<<<< HEAD
 INSERT INTO provincia (idProvincia, Nombre, Pais) VALUES (5, 'Canelones', 2);
+=======
+INSERT INTO provincia (idProvincia, Nombre, Pais) VALUES (5, Canelones, 2);
+>>>>>>> branch 'master' of https://github.com/FrancoBre/Agenda-Digital
 
+<<<<<<< HEAD
 INSERT INTO provincia (idProvincia, Nombre, Pais) VALUES (6, 'Colonia', 2);
+=======
+INSERT INTO provincia (idProvincia, Nombre, Pais) VALUES (6, Colonia, 2);
+>>>>>>> branch 'master' of https://github.com/FrancoBre/Agenda-Digital
 
+<<<<<<< HEAD
 INSERT INTO provincia (idProvincia, Nombre, Pais) VALUES (7, 'Arica', 3);
+=======
+INSERT INTO provincia (idProvincia, Nombre, Pais) VALUES (7, Arica, 3);
+>>>>>>> branch 'master' of https://github.com/FrancoBre/Agenda-Digital
 
+<<<<<<< HEAD
 INSERT INTO provincia (idProvincia, Nombre, Pais) VALUES (8, 'Putre', 3);
+=======
+INSERT INTO provincia (idProvincia, Nombre, Pais) VALUES (8, Putre, 3);
+>>>>>>> branch 'master' of https://github.com/FrancoBre/Agenda-Digital
 
+<<<<<<< HEAD
 INSERT INTO provincia (idProvincia, Nombre, Pais) VALUES (9, 'Iquique', 3);
+=======
+INSERT INTO provincia (idProvincia, Nombre, Pais) VALUES (9, Iquique, 3);
+>>>>>>> branch 'master' of https://github.com/FrancoBre/Agenda-Digital
 
+<<<<<<< HEAD
 INSERT INTO localidad (idLocalidad, Nombre, Provincia, Pais) VALUES (1, 'Moreno', 1, 1);
+=======
+INSERT INTO localidad (idLocalidad, Nombre, Provincia, Pais) VALUES (1, Moreno, 1, 1);
+>>>>>>> branch 'master' of https://github.com/FrancoBre/Agenda-Digital
 
+<<<<<<< HEAD
 INSERT INTO localidad (idLocalidad, Nombre, Provincia, Pais) VALUES (2, 'San Miguel', 1, 1);
 
 INSERT INTO localidad (idLocalidad, Nombre, Provincia, Pais) VALUES (3, 'Moron', 1, 1);
@@ -106,3 +159,34 @@ INSERT INTO localidad (idLocalidad, Nombre, Provincia, Pais) VALUES (14, 'Caleta
 INSERT INTO localidad (idLocalidad, Nombre, Provincia, Pais) VALUES (15, 'Chucuyo', 8, 2);
 
 INSERT INTO localidad (idLocalidad, Nombre, Provincia, Pais) VALUES (16, 'Alto Hospicio', 9, 2);
+=======
+INSERT INTO localidad (idLocalidad, Nombre, Provincia, Pais) VALUES (2, San Miguel, 1, 1);
+
+INSERT INTO localidad (idLocalidad, Nombre, Provincia, Pais) VALUES (3, Moron, 1, 1);
+
+INSERT INTO localidad (idLocalidad, Nombre, Provincia, Pais) VALUES (4, Moreno, 1, 1);
+
+INSERT INTO localidad (idLocalidad, Nombre, Provincia, Pais) VALUES (5, Acebal, 2, 1);
+
+INSERT INTO localidad (idLocalidad, Nombre, Provincia, Pais) VALUES (6, Alcorta, 2, 1);
+
+INSERT INTO localidad (idLocalidad, Nombre, Provincia, Pais) VALUES (7, Alejandra, 2, 1);
+
+INSERT INTO localidad (idLocalidad, Nombre, Provincia, Pais) VALUES (8, Cordoba Capital, 3, 1);
+
+INSERT INTO localidad (idLocalidad, Nombre, Provincia, Pais) VALUES (9, Cura Brochero, 3, 1);
+
+INSERT INTO localidad (idLocalidad, Nombre, Provincia, Pais) VALUES (10, Carlos Paz, 3, 1);
+
+INSERT INTO localidad (idLocalidad, Nombre, Provincia, Pais) VALUES (11, Bella Unio, 4, 2);
+
+INSERT INTO localidad (idLocalidad, Nombre, Provincia, Pais) VALUES (12, Araminda, 5, 2);
+
+INSERT INTO localidad (idLocalidad, Nombre, Provincia, Pais) VALUES (13, Miguelete, 6, 2);
+
+INSERT INTO localidad (idLocalidad, Nombre, Provincia, Pais) VALUES (14, Caleta Camarones, 7, 2);
+
+INSERT INTO localidad (idLocalidad, Nombre, Provincia, Pais) VALUES (15, Chucuyo, 8, 2);
+
+INSERT INTO localidad (idLocalidad, Nombre, Provincia, Pais) VALUES (14, Alto Hospicio, 9, 2);
+>>>>>>> branch 'master' of https://github.com/FrancoBre/Agenda-Digital

@@ -10,12 +10,14 @@ import java.util.List;
 /*import persistencia.conexion.Conexion;*/
 import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.PersonaDAO;
+import dto.DomicilioDTO;
 import dto.PersonaDTO;
 
 public class PersonaDAOSQL implements PersonaDAO
 {
-	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono, domicilio, tipo_contacto) VALUES(?, ?, ?, ?, ?)";
-	private static final String update = "UPDATE personas SET nombre = ? , telefono = ? WHERE idPersona = ?";
+
+	private static final String insert = "INSERT INTO personas(idPersona, nombre, domicilio, tipo_contacto) VALUES(?, ?, ?, ?, ?)";
+	private static final String update = "UPDATE personas SET nombre = ? , telefono = ? , domicilio = ?, tipo_contacto = ? WHERE idPersona = ?";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM personas";
 		
@@ -30,7 +32,9 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement.setInt(1, persona.getIdPersona());
 			statement.setString(2, persona.getNombre());
 			statement.setString(3, persona.getTelefono());
-			
+			statement.setInt(4, persona.getDomicilio());
+			statement.setInt(5, persona.getTipoContacto());
+
 			if(statement.executeUpdate() > 0)
 			{
 				conexion.commit();
@@ -59,7 +63,11 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement = conexion.prepareStatement(update);
 			statement.setString(1, persona_a_editar.getNombre());
 			statement.setString(2, persona_a_editar.getTelefono());
-			statement.setInt(3, persona_a_editar.getIdPersona());
+			statement.setInt(3, persona_a_editar.getDomicilio());
+			statement.setInt(4, persona_a_editar.getTipoContacto());
+			
+			//Por que el id va a lo ultimo??
+			statement.setInt(5, persona_a_editar.getIdPersona());
 			if(statement.executeUpdate() > 0)
 			{
 				conexion.commit();
@@ -129,9 +137,8 @@ public class PersonaDAOSQL implements PersonaDAO
 		String nombre = resultSet.getString("Nombre");
 		String tel = resultSet.getString("Telefono");
 		int domicilio = resultSet.getInt("Domicilio");
-		int tipo_contacto = resultSet.getInt("Tipo_contacto");
-		return new PersonaDTO(id, nombre, tel, domicilio, tipo_contacto);
+		int tipoContacto = resultSet.getInt("Tipo_contacto");
+		return new PersonaDTO(id, nombre, tel, domicilio, tipoContacto);
 	}
-
 
 }
