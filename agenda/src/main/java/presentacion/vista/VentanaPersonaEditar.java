@@ -10,7 +10,7 @@ import dto.PersonaDTO;
 public class VentanaPersonaEditar extends VentanaPersona
 {
     private static final long serialVersionUID = 1L;
-    private JButton btnAgregarPersona;
+    private JButton btnEditarPersona;
     private static VentanaPersonaEditar INSTANCE;
     private JTextField emailInput;
     private JTextField nacimientoInput;
@@ -132,15 +132,20 @@ public class VentanaPersonaEditar extends VentanaPersona
         getPanel().add(localidadInput);
         super.setTitle("Editar Contacto");
                 
-        btnAgregarPersona = new JButton("Agregar");
-        btnAgregarPersona.setBounds(208, 493, 89, 29);
-        super.getPanel().add(btnAgregarPersona);
+        btnEditarPersona = new JButton("Editar");
+        btnEditarPersona.setBounds(208, 493, 89, 29);
+        super.getPanel().add(btnEditarPersona);
                 
         this.setVisible(false);
     }
     
-    public JButton getBtnAgregarPersona() 
+    public JButton getBtnEditarPersona() 
     {
-        return btnAgregarPersona;
+        return btnEditarPersona;
     }
+    
+    public void setCampos(PersonaDTO p) {
+		super.getTxtNombre().setText(p.getNombre());
+		super.getTxtTelefono().setText(p.getTelefono());
+	}
 }
