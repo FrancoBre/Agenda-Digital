@@ -25,7 +25,6 @@ public class Agenda
 		this.persona.update(persona_a_editar);
 	}
 	
-
 	public void borrarPersona(PersonaDTO persona_a_eliminar) 
 	{
 		this.persona.delete(persona_a_eliminar);

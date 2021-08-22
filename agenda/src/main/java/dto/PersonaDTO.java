@@ -5,10 +5,10 @@ public class PersonaDTO
 	private int idPersona;
 	private String nombre;
 	private String telefono;
-	private DomicilioDTO domicilio;
-	private TipoContactoDTO tipoContacto;
+	private int domicilio;
+	private int tipoContacto;
 
-	public PersonaDTO(int idPersona, String nombre, String telefono, DomicilioDTO domicilio, TipoContactoDTO tipoContacto)
+	public PersonaDTO(int idPersona, String nombre, String telefono, int domicilio, int tipoContacto)
 	{
 		this.idPersona = idPersona;
 		this.nombre = nombre;
@@ -47,19 +47,19 @@ public class PersonaDTO
 		this.telefono = telefono;
 	}
 
-	public DomicilioDTO getDomicilio() {
+	public int getDomicilio() {
 		return domicilio;
 	}
 
-	public void setDomicilio(DomicilioDTO domicilio) {
+	public void setDomicilio(int domicilio) {
 		this.domicilio = domicilio;
 	}
 
-	public TipoContactoDTO getTipoContacto() {
+	public int getTipoContacto() {
 		return tipoContacto;
 	}
 
-	public void setTipoContacto(TipoContactoDTO tipoContacto) {
+	public void setTipoContacto(int tipoContacto) {
 		this.tipoContacto = tipoContacto;
 	}
 }
