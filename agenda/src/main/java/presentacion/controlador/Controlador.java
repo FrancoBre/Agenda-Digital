@@ -47,7 +47,7 @@ public class Controlador implements ActionListener
 			}else {
 				String nombre = this.ventanaPersonaAgregar.getTxtNombre().getText();
 				String tel = ventanaPersonaAgregar.getTxtTelefono().getText();
-				PersonaDTO nuevaPersona = new PersonaDTO(0, nombre, tel);
+				PersonaDTO nuevaPersona = new PersonaDTO(0, nombre, tel, 0, 0);
 				this.agenda.agregarPersona(nuevaPersona);
 				
 			}
@@ -70,7 +70,7 @@ public class Controlador implements ActionListener
 				int id = this.personasEnTabla.get(filasSeleccionadas[0]).getIdPersona();
 				String nombre = this.ventanaPersonaEditar.getTxtNombre().getText();
 				String tel = ventanaPersonaEditar.getTxtTelefono().getText();
-				PersonaDTO personaEditada = new PersonaDTO(id, nombre, tel);
+				PersonaDTO personaEditada = new PersonaDTO(id, nombre, tel, id, id);
 				this.agenda.editarPersona(personaEditada);
 			}
 			this.refrescarTabla();

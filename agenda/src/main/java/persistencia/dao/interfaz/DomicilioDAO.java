@@ -4,7 +4,7 @@ import dto.DomicilioDTO;
 
 public interface DomicilioDAO {
 	
-	public DomicilioDTO getDomicilioDTObyId(int id);
+	public String getNombreDomicilioById(int id);
 	
 	public boolean insert(DomicilioDTO domicilio);
 	
