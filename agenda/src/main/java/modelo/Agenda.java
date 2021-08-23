@@ -9,6 +9,7 @@ import dto.PersonaDTO;
 import dto.ProvinciaDTO;
 import dto.TipoContactoDTO;
 import persistencia.dao.interfaz.DAOAbstractFactory;
+import persistencia.dao.interfaz.DomicilioDAO;
 import persistencia.dao.interfaz.LocalidadDAO;
 import persistencia.dao.interfaz.PersonaDAO;
 import persistencia.dao.interfaz.ProvinciaDAO;
@@ -19,6 +20,7 @@ import persistencia.dao.interfaz.PaisDAO;
 public class Agenda 
 {
 	private PersonaDAO persona;
+	private DomicilioDAO domicilio;
 	private TipoContactoDAO tipo_contacto;
 	private PaisDAO pais;
 	private ProvinciaDAO provincia;
@@ -94,6 +96,10 @@ public class Agenda
 	
 	public int getPersonaMaxId() {
 		return this.persona.readMaxId();
+	}
+	
+	public int getDomicilioMaxId() {
+		return this.domicilio.readMaxId();
 	}
 	
 }

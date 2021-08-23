@@ -2,6 +2,7 @@ package persistencia.dao.mysql;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import dto.DomicilioDTO;
@@ -14,6 +15,7 @@ public class DomicilioDAOSQL implements DomicilioDAO {
 	private static final String insert = "INSERT INTO domicilio(idDomicilio, calle, altura, piso, depto, localidad) VALUES (?, ?, ?, ?, ?, ?)";
 	private static final String delete = "DELETE FROM domicilio WHERE idDomicilio = ?";
 	private static final String update = "UPDATE domicilio SET calle = ? , altura = ? , piso = ?, depto = ? , localidad = ? WHERE idDomicilio = ?";
+	private static final String readMaxId = "SELECT idDomicilio FROM domicilio ORDER BY idDomicilio DESC LIMIT 0, 1;";
 
 	public String getNombreDomicilioById(int id) {
 		PreparedStatement statement;
@@ -70,6 +72,26 @@ public class DomicilioDAOSQL implements DomicilioDAO {
 	public boolean update(DomicilioDTO domicilio) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+ 
+	public int readMaxId() {
+		PreparedStatement statement;
+		Connection conexion = Conexion.getConexion().getSQLConexion();
+		ResultSet resultSet;
+		int maxId = 0;
+		try
+		{
+			statement = conexion.prepareStatement(readMaxId);
+			resultSet = statement.executeQuery();
+			maxId = resultSet.getInt("idDomicilio");
+			
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+			
+		}
+		return maxId;
 	}
 
 }

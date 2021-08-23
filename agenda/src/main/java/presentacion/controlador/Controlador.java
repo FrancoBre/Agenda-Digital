@@ -60,9 +60,10 @@ public class Controlador implements ActionListener
 				String provincia = (String) this.ventanaPersonaAgregar.getProvinciaInput().getSelectedItem();
 				String localidad = (String) this.ventanaPersonaAgregar.getLocalidadInput().getSelectedItem();
 				
-				DomicilioDTO nuevoDomicilio = new DomicilioDTO(0, calle, altura, piso, depto, idLocalidad);
+				DomicilioDTO nuevoDomicilio = new DomicilioDTO(this.agenda.getDomicilioMaxId() + 1, calle, altura, piso,
+						depto, idLocalidad);
 
-				PersonaDTO nuevaPersona = new PersonaDTO(this.agenda.getPersonaMaxId()+1, nombre, tel, idDomicilio, 
+				PersonaDTO nuevaPersona = new PersonaDTO(this.agenda.getPersonaMaxId() + 1, nombre, tel, idDomicilio, 
 						idTipoContacto);
 				this.agenda.agregarPersona(nuevaPersona);
 				this.agenda.agregarDomicilio(nuevoDomicilio);
