@@ -12,7 +12,7 @@ import persistencia.dao.interfaz.LocalidadDAO;
 
 public class LocalidadDAOSQL implements LocalidadDAO {
 
-	private static final String readByNombreProv ="select * from provincia p, localidad l where p.idprovincia = l.provincia and p.pais=l.pais and p.nombre= ?";
+	private static final String readByNombreProv ="select * from localidad l,  provincia p where p.idprovincia = l.provincia and p.pais=l.pais and p.nombre= ?";
 	private static final String readByProv = "SELECT * FROM localidad WHERE Provincia = ?;";
 	private static final String readNombreProvinciaById = "select b.nombre from localidad a inner " +
 	"join provincia b on (a.provincia = b.idProvincia) where a.idLocalidad = ? ;";
