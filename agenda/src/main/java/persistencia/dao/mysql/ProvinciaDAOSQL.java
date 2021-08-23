@@ -11,10 +11,11 @@ import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.ProvinciaDAO;
 
 public class ProvinciaDAOSQL implements ProvinciaDAO {
-	private static final String readByPais = "SELECT nombre FROM provincia WHERE pais = ? ;";
+	private static final String readByPais = "SELECT * FROM provincia WHERE pais = ? ;";
 	private static final String getNombreById = "SELECT nombre FROM provincia WHERE idProvincia = ? ;";
 	
-	public List<ProvinciaDTO> readByPais(int idPais) {
+	public List<ProvinciaDTO> readByPais(int idPais) 
+	{
 		PreparedStatement statement;
 		ResultSet resultSet;
 		ArrayList<ProvinciaDTO> provincias = new ArrayList<ProvinciaDTO>();

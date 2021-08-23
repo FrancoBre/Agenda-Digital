@@ -33,11 +33,19 @@ public class Controlador implements ActionListener
 			this.ventanaPersonaAgregar.getBtnAgregarPersona().addActionListener(p->guardarPersona(p));
 			this.ventanaPersonaEditar = VentanaPersonaEditar.getInstance();
 			this.ventanaPersonaEditar.getBtnEditarPersona().addActionListener(ep->editarPersona(ep));
+			this.ventanaPersonaAgregar.getPaisInput().addActionListener(combobox->cambioItemsP(combobox));
+			
 			addComboboxItems();
 		}
 
+		private void cambioItemsP(ActionEvent c) {
+			this.ventanaPersonaAgregar.getProvinciaInput().removeAllItems();
+			int id = this.ventanaPersonaAgregar.getPaisInput().getSelectedIndex() + 1;
+			addProvinciasItem(agenda.getNombreProvincia(id));
+		}
 		private void ventanaAgregarPersona(ActionEvent a) {
 			this.ventanaPersonaAgregar.mostrarVentana();
+			
 		}
 				
 		private void guardarPersona(ActionEvent p) {
@@ -125,8 +133,6 @@ public class Controlador implements ActionListener
 		
 		private void addComboboxItems() {
 			addPaisesItems(agenda.getNombrePaises());
-			addProvinciasItem(agenda.getNombreProvincia());
-			addLocalidadItems(agenda.getNombreLocalidad());
 		}
 			
 		public void addPaisesItems(ArrayList<String> items) {
