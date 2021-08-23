@@ -159,7 +159,7 @@ public class PersonaDAOSQL implements PersonaDAO
 		DateTimeFormatter dateFormatter = 
 		        new DateTimeFormatterBuilder()
 		            .parseCaseInsensitive()
-		            .appendPattern("dd MM uuuu")
+		            .appendPattern("dd mm uuuu")
 		            .toFormatter(Locale.ENGLISH);
 		
 		LocalDate date = LocalDate.parse(nacimiento, dateFormatter);
