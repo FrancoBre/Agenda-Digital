@@ -39,8 +39,7 @@ public class TipoContactoDAOSQL implements TipoContactoDAO {
 	private TipoContactoDTO getTipoContactoDTO(ResultSet resultSet) throws SQLException
 	{
 		//int id = resultSet.getInt("idTipo_contacto");
-		String nombre = resultSet.getString("Nombre");
-		
+		String nombre = resultSet.getString("tipo");
 		return getTipoContactoByName(nombre);
 
 	}

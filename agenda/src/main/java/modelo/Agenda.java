@@ -88,10 +88,10 @@ public class Agenda
 	}
 	
 	public ArrayList<String> getNombreTipoContacto(){
-		List<TipoContactoDTO> tipos = this.tipoContacto.readAll();
 		ArrayList<String> a = new ArrayList<String>();
-		for (TipoContactoDTO tipoContactoDTO: tipos) {
+		for (TipoContactoDTO tipoContactoDTO: TipoContactoDTO.values()) {
 			a.add(tipoContactoDTO.name());
+			
 		}
 		return a;
 	}

@@ -171,7 +171,7 @@ public class Controlador implements ActionListener
 		
 		private void addComboboxItems() {
 			addPaisesItems(agenda.getNombrePaises());
-			
+			addTipoContacto(agenda.getNombreTipoContacto());
 		}
 			
 		public void addTipoContacto(ArrayList<String> items) {
@@ -201,10 +201,6 @@ public class Controlador implements ActionListener
 				this.ventanaPersonaEditar.getLocalidadInput().addItem(string);
 			}
 		}
-		
-		
-		
-		
 		
 		@Override
 		public void actionPerformed(ActionEvent e) { }
