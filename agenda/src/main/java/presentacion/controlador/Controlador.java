@@ -42,6 +42,7 @@ public class Controlador implements ActionListener
 			this.ventanaPersonaEditar.getBtnEditarPersona().addActionListener(ep->editarPersona(ep));
 			this.ventanaPersonaAgregar.getPaisInput().addActionListener(combobox->cambioItemsP(combobox));
 			this.ventanaPersonaAgregar.getProvinciaInput().addActionListener(comboLocalidad -> cambioItemsL(comboLocalidad));
+			this.ventanaPersonaAgregar.getProvinciaInput().addActionListener(comboLocalidad -> cambioItemsL(comboLocalidad));
 			
 			addComboboxItems();
 		}
@@ -54,9 +55,8 @@ public class Controlador implements ActionListener
 		
 		private void cambioItemsL(ActionEvent c) {
 			this.ventanaPersonaAgregar.getLocalidadInput().removeAllItems();
-			int id = this.ventanaPersonaAgregar.getLocalidadInput().getSelectedIndex() + 1;
-			addLocalidadItems(agenda.getNombreLocalidad(id));
-			
+			String nombreProvincia = (String) this.ventanaPersonaAgregar.getProvinciaInput().getSelectedItem();
+			addLocalidadItems(agenda.getNombreLocalidad(nombreProvincia));
 		}
 		
 		private void ventanaAgregarPersona(ActionEvent a) {
@@ -191,6 +191,7 @@ public class Controlador implements ActionListener
 				this.ventanaPersonaEditar.getLocalidadInput().addItem(string);
 			}
 		}
+		
 		
 		
 		
