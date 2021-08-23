@@ -78,8 +78,8 @@ public class Agenda
 		return a;
 	}
 	
-	public ArrayList<String> getNombreLocalidad(int id){
-		List<LocalidadDTO>localidad = this.localidad.readByProvincia(id);
+	public ArrayList<String> getNombreLocalidad(String nombreProvincia){
+		List<LocalidadDTO>localidad = this.localidad.readByNombreProvincia(nombreProvincia);
 		ArrayList<String> a = new ArrayList<String>();
 		for (LocalidadDTO localidadDTO: localidad) {
 			a.add(localidadDTO.getNombre());
