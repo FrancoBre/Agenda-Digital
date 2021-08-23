@@ -41,9 +41,11 @@ public class Controlador implements ActionListener
 			this.ventanaPersonaAgregar.getBtnAgregarPersona().addActionListener(p->guardarPersona(p));
 			this.ventanaPersonaEditar = VentanaPersonaEditar.getInstance();
 			this.ventanaPersonaEditar.getBtnEditarPersona().addActionListener(ep->editarPersona(ep));
+			
 			this.ventanaPersonaAgregar.getPaisInput().addActionListener(combobox->cambioItemsP(combobox));
 			this.ventanaPersonaAgregar.getProvinciaInput().addActionListener(comboLocalidad -> cambioItemsL(comboLocalidad));
-			this.ventanaPersonaAgregar.getProvinciaInput().addActionListener(comboLocalidad -> cambioItemsL(comboLocalidad));
+			this.ventanaPersonaEditar.getPaisInput().addActionListener(combobox->cambioItemsPEdit(combobox));
+			this.ventanaPersonaEditar.getProvinciaInput().addActionListener(comboLocalidad -> cambioItemsLEdit(comboLocalidad));
 			
 			addComboboxItems();
 		}
@@ -60,9 +62,20 @@ public class Controlador implements ActionListener
 			addLocalidadItems(agenda.getNombreLocalidad(nombreProvincia));
 		}
 		
+		private void cambioItemsPEdit(ActionEvent c) {
+			this.ventanaPersonaEditar.getProvinciaInput().removeAllItems();
+			int id = this.ventanaPersonaEditar.getPaisInput().getSelectedIndex() + 1;
+			addProvinciasItem(agenda.getNombreProvincia(id));
+		}
+		
+		private void cambioItemsLEdit(ActionEvent c) {
+			this.ventanaPersonaEditar.getLocalidadInput().removeAllItems();
+			String nombreProvincia = (String) this.ventanaPersonaEditar.getProvinciaInput().getSelectedItem();
+			addLocalidadItems(agenda.getNombreLocalidad(nombreProvincia));
+		}
+		
 		private void ventanaAgregarPersona(ActionEvent a) {
 			this.ventanaPersonaAgregar.mostrarVentana();
-			
 		}
 				
 		private void guardarPersona(ActionEvent p) {
@@ -137,9 +150,46 @@ public class Controlador implements ActionListener
 				//crear una ventana con mensaje de campos vacios
 			}else {
 				int id = this.personasEnTabla.get(filasSeleccionadas[0]).getIdPersona();
-				String nombre = this.ventanaPersonaEditar.getNombreInput().getText();
-				String tel = ventanaPersonaEditar.getTelefonoInput().getText();
-				PersonaDTO personaEditada = new PersonaDTO(id, nombre, tel, null, null, id, id);
+				String nombre = this.ventanaPersonaAgregar.getNombreInput().getText();
+				String tel = this.ventanaPersonaAgregar.getTelefonoInput().getText();
+				String email = this.ventanaPersonaAgregar.getEmailInput().getText();
+				String nacimiento = this.ventanaPersonaAgregar.getNacimientoInput().getText();
+				String tipoContacto = (String) this.ventanaPersonaAgregar.getTipoContactoInput().getSelectedItem();
+				
+				String calle = this.ventanaPersonaAgregar.getCalleInput().getText();
+				String altura = this.ventanaPersonaAgregar.getAlturaInput().getText();
+				String pisoStr = this.ventanaPersonaAgregar.getPisoInput().getText();
+				int piso = Integer.parseInt(pisoStr.trim());
+				String deptoStr = this.ventanaPersonaAgregar.getDeptoInput().getText();
+				int depto = Integer.parseInt(deptoStr.trim());
+				String localidad = (String) this.ventanaPersonaAgregar.getLocalidadInput().getSelectedItem();
+				
+				//unused
+				String pais = (String) this.ventanaPersonaAgregar.getPaisInput().getSelectedItem();
+				String provincia = (String) this.ventanaPersonaAgregar.getProvinciaInput().getSelectedItem();
+				
+				//Estos datos tendrían que venir de la eleccion del usuario en la vista, y corresponden al id de cada entidad
+				int idLocalidad = this.agenda.getIdLocalidadByNombre(localidad);
+				int idTipoContacto = this.agenda.getIdTipoContactoByNombre(tipoContacto);
+				
+				int idDomicilio = this.agenda.getDomicilioMaxId() + 1;
+				
+				DomicilioDTO nuevoDomicilio = new DomicilioDTO(idDomicilio, calle, altura, piso,
+						depto, idLocalidad);
+
+				PersonaDTO personaEditada;
+				
+				personaEditada = null;
+				
+				try {
+					personaEditada = new PersonaDTO(id, nombre, tel, email, parseNacimiento(nacimiento),
+							idDomicilio, idTipoContacto);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+
+				//this.agenda.agregarDomicilio(nuevoDomicilio);
+				
 				this.agenda.editarPersona(personaEditada);
 			}
 			this.refrescarTabla();

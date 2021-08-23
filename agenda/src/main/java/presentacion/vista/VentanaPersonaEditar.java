@@ -29,7 +29,7 @@ public class VentanaPersonaEditar extends VentanaPersona
         btnEditarPersona = new JButton("Editar");
         btnEditarPersona.setBounds(208, 493, 89, 29);
         super.getPanel().add(btnEditarPersona);
-                
+        
         this.setVisible(false);
     }
     
@@ -41,5 +41,6 @@ public class VentanaPersonaEditar extends VentanaPersona
     public void setCampos(PersonaDTO p) {
 		super.getNombreInput().setText(p.getNombre());
 		super.getTelefonoInput().setText(p.getTelefono());
+		super.getPaisInput().setSelectedIndex(super.getPaisInput().getSelectedIndex());
 	}
 }
