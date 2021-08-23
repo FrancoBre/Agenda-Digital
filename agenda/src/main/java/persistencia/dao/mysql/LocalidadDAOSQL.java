@@ -12,6 +12,7 @@ import persistencia.dao.interfaz.LocalidadDAO;
 
 public class LocalidadDAOSQL implements LocalidadDAO {
 
+	private static final String readByNombreProv ="select * from provincia p, localidad l where p.idprovincia = l.provincia and p.pais=l.pais and p.nombre= ?";
 	private static final String readByProv = "SELECT * FROM localidad WHERE Provincia = ?;";
 	private static final String readNombreProvinciaById = "select b.nombre from localidad a inner " +
 	"join provincia b on (a.provincia = b.idProvincia) where a.idLocalidad = ? ;";
@@ -25,6 +26,28 @@ public class LocalidadDAOSQL implements LocalidadDAO {
 		{
 			statement = conexion.getSQLConexion().prepareStatement(readByProv);
 			statement.setInt(1, idProvincia);
+			resultSet = statement.executeQuery();
+			while(resultSet.next())
+			{
+				provincias.add(getProvinciaDTO(resultSet));
+			}
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		return provincias;
+	}
+	
+	public List<LocalidadDTO> readByNombreProvincia(String Provincia) {
+		PreparedStatement statement;
+		ResultSet resultSet;
+		ArrayList<LocalidadDTO> provincias = new ArrayList<LocalidadDTO>();
+		Conexion conexion = Conexion.getConexion();
+		try 
+		{
+			statement = conexion.getSQLConexion().prepareStatement(readByNombreProv);
+			statement.setString(1, Provincia);
 			resultSet = statement.executeQuery();
 			while(resultSet.next())
 			{
