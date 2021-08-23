@@ -75,7 +75,8 @@ public class TipoContactoDAOSQL implements TipoContactoDAO {
 			statement = conexion.getSQLConexion().prepareStatement(readIdByNombre);
 			statement.setString(1, nombre);
 			resultSet = statement.executeQuery();
-			idTipoContacto = resultSet.getInt("idTipoContacto");
+			if(resultSet.next())
+				idTipoContacto = resultSet.getInt("idTipoContacto");
 		}
 		catch (SQLException e) {
 			e.printStackTrace();

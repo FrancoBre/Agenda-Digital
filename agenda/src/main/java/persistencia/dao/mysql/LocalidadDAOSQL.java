@@ -17,7 +17,7 @@ public class LocalidadDAOSQL implements LocalidadDAO {
 	private static final String readByProv = "SELECT * FROM localidad WHERE Provincia = ?;";
 	private static final String readNombreProvinciaById = "select b.nombre from localidad a inner " +
 	"join provincia b on (a.provincia = b.idProvincia) where a.idLocalidad = ? ;";
-	private static final String readIdByNombre = "SELECT idLocalidad FROM localidad WHERE nombre = '?';";
+	private static final String readIdByNombre = "SELECT idLocalidad FROM localidad WHERE nombre = ?;";
 	
 	public List<LocalidadDTO> readByProvincia(int idProvincia) {
 		PreparedStatement statement;
@@ -108,7 +108,8 @@ public class LocalidadDAOSQL implements LocalidadDAO {
 			statement = conexion.getSQLConexion().prepareStatement(readIdByNombre);
 			statement.setString(1, nombre);
 			resultSet = statement.executeQuery();
-			idLocalidad = resultSet.getInt("idLocalidad");
+			if(resultSet.next())
+				idLocalidad = resultSet.getInt("idLocalidad");
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
