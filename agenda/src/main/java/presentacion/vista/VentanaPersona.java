@@ -42,20 +42,37 @@ public class VentanaPersona extends JFrame
 	protected VentanaPersona() 
 	{
 		super();
-		super.setTitle("Agregar Contacto");
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 343, 409);
+		setBounds(100, 100, 343, 580);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		panel = new JPanel();
-		panel.setBounds(10, 11, 307, 123);
+		panel.setBounds(10, 11,  307, 600);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
+		JLabel lblNombreYApellido = new JLabel("Nombre y apellido");
+		lblNombreYApellido.setBounds(10, 11, 113, 14);
+		panel.add(lblNombreYApellido);
+		
+		JLabel lblTelfono = new JLabel("Telefono");
+		lblTelfono.setBounds(10, 52, 113, 14);
+		panel.add(lblTelfono);
+		
+		nombreInput = new JTextField();
+		nombreInput.setBounds(133, 8, 164, 20);
+		panel.add(nombreInput);
+		nombreInput.setColumns(10);
+		
+		telefonoInput = new JTextField();
+		telefonoInput.setBounds(133, 49, 164, 20);
+		panel.add(telefonoInput);
+		telefonoInput.setColumns(10);
+				
 		JLabel label = new JLabel("Email");
         label.setBounds(10, 93, 49, 14);
         getPanel().add(label);
