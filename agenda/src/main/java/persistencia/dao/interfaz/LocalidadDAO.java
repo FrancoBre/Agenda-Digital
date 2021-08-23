@@ -9,4 +9,6 @@ public interface LocalidadDAO {
 	
 	public String getNombreProvincia(int idLocalidad);
 	
+	public List<LocalidadDTO> readByNombreProvincia(String Provincia);
+	
 }
