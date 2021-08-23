@@ -32,17 +32,7 @@ public class VentanaPersonaAgregar extends VentanaPersona
                 
         this.setVisible(false);
     }
-    
-    @Override
-    public void addPaises(List<String> paises) {
-    	setPaisInput(new JComboBox<String>());
-		for (String string : paises) {
-			super.getPaisInput().addItem(string);
-			
-			System.out.println(super.getPaisInput().getItemAt(0)+ "2 2");
-		}
-	}
-    
+        
     public JButton getBtnAgregarPersona() 
     {
         return btnAgregarPersona;

@@ -2,8 +2,8 @@ package presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
-
 import modelo.Agenda;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaPersonaAgregar;
@@ -33,10 +33,10 @@ public class Controlador implements ActionListener
 			this.ventanaPersonaAgregar.getBtnAgregarPersona().addActionListener(p->guardarPersona(p));
 			this.ventanaPersonaEditar = VentanaPersonaEditar.getInstance();
 			this.ventanaPersonaEditar.getBtnEditarPersona().addActionListener(ep->editarPersona(ep));
+			addComboboxItems();
 		}
-		
+
 		private void ventanaAgregarPersona(ActionEvent a) {
-			this.ventanaPersonaAgregar.addPaises(agenda.getNombrePaises());
 			this.ventanaPersonaAgregar.mostrarVentana();
 		}
 				
@@ -121,7 +121,35 @@ public class Controlador implements ActionListener
 			this.personasEnTabla = agenda.obtenerPersonas();
 			this.vista.llenarTabla(this.personasEnTabla);
 		}
+		
+		private void addComboboxItems() {
+			addPaisesItems(agenda.getNombrePaises());
+			addProvinciasItem(agenda.getNombreProvincia());
+			addLocalidadItems(agenda.getNombreLocalidad());
+		}
 			
+		public void addPaisesItems(ArrayList<String> items) {
+			for (String string : items) {
+				this.ventanaPersonaAgregar.getPaisInput().addItem(string);
+				this.ventanaPersonaEditar.getPaisInput().addItem(string);
+			}
+		}
+		
+		public void addProvinciasItem(ArrayList<String> items) {
+			for (String string : items) {
+				this.ventanaPersonaAgregar.getProvinciaInput().addItem(string);
+				this.ventanaPersonaEditar.getProvinciaInput().addItem(string);
+			}
+		}
+		
+		public void addLocalidadItems(ArrayList<String> items) {
+			for (String string : items) {
+				this.ventanaPersonaAgregar.getLocalidadInput().addItem(string);
+				this.ventanaPersonaEditar.getLocalidadInput().addItem(string);
+			}
+		}
+		
+		
 		
 		@Override
 		public void actionPerformed(ActionEvent e) { }

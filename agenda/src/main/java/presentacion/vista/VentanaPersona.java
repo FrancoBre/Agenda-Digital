@@ -108,7 +108,7 @@ public class VentanaPersona extends JFrame
         tipoContactoLabel.setBounds(10, 193, 99, 14);
         getPanel().add(tipoContactoLabel);
         
-        JComboBox<String> tipoContactoInput = new JComboBox<String>();
+        tipoContactoInput = new JComboBox<String>();
         tipoContactoInput.setBounds(133, 189, 164, 22);
         getPanel().add(tipoContactoInput);
         
@@ -156,21 +156,16 @@ public class VentanaPersona extends JFrame
         paisLabel.setBounds(10, 368, 49, 14);
         getPanel().add(paisLabel);
         
-        JComboBox<String> paisInput = new JComboBox<String>();
+        paisInput = new JComboBox<String>();
         paisInput.setBounds(133, 364, 164, 22);
-        getPanel().add(paisInput);
-                
-        paisInput.addItem("a");
-        
- 
-        
+        getPanel().add(paisInput);        
         
         
         JLabel provinciaLabel = new JLabel("Provincia");
         provinciaLabel.setBounds(10, 413, 49, 14);
         getPanel().add(provinciaLabel);
         
-        JComboBox<String> provinciaInput = new JComboBox<String>();
+        provinciaInput = new JComboBox<String>();
         provinciaInput.setBounds(133, 409, 164, 22);
         getPanel().add(provinciaInput);
         
@@ -178,7 +173,7 @@ public class VentanaPersona extends JFrame
         localidadLabel.setBounds(10, 455, 49, 14);
         getPanel().add(localidadLabel);
         
-        JComboBox<String> localidadInput = new JComboBox<String>();
+        localidadInput = new JComboBox<String>();
         localidadInput.setBounds(133, 451, 164, 22);
         getPanel().add(localidadInput);
 
@@ -290,15 +285,6 @@ public class VentanaPersona extends JFrame
 
 	public void setPaisInput(JComboBox<String> paisInput) {
 		this.paisInput = paisInput;
-	}
-
-	public void addPaises(List<String> paises) {
-		this.paisInput = new JComboBox<String>();
-		for (String string : paises) {
-			this.paisInput.addItem(string);
-			
-			System.out.println(paisInput.getItemAt(1)+ "22");
-		}
 	}
 	
 	public JComboBox<String> getProvinciaInput() {
