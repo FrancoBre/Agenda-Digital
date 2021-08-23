@@ -17,6 +17,12 @@ public class PersonaDTO
 		this.tipoContacto = tipoContacto;
 	}
 	
+	public PersonaDTO(int idPersona, String nombre, String telefono) {
+		this.idPersona = idPersona;
+		this.nombre = nombre;
+		this.telefono = telefono;
+	}
+	
 	public int getIdPersona() 
 	{
 		return this.idPersona;

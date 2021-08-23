@@ -6,14 +6,21 @@ public class DomicilioDTO {
 	private String altura;
 	private int piso;
 	private int depto;
-	private String localidad;
+	private int localidad;
 	
-	public DomicilioDTO(int idDomicilio, String calle, String altura, int piso, int depto, String localidad) {
+	public DomicilioDTO(int idDomicilio, String calle, String altura, int piso, int depto, int localidad) {
 		this.idDomicilio = idDomicilio;
 		this.calle = calle;
 		this.altura = altura;
 		this.piso = piso;
 		this.depto = depto;
+		this.localidad = localidad;
+	}
+	
+	public DomicilioDTO(int idDomicilio, String calle, String altura, int localidad) {
+		this.idDomicilio = idDomicilio;
+		this.calle = calle;
+		this.altura = altura;
 		this.localidad = localidad;
 	}
 
@@ -57,11 +64,11 @@ public class DomicilioDTO {
 		this.depto = depto;
 	}
 
-	public String getLocalidad() {
+	public int getLocalidad() {
 		return localidad;
 	}
 
-	public void setLocalidad(String localidad) {
+	public void setLocalidad(int localidad) {
 		this.localidad = localidad;
 	}
 }

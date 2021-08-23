@@ -3,12 +3,14 @@ package modelo;
 import java.util.List;
 import dto.PersonaDTO;
 import persistencia.dao.interfaz.DAOAbstractFactory;
+import persistencia.dao.interfaz.LocalidadDAO;
 import persistencia.dao.interfaz.PersonaDAO;
 
 
 public class Agenda 
 {
-	private PersonaDAO persona;	
+	private PersonaDAO persona;
+	private LocalidadDAO localidad;
 	
 	public Agenda(DAOAbstractFactory metodo_persistencia)
 	{
@@ -35,6 +37,8 @@ public class Agenda
 		return this.persona.readAll();		
 	}
 	
-	
+	public String getNombreProvincia(int idLocalidad) {
+		return this.localidad.getNombreProvincia(idLocalidad);
+	}
 	
 }

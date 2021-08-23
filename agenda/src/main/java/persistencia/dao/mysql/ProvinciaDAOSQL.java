@@ -12,6 +12,7 @@ import persistencia.dao.interfaz.ProvinciaDAO;
 
 public class ProvinciaDAOSQL implements ProvinciaDAO {
 	private static final String readByPais = "SELECT nombre FROM provincia WHERE pais = ? ;";
+	private static final String getNombreById = "SELECT nombre FROM provincia WHERE idProvincia = ? ;";
 	
 	public List<ProvinciaDTO> readByPais(int idPais) {
 		PreparedStatement statement;
@@ -21,6 +22,7 @@ public class ProvinciaDAOSQL implements ProvinciaDAO {
 		try 
 		{
 			statement = conexion.getSQLConexion().prepareStatement(readByPais);
+			statement.setInt(1, idPais);
 			resultSet = statement.executeQuery();
 			while(resultSet.next())
 			{
@@ -32,6 +34,25 @@ public class ProvinciaDAOSQL implements ProvinciaDAO {
 			e.printStackTrace();
 		}
 		return provincias;
+	}
+	
+	public String getNombreById(int idProvincia) {
+		PreparedStatement statement;
+		ResultSet resultSet;
+		Conexion conexion = Conexion.getConexion();
+		String nombre = null;
+		try {
+			statement = conexion.getSQLConexion().prepareStatement(getNombreById);
+			statement.setInt(1, idProvincia);
+			resultSet = statement.executeQuery();
+			nombre = resultSet.getString("Nombre");
+			return nombre;
+		}
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		return nombre;
 	}
 
 	private ProvinciaDTO getProvinciaDTO(ResultSet resultSet) throws SQLException {

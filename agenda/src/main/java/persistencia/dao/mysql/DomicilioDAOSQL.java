@@ -21,6 +21,7 @@ public class DomicilioDAOSQL implements DomicilioDAO {
 		String ret = null;
 		try {
 			statement = conexion.prepareStatement(getById);
+			statement.setInt(1, id);
 			statement.getResultSet();
 		}
 		catch (SQLException e) {
@@ -41,7 +42,7 @@ public class DomicilioDAOSQL implements DomicilioDAO {
 			statement.setString(3, domicilio.getAltura());
 			statement.setInt(4, domicilio.getPiso());
 			statement.setInt(5, domicilio.getDepto());
-			statement.setString(6, domicilio.getLocalidad());
+			statement.setInt(6, domicilio.getLocalidad());
 			if(statement.executeUpdate() > 0)
 			{
 				conexion.commit();

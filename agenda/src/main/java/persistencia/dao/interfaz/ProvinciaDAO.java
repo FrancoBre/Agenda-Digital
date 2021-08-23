@@ -6,4 +6,5 @@ import dto.ProvinciaDTO;
 
 public interface ProvinciaDAO {
 	public List<ProvinciaDTO> readByPais(int idPais);
+	public String getNombreById(int idProvincia);
 }
