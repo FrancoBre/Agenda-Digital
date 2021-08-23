@@ -47,12 +47,10 @@ public class TipoContactoDAOSQL implements TipoContactoDAO {
 	private TipoContactoDTO getTipoContactoByName(String name) {
 		ArrayList<TipoContactoDTO> tipos = new ArrayList<TipoContactoDTO>();
 		
-		TipoContactoDTO uno = TipoContactoDTO.Familia;
 		TipoContactoDTO dos = TipoContactoDTO.Amigo;
 		TipoContactoDTO tres = TipoContactoDTO.Trabajo;
 		TipoContactoDTO cuatro = TipoContactoDTO.Futbol;
 		
-		 tipos.add(uno);
 		 tipos.add(dos);
 		 tipos.add(tres);
 		 tipos.add(cuatro);

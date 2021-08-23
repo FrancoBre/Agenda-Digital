@@ -117,7 +117,7 @@ public class Controlador implements ActionListener
 		}
 		
 		public java.sql.Date parseNacimiento(String nacimiento) throws ParseException {
-			SimpleDateFormat format = new SimpleDateFormat("ddMMyyyy");
+			SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 	        Date parsed = format.parse(nacimiento);
 	        java.sql.Date date = new java.sql.Date(parsed.getTime());
 			

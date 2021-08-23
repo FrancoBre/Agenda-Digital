@@ -41,7 +41,7 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement.setString(2, persona.getNombre());
 			statement.setString(3, persona.getTelefono());
 			statement.setString(4, persona.getEmail());
-			statement.setObject(5, persona.getNacimiento());
+			statement.setDate(5, persona.getNacimiento());
 			statement.setInt(6, persona.getDomicilio());
 			statement.setInt(7, persona.getTipoContacto());
 
@@ -74,7 +74,7 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement.setString(1, persona_a_editar.getNombre());
 			statement.setString(2, persona_a_editar.getTelefono());
 			statement.setString(3, persona_a_editar.getEmail());
-			statement.setObject(4, persona_a_editar.getNacimiento());
+			statement.setDate(4, persona_a_editar.getNacimiento());
 			statement.setInt(5, persona_a_editar.getDomicilio());
 			statement.setInt(6, persona_a_editar.getTipoContacto());
 
@@ -162,8 +162,8 @@ public class PersonaDAOSQL implements PersonaDAO
 	}
 
 	// Esto no deberia estar aca otra vez pero bueno
-	private java.sql.Date  parseNacimiento(String nacimiento) throws ParseException {
-		SimpleDateFormat format = new SimpleDateFormat("ddMMyyyy");
+	private java.sql.Date parseNacimiento(String nacimiento) throws ParseException {
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
         Date parsed = format.parse(nacimiento);
         java.sql.Date date = new java.sql.Date(parsed.getTime());
 		
