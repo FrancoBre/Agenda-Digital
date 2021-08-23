@@ -51,11 +51,7 @@ public class Agenda
 	{
 		return this.persona.readAll();		
 	}
-	
-	public String getNombreProvincia(int idLocalidad) {
-		return this.localidad.getNombreProvincia(idLocalidad);
-	}
-	
+		
 	public ArrayList<String> getNombrePaises(){
 		List<PaisDTO> paises = this.pais.readAll();
 		ArrayList<String> a = new ArrayList<String>();
@@ -65,20 +61,20 @@ public class Agenda
 		return a;
 	}
 	
-	public ArrayList<String> getNombreProvincia(){
-		List<ProvinciaDTO> provincias = this.provincia.readByPais(0);
+	public ArrayList<String> getNombreProvincia(int idpais){
+		List<ProvinciaDTO> provincias = this.provincia.readByPais(idpais);
 		ArrayList<String> a = new ArrayList<String>();
 		for (ProvinciaDTO provinciaDTO : provincias) {
-			a.add(provinciaDTO.getNombre().toString());
+			a.add(provinciaDTO.getNombre());
 		}
 		return a;
 	}
 	
 	public ArrayList<String> getNombreLocalidad(){
-		List<LocalidadDTO>localidad = this.localidad.readByProvincia(0);
+		List<LocalidadDTO>localidad = this.localidad.readByProvincia(1);
 		ArrayList<String> a = new ArrayList<String>();
 		for (LocalidadDTO localidadDTO: localidad) {
-			a.add(localidadDTO.getNombre().toString());
+			a.add(localidadDTO.getNombre());
 		}
 		return a;
 	}
@@ -87,7 +83,7 @@ public class Agenda
 		List<TipoContactoDTO> tipos = this.tipo_contacto.readAll();
 		ArrayList<String> a = new ArrayList<String>();
 		for (TipoContactoDTO tipoContactoDTO: tipos) {
-			a.add(tipoContactoDTO.name().toString());
+			a.add(tipoContactoDTO.name());
 		}
 		return a;
 	}
