@@ -118,7 +118,7 @@ INSERT INTO tipo_contacto (idTipo_contacto, Tipo) VALUES (3, 'Trabajo');
 INSERT INTO tipo_contacto (idTipo_contacto, Tipo) VALUES (4, 'Futbol');
 
 -- prueba
-insert into personas (idPersona, Nombre, Telefono, Email, Domicilio, Tipo_Contacto) values 
+insert into personas (idPersona, Nombre, Telefono, Email, 21 06 2000, Domicilio, Tipo_Contacto) values 
 (1, 'Franco', 1135760584, 'bregolif.fb@gmail.com', 1, 1);
 
 insert into domicilio (idDomicilio, Calle, Altura, Piso, Depto, Localidad) values 

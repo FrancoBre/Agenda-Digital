@@ -176,7 +176,8 @@ public class PersonaDAOSQL implements PersonaDAO
 		{
 			statement = conexion.prepareStatement(readMaxId);
 			resultSet = statement.executeQuery();
-			maxId = resultSet.getInt("idPersona");
+			if(resultSet.next())
+				maxId = resultSet.getInt("idPersona");
 			
 		} 
 		catch (SQLException e) 

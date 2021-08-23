@@ -29,6 +29,7 @@ public class Agenda
 	public Agenda(DAOAbstractFactory metodo_persistencia)
 	{
 		this.persona = metodo_persistencia.createPersonaDAO();
+		this.domicilio = metodo_persistencia.createDomicilioDAO();
 		this.tipo_contacto = metodo_persistencia.createTipoContactoDAO();
 		this.pais = metodo_persistencia.createPaisDAO();
 		this.provincia = metodo_persistencia.createProvinciaDAO();

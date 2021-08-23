@@ -37,6 +37,7 @@ public class ProvinciaDAOSQL implements ProvinciaDAO {
 		return provincias;
 	}
 	
+	//Unused
 	public String getNombreById(int idProvincia) {
 		PreparedStatement statement;
 		ResultSet resultSet;

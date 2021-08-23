@@ -59,7 +59,6 @@ public class Controlador implements ActionListener
 			
 		}
 		
-		
 		private void ventanaAgregarPersona(ActionEvent a) {
 			this.ventanaPersonaAgregar.mostrarVentana();
 			
@@ -96,8 +95,10 @@ public class Controlador implements ActionListener
 
 				PersonaDTO nuevaPersona = new PersonaDTO(this.agenda.getPersonaMaxId() + 1, nombre, tel, email, parseNacimiento(nacimiento),
 						idDomicilio, idTipoContacto);
-				this.agenda.agregarPersona(nuevaPersona);
+
 				this.agenda.agregarDomicilio(nuevoDomicilio);
+				
+				this.agenda.agregarPersona(nuevaPersona);
 				
 			}
 			this.refrescarTabla();

@@ -83,7 +83,8 @@ public class DomicilioDAOSQL implements DomicilioDAO {
 		{
 			statement = conexion.prepareStatement(readMaxId);
 			resultSet = statement.executeQuery();
-			maxId = resultSet.getInt("idDomicilio");
+			if(resultSet.next())
+				maxId = resultSet.getInt("idDomicilio");
 			
 		} 
 		catch (SQLException e) 
