@@ -11,20 +11,24 @@ import persistencia.dao.interfaz.DomicilioDAO;
 
 public class DomicilioDAOSQL implements DomicilioDAO {
 	
-	private static final String getById = "SELECT nombre FROM domicilio WHERE idDomicilio = ?";
-	private static final String insert = "INSERT INTO domicilio(idDomicilio, calle, altura, piso, depto, localidad) VALUES (?, ?, ?, ?, ?, ?)";
-	private static final String delete = "DELETE FROM domicilio WHERE idDomicilio = ?";
-	private static final String update = "UPDATE domicilio SET calle = ? , altura = ? , piso = ?, depto = ? , localidad = ? WHERE idDomicilio = ?";
+	private static final String getById = "SELECT nombre FROM domicilio WHERE idDomicilio = ?;";
+	private static final String getCalleAlturaById= "SELECT calle, altura FROM domicilio WHERE idDomicilio = ?;";
+	private static final String insert = "INSERT INTO domicilio(idDomicilio, calle, altura, piso, depto, localidad) VALUES (?, ?, ?, ?, ?, ?);";
+	private static final String delete = "DELETE FROM domicilio WHERE idDomicilio = ?;";
+	private static final String update = "UPDATE domicilio SET calle = ? , altura = ? , piso = ?, depto = ? , localidad = ? WHERE idDomicilio = ?;";
 	private static final String readMaxId = "SELECT idDomicilio FROM domicilio ORDER BY idDomicilio DESC LIMIT 0, 1;";
 
 	public String getNombreDomicilioById(int id) {
 		PreparedStatement statement;
 		Connection conexion = Conexion.getConexion().getSQLConexion();
+		ResultSet resultSet;
 		String ret = null;
 		try {
 			statement = conexion.prepareStatement(getById);
 			statement.setInt(1, id);
-			statement.getResultSet();
+			resultSet = statement.executeQuery();
+			if(resultSet.next())
+				ret = resultSet.getString("Nombre");
 		}
 		catch (SQLException e) {
 			
@@ -122,6 +126,26 @@ public class DomicilioDAOSQL implements DomicilioDAO {
 			
 		}
 		return maxId;
+	}
+
+	public String getCalleAlturaById(int id) {
+		PreparedStatement statement;
+		Connection conexion = Conexion.getConexion().getSQLConexion();
+		ResultSet resultSet;
+		StringBuilder ret = new StringBuilder();
+		try {
+			statement = conexion.prepareStatement(getCalleAlturaById);
+			statement.setInt(1, id);
+			resultSet = statement.executeQuery();
+			if(resultSet.next())
+				ret.append(resultSet.getString("Calle"));
+				ret.append(" ");
+				ret.append(resultSet.getString("Altura"));
+		}
+		catch (SQLException e) {
+			
+		}
+		return ret.toString();
 	}
 
 }

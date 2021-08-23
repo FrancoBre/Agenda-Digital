@@ -13,4 +13,6 @@ public interface DomicilioDAO {
 	public boolean update(DomicilioDTO domicilio);
 	
 	public int readMaxId();
+	
+	public String getCalleAlturaById(int id);
 }
