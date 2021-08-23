@@ -2,6 +2,7 @@ package presentacion.vista;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Date;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -27,7 +28,7 @@ public class Vista
 	private JButton btnBorrar;
 	private JButton btnReporte;
 	private DefaultTableModel modelPersonas;
-	private  String[] nombreColumnas = {"Nombre y apellido","Telefono"};
+	private  String[] nombreColumnas = {"Nombre y apellido","Telefono","Email","Nacimiento","Domicilio","Tipo de Contacto"};
 
 	public Vista() 
 	{
@@ -40,17 +41,17 @@ public class Vista
 	{
 		frame = new JFrame();
 		frame.setTitle("Agenda");
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 700, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 434, 262);
+		panel.setBounds(0, 0, 695, 262);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JScrollPane spPersonas = new JScrollPane();
-		spPersonas.setBounds(10, 11, 414, 182);
+		spPersonas.setBounds(10, 11, 670, 182);
 		panel.add(spPersonas);
 		
 		modelPersonas = new DefaultTableModel(null,nombreColumnas);
@@ -144,7 +145,12 @@ public class Vista
 		{
 			String nombre = p.getNombre();
 			String tel = p.getTelefono();
-			Object[] fila = {nombre, tel};
+			String email = p.getEmail();
+			String nac = p.getNacimiento().toString();
+			String domicilio = p.getDomicilio()+"";
+			String t_contacto = p.getTipoContacto()+"";
+			
+			Object[] fila = {nombre, tel, email, nac, domicilio, t_contacto};
 			this.getModelPersonas().addRow(fila);
 		}
 		
