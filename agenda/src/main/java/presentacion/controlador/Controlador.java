@@ -77,10 +77,11 @@ public class Controlador implements ActionListener
 				
 				//Estos datos tendrían que venir de la eleccion del usuario en la vista, y corresponden al id de cada entidad
 				int idLocalidad = 0;
-				int idDomicilio = 0;
 				int idTipoContacto = 0;
 				
-				DomicilioDTO nuevoDomicilio = new DomicilioDTO(this.agenda.getDomicilioMaxId() + 1, calle, altura, piso,
+				int idDomicilio = this.agenda.getDomicilioMaxId() + 1;
+				
+				DomicilioDTO nuevoDomicilio = new DomicilioDTO(idDomicilio, calle, altura, piso,
 						depto, idLocalidad);
 
 				PersonaDTO nuevaPersona = new PersonaDTO(this.agenda.getPersonaMaxId() + 1, nombre, tel, email, parseNacimiento(nacimiento),
@@ -120,7 +121,7 @@ public class Controlador implements ActionListener
 				int id = this.personasEnTabla.get(filasSeleccionadas[0]).getIdPersona();
 				String nombre = this.ventanaPersonaEditar.getNombreInput().getText();
 				String tel = ventanaPersonaEditar.getTelefonoInput().getText();
-				PersonaDTO personaEditada = new PersonaDTO(id, nombre, tel, id, id);
+				PersonaDTO personaEditada = new PersonaDTO(id, nombre, tel, null, null, id, id);
 				this.agenda.editarPersona(personaEditada);
 			}
 			this.refrescarTabla();
