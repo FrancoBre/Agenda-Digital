@@ -25,6 +25,8 @@ public class VentanaPersonaEditar extends VentanaPersona
     {
         super();
         super.setTitle("Editar Contacto");
+       
+       
     
         btnEditarPersona = new JButton("Editar");
         btnEditarPersona.setBounds(208, 493, 89, 29);

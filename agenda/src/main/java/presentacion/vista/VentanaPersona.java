@@ -1,11 +1,20 @@
 package presentacion.vista;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.MutableComboBoxModel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListDataListener;
+
+import dto.PaisDTO;
+import modelo.Agenda;
 
 public class VentanaPersona extends JFrame 
 {
@@ -39,7 +48,7 @@ public class VentanaPersona extends JFrame
 			return INSTANCE;
 	}
 
-	protected VentanaPersona() 
+	public VentanaPersona() 
 	{
 		super();
 		
@@ -150,6 +159,12 @@ public class VentanaPersona extends JFrame
         JComboBox<String> paisInput = new JComboBox<String>();
         paisInput.setBounds(133, 364, 164, 22);
         getPanel().add(paisInput);
+                
+        paisInput.addItem("a");
+        
+ 
+        
+        
         
         JLabel provinciaLabel = new JLabel("Provincia");
         provinciaLabel.setBounds(10, 413, 49, 14);
@@ -166,7 +181,7 @@ public class VentanaPersona extends JFrame
         JComboBox<String> localidadInput = new JComboBox<String>();
         localidadInput.setBounds(133, 451, 164, 22);
         getPanel().add(localidadInput);
-        super.setTitle("Editar Contacto");
+
 		
 		this.setVisible(false);
 	}
@@ -277,6 +292,15 @@ public class VentanaPersona extends JFrame
 		this.paisInput = paisInput;
 	}
 
+	public void addPaises(List<String> paises) {
+		this.paisInput = new JComboBox<String>();
+		for (String string : paises) {
+			this.paisInput.addItem(string);
+			
+			System.out.println(paisInput.getItemAt(1)+ "22");
+		}
+	}
+	
 	public JComboBox<String> getProvinciaInput() {
 		return provinciaInput;
 	}

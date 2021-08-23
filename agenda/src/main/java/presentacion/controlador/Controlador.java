@@ -6,7 +6,6 @@ import java.util.List;
 
 import modelo.Agenda;
 import presentacion.reportes.ReporteAgenda;
-import presentacion.vista.VentanaPersona;
 import presentacion.vista.VentanaPersonaAgregar;
 import presentacion.vista.VentanaPersonaEditar;
 import presentacion.vista.Vista;
@@ -25,22 +24,19 @@ public class Controlador implements ActionListener
 		public Controlador(Vista vista, Agenda agenda)
 		{
 			this.vista = vista;
+			this.agenda = agenda;
 			this.vista.getBtnAgregar().addActionListener(a->ventanaAgregarPersona(a));
 			this.vista.getBtnEditar().addActionListener(e->ventanaEditarPersona(e)); //*
 			this.vista.getBtnBorrar().addActionListener(s->borrarPersona(s));
-			this.vista.getBtnReporte().addActionListener(r->mostrarReporte(r));
+			this.vista.getBtnReporte().addActionListener(r->mostrarReporte(r));			
 			this.ventanaPersonaAgregar = VentanaPersonaAgregar.getInstance();
 			this.ventanaPersonaAgregar.getBtnAgregarPersona().addActionListener(p->guardarPersona(p));
-			
 			this.ventanaPersonaEditar = VentanaPersonaEditar.getInstance();
 			this.ventanaPersonaEditar.getBtnEditarPersona().addActionListener(ep->editarPersona(ep));
-			
-			this.agenda = agenda;
 		}
 		
-		
-		
 		private void ventanaAgregarPersona(ActionEvent a) {
+			this.ventanaPersonaAgregar.addPaises(agenda.getNombrePaises());
 			this.ventanaPersonaAgregar.mostrarVentana();
 		}
 				
@@ -125,6 +121,7 @@ public class Controlador implements ActionListener
 			this.personasEnTabla = agenda.obtenerPersonas();
 			this.vista.llenarTabla(this.personasEnTabla);
 		}
+			
 		
 		@Override
 		public void actionPerformed(ActionEvent e) { }

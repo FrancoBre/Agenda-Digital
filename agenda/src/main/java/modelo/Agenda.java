@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dto.PaisDTO;
@@ -19,6 +20,7 @@ public class Agenda
 	public Agenda(DAOAbstractFactory metodo_persistencia)
 	{
 		this.persona = metodo_persistencia.createPersonaDAO();
+		this.paisDAO = metodo_persistencia.createPaisDAO();
 	}
 	
 	public void agregarPersona(PersonaDTO nuevaPersona)
@@ -45,8 +47,13 @@ public class Agenda
 		return this.localidad.getNombreProvincia(idLocalidad);
 	}
 	
-	public List<PaisDTO> getPaises(){
-		return this.paisDAO.readAll();
+	public ArrayList<String> getNombrePaises(){
+		List<PaisDTO> paises = this.paisDAO.readAll();
+		ArrayList<String> a = new ArrayList<String>();
+		for (PaisDTO paisDTO : paises) {
+			a.add(paisDTO.getNombre().toString());
+		}
+		return a;
 	}
 	
 	

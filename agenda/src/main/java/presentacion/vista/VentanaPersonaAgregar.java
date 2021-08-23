@@ -1,6 +1,9 @@
 package presentacion.vista;
 
+import java.util.List;
+
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 public class VentanaPersonaAgregar extends VentanaPersona
 {
@@ -22,13 +25,23 @@ public class VentanaPersonaAgregar extends VentanaPersona
     {
         super();
         super.setTitle("Agregar Contacto");
-
+                
         btnAgregarPersona = new JButton("Agregar");
         btnAgregarPersona.setBounds(208, 493, 89, 29);
         super.getPanel().add(btnAgregarPersona);
                 
         this.setVisible(false);
     }
+    
+    @Override
+    public void addPaises(List<String> paises) {
+    	setPaisInput(new JComboBox<String>());
+		for (String string : paises) {
+			super.getPaisInput().addItem(string);
+			
+			System.out.println(super.getPaisInput().getItemAt(0)+ "2 2");
+		}
+	}
     
     public JButton getBtnAgregarPersona() 
     {
