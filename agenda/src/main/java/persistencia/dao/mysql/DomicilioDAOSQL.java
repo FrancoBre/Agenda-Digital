@@ -70,8 +70,37 @@ public class DomicilioDAOSQL implements DomicilioDAO {
 	}
 
 	public boolean update(DomicilioDTO domicilio) {
-		// TODO Auto-generated method stub
-		return false;
+		PreparedStatement statement;
+		Connection conexion = Conexion.getConexion().getSQLConexion();
+		boolean isUpdateExitoso = false;
+		try
+		{
+			statement = conexion.prepareStatement(update);
+			
+			statement.setString(1, domicilio.getCalle());
+			statement.setString(2, domicilio.getAltura());
+			statement.setInt(3, domicilio.getPiso());
+			statement.setInt(4, domicilio.getDepto());
+			statement.setInt(5, domicilio.getLocalidad());
+			
+			statement.setInt(6, domicilio.getIdDomicilio());
+			if(statement.executeUpdate() > 0)
+			{
+				conexion.commit();
+				isUpdateExitoso = true;
+			}
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+			try {
+				conexion.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+		return isUpdateExitoso;
 	}
  
 	public int readMaxId() {

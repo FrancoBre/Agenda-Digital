@@ -111,5 +111,10 @@ public class Agenda
 	public int getIdTipoContactoByNombre(String nombre) {
 		return this.tipoContacto.readIdByNombre(nombre);
 	}
+
+	public void editarDomicilio(DomicilioDTO domicilioEditado) {
+		this.domicilio.update(domicilioEditado);
+		
+	}
 	
 }

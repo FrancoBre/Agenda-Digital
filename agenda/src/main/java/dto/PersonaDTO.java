@@ -91,4 +91,12 @@ public class PersonaDTO
 	public void setNacimiento(Date nacimiento) {
 		this.nacimiento = nacimiento;
 	}
+
+	@Override
+	public String toString() {
+		return "PersonaDTO [idPersona=" + idPersona + ", nombre=" + nombre + ", telefono=" + telefono + ", email="
+				+ email + ", nacimiento=" + nacimiento + ", domicilio=" + domicilio + ", tipoContacto=" + tipoContacto
+				+ "]";
+	}
+	
 }

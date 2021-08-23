@@ -112,7 +112,7 @@ public class Controlador implements ActionListener
 				PersonaDTO nuevaPersona;
 				
 				nuevaPersona = null;
-				
+
 				try {
 					nuevaPersona = new PersonaDTO(this.agenda.getPersonaMaxId() + 1, nombre, tel, email, parseNacimiento(nacimiento),
 							idDomicilio, idTipoContacto);
@@ -149,7 +149,9 @@ public class Controlador implements ActionListener
 			if (!ventanaPersonaAgregar.validarRequeridos()) {
 				//crear una ventana con mensaje de campos vacios
 			}else {
-				int id = this.personasEnTabla.get(filasSeleccionadas[0]).getIdPersona();
+				int idPersona = this.personasEnTabla.get(filasSeleccionadas[0]).getIdPersona();
+				int idDomicilio = this.personasEnTabla.get(filasSeleccionadas[0]).getDomicilio();
+				
 				String nombre = this.ventanaPersonaAgregar.getNombreInput().getText();
 				String tel = this.ventanaPersonaAgregar.getTelefonoInput().getText();
 				String email = this.ventanaPersonaAgregar.getEmailInput().getText();
@@ -172,18 +174,20 @@ public class Controlador implements ActionListener
 				int idLocalidad = this.agenda.getIdLocalidadByNombre(localidad);
 				int idTipoContacto = this.agenda.getIdTipoContactoByNombre(tipoContacto);
 				
-				int idDomicilio = this.agenda.getDomicilioMaxId() + 1;
-				
-				DomicilioDTO nuevoDomicilio = new DomicilioDTO(idDomicilio, calle, altura, piso,
+				DomicilioDTO domicilioEditado = new DomicilioDTO(idDomicilio, calle, altura, piso,
 						depto, idLocalidad);
+				
+				this.agenda.editarDomicilio(domicilioEditado);
 
 				PersonaDTO personaEditada;
 				
 				personaEditada = null;
-				
+				System.out.println("Guasu guasol");
 				try {
-					personaEditada = new PersonaDTO(id, nombre, tel, email, parseNacimiento(nacimiento),
+					personaEditada = new PersonaDTO(idPersona, nombre, tel, email, parseNacimiento(nacimiento),
 							idDomicilio, idTipoContacto);
+					
+					System.out.println(personaEditada.toString());
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}

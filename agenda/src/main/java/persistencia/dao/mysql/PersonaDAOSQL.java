@@ -24,7 +24,7 @@ public class PersonaDAOSQL implements PersonaDAO
 {
 
 	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono, email, nacimiento, domicilio, tipo_contacto) VALUES(?, ?, ?, ?, ?, ?, ?)";
-	private static final String update = "UPDATE personas SET nombre = ? , telefono = ? , email = ? , nacimiento = ? , domicilio = ?, tipo_contacto = ? WHERE idPersona = ?";
+	private static final String update = "UPDATE personas SET nombre = ? , telefono = ? , email = ? , nacimiento = ? , domicilio = ?, tipo_contacto = ? WHERE idPersona = ?;";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM personas";
 	private static final String readMaxId = "SELECT idPersona FROM personas ORDER BY idPersona DESC LIMIT 0, 1;";
@@ -78,7 +78,7 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement.setInt(5, persona_a_editar.getDomicilio());
 			statement.setInt(6, persona_a_editar.getTipoContacto());
 
-			statement.setInt(6, persona_a_editar.getIdPersona());
+			statement.setInt(7, persona_a_editar.getIdPersona());
 			if(statement.executeUpdate() > 0)
 			{
 				conexion.commit();
