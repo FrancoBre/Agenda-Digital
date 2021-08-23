@@ -1,20 +1,12 @@
 package presentacion.vista;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.MutableComboBoxModel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ListDataListener;
 
-import dto.PaisDTO;
-import modelo.Agenda;
 
 public class VentanaPersona extends JFrame 
 {

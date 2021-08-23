@@ -1,9 +1,6 @@
 package presentacion.vista;
 
-import java.util.List;
-
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 
 public class VentanaPersonaAgregar extends VentanaPersona
 {
