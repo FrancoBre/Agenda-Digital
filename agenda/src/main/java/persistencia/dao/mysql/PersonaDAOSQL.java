@@ -1,9 +1,12 @@
 package persistencia.dao.mysql;
 
 import java.sql.Connection;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
@@ -129,7 +132,11 @@ public class PersonaDAOSQL implements PersonaDAO
 			resultSet = statement.executeQuery();
 			while(resultSet.next())
 			{
-				personas.add(getPersonaDTO(resultSet));
+				try {
+					personas.add(getPersonaDTO(resultSet));
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
 			}
 		} 
 		catch (SQLException e) 
@@ -139,7 +146,7 @@ public class PersonaDAOSQL implements PersonaDAO
 		return personas;
 	}
 	
-	private PersonaDTO getPersonaDTO(ResultSet resultSet) throws SQLException
+	private PersonaDTO getPersonaDTO(ResultSet resultSet) throws SQLException, ParseException
 	{
 		int id = resultSet.getInt("idPersona");
 		String nombre = resultSet.getString("Nombre");
@@ -149,20 +156,16 @@ public class PersonaDAOSQL implements PersonaDAO
 		int domicilio = resultSet.getInt("Domicilio");
 		int tipoContacto = resultSet.getInt("Tipo_contacto");
 		
-		LocalDate nacimiento = parseNacimiento(nac);
+		java.sql.Date nacimiento = parseNacimiento(nac);
 		
 		return new PersonaDTO(id, nombre, tel, email, nacimiento, domicilio, tipoContacto);
 	}
 
 	// Esto no deberia estar aca otra vez pero bueno
-	private LocalDate parseNacimiento(String nacimiento) {
-		DateTimeFormatter dateFormatter = 
-		        new DateTimeFormatterBuilder()
-		            .parseCaseInsensitive()
-		            .appendPattern("dd mm uuuu")
-		            .toFormatter(Locale.ENGLISH);
-		
-		LocalDate date = LocalDate.parse(nacimiento, dateFormatter);
+	private java.sql.Date  parseNacimiento(String nacimiento) throws ParseException {
+		SimpleDateFormat format = new SimpleDateFormat("ddMMyyyy");
+        Date parsed = format.parse(nacimiento);
+        java.sql.Date date = new java.sql.Date(parsed.getTime());
 		
 		return date;
 	}

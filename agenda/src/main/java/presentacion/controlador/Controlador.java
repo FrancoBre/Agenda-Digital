@@ -2,7 +2,8 @@ package presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
+import java.util.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -95,8 +96,16 @@ public class Controlador implements ActionListener
 				DomicilioDTO nuevoDomicilio = new DomicilioDTO(idDomicilio, calle, altura, piso,
 						depto, idLocalidad);
 
-				PersonaDTO nuevaPersona = new PersonaDTO(this.agenda.getPersonaMaxId() + 1, nombre, tel, email, parseNacimiento(nacimiento),
-						idDomicilio, idTipoContacto);
+				PersonaDTO nuevaPersona;
+				
+				nuevaPersona = null;
+				
+				try {
+					nuevaPersona = new PersonaDTO(this.agenda.getPersonaMaxId() + 1, nombre, tel, email, parseNacimiento(nacimiento),
+							idDomicilio, idTipoContacto);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
 
 				this.agenda.agregarDomicilio(nuevoDomicilio);
 				
@@ -107,14 +116,10 @@ public class Controlador implements ActionListener
 			this.ventanaPersonaAgregar.cerrar();
 		}
 		
-		public LocalDate parseNacimiento(String nacimiento) {
-			DateTimeFormatter dateFormatter = 
-			        new DateTimeFormatterBuilder()
-			            .parseCaseInsensitive()
-			            .appendPattern("dd MM uuuu")
-			            .toFormatter(Locale.ENGLISH);
-			
-			LocalDate date = LocalDate.parse(nacimiento, dateFormatter);
+		public java.sql.Date parseNacimiento(String nacimiento) throws ParseException {
+			SimpleDateFormat format = new SimpleDateFormat("ddMMyyyy");
+	        Date parsed = format.parse(nacimiento);
+	        java.sql.Date date = new java.sql.Date(parsed.getTime());
 			
 			return date;
 		}
