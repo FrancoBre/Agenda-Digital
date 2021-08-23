@@ -6,4 +6,6 @@ import dto.TipoContactoDTO;
 
 public interface TipoContactoDAO {
 	public List<TipoContactoDTO> readAll();
+
+	public int readIdByNombre(String nombre);
 }

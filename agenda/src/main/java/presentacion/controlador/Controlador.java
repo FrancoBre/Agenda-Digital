@@ -88,7 +88,7 @@ public class Controlador implements ActionListener
 				
 				//Estos datos tendrían que venir de la eleccion del usuario en la vista, y corresponden al id de cada entidad
 				int idLocalidad = this.agenda.getIdLocalidadByNombre(localidad);
-				int idTipoContacto = 0;
+				int idTipoContacto = this.agenda.getIdTipoContactoByNombre(tipoContacto);
 				
 				int idDomicilio = this.agenda.getDomicilioMaxId() + 1;
 				

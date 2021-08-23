@@ -13,6 +13,7 @@ import persistencia.dao.interfaz.TipoContactoDAO;
 public class TipoContactoDAOSQL implements TipoContactoDAO {
 
 	private static final String readAll = "SELECT * FROM tipo_contacto;";
+	private static final String readIdByNombre = "SELECT idTipo_contacto FROM tipo_contacto WHERE nombre = '?';";
 	
 	public List<TipoContactoDTO> readAll() {
 		PreparedStatement statement;
@@ -62,6 +63,24 @@ public class TipoContactoDAOSQL implements TipoContactoDAO {
 		}
 		 
 		 return null;
+	}
+
+	public int readIdByNombre(String nombre) {
+		PreparedStatement statement;
+		ResultSet resultSet;
+		int idTipoContacto = 0;
+		Conexion conexion = Conexion.getConexion();
+		try 
+		{
+			statement = conexion.getSQLConexion().prepareStatement(readIdByNombre);
+			statement.setString(1, nombre);
+			resultSet = statement.executeQuery();
+			idTipoContacto = resultSet.getInt("idTipoContacto");
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return idTipoContacto;
 	}
 
 }

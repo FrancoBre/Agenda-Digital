@@ -22,7 +22,7 @@ public class Agenda
 {
 	private PersonaDAO persona;
 	private DomicilioDAO domicilio;
-	private TipoContactoDAO tipo_contacto;
+	private TipoContactoDAO tipoContacto;
 	private PaisDAO pais;
 	private ProvinciaDAO provincia;
 	private LocalidadDAO localidad;
@@ -30,7 +30,7 @@ public class Agenda
 	{
 		this.persona = metodo_persistencia.createPersonaDAO();
 		this.domicilio = metodo_persistencia.createDomicilioDAO();
-		this.tipo_contacto = metodo_persistencia.createTipoContactoDAO();
+		this.tipoContacto = metodo_persistencia.createTipoContactoDAO();
 		this.pais = metodo_persistencia.createPaisDAO();
 		this.provincia = metodo_persistencia.createProvinciaDAO();
 		this.localidad = metodo_persistencia.createLocalidadDAO();
@@ -88,7 +88,7 @@ public class Agenda
 	}
 	
 	public ArrayList<String> getNombreTipoContacto(){
-		List<TipoContactoDTO> tipos = this.tipo_contacto.readAll();
+		List<TipoContactoDTO> tipos = this.tipoContacto.readAll();
 		ArrayList<String> a = new ArrayList<String>();
 		for (TipoContactoDTO tipoContactoDTO: tipos) {
 			a.add(tipoContactoDTO.name());
@@ -106,6 +106,10 @@ public class Agenda
 
 	public int getIdLocalidadByNombre(String nombre) {
 		return this.localidad.readIdByNombre(nombre);
+	}
+
+	public int getIdTipoContactoByNombre(String nombre) {
+		return this.tipoContacto.readIdByNombre(nombre);
 	}
 	
 }
