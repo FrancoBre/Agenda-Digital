@@ -16,10 +16,11 @@ import dto.PersonaDTO;
 public class PersonaDAOSQL implements PersonaDAO
 {
 
-	private static final String insert = "INSERT INTO personas(idPersona, nombre, domicilio, tipo_contacto) VALUES(?, ?, ?, ?, ?)";
-	private static final String update = "UPDATE personas SET nombre = ? , telefono = ? , domicilio = ?, tipo_contacto = ? WHERE idPersona = ?";
+	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono, email, domicilio, tipo_contacto) VALUES(?, ?, ?, ?, ?, ?)";
+	private static final String update = "UPDATE personas SET nombre = ? , telefono = ? , email = ? , domicilio = ?, tipo_contacto = ? WHERE idPersona = ?";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM personas";
+	private static final String readMaxId = "SELECT idPersona FROM personas ORDER BY idPersona DESC LIMIT 0, 1;";
 		
 	public boolean insert(PersonaDTO persona)
 	{
@@ -32,8 +33,9 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement.setInt(1, persona.getIdPersona());
 			statement.setString(2, persona.getNombre());
 			statement.setString(3, persona.getTelefono());
-			statement.setInt(4, persona.getDomicilio());
-			statement.setInt(5, persona.getTipoContacto());
+			statement.setString(4, persona.getEmail());
+			statement.setInt(5, persona.getDomicilio());
+			statement.setInt(6, persona.getTipoContacto());
 
 			if(statement.executeUpdate() > 0)
 			{
@@ -63,10 +65,11 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement = conexion.prepareStatement(update);
 			statement.setString(1, persona_a_editar.getNombre());
 			statement.setString(2, persona_a_editar.getTelefono());
-			statement.setInt(3, persona_a_editar.getDomicilio());
-			statement.setInt(4, persona_a_editar.getTipoContacto());
+			statement.setString(3, persona_a_editar.getEmail());
+			statement.setInt(4, persona_a_editar.getDomicilio());
+			statement.setInt(5, persona_a_editar.getTipoContacto());
 
-			statement.setInt(5, persona_a_editar.getIdPersona());
+			statement.setInt(6, persona_a_editar.getIdPersona());
 			if(statement.executeUpdate() > 0)
 			{
 				conexion.commit();
@@ -135,9 +138,30 @@ public class PersonaDAOSQL implements PersonaDAO
 		int id = resultSet.getInt("idPersona");
 		String nombre = resultSet.getString("Nombre");
 		String tel = resultSet.getString("Telefono");
+		String email = resultSet.getString("Email");
 		int domicilio = resultSet.getInt("Domicilio");
 		int tipoContacto = resultSet.getInt("Tipo_contacto");
-		return new PersonaDTO(id, nombre, tel, domicilio, tipoContacto);
+		return new PersonaDTO(id, nombre, tel, email, domicilio, tipoContacto);
+	}
+
+	public int readMaxId() {
+		PreparedStatement statement;
+		Connection conexion = Conexion.getConexion().getSQLConexion();
+		ResultSet resultSet;
+		int maxId = 0;
+		try
+		{
+			statement = conexion.prepareStatement(readMaxId);
+			resultSet = statement.executeQuery();
+			maxId = resultSet.getInt("idPersona");
+			
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+			
+		}
+		return maxId;
 	}
 
 }

@@ -92,5 +92,8 @@ public class Agenda
 		return a;
 	}
 	
+	public int getPersonaMaxId() {
+		return this.persona.readMaxId();
+	}
 	
 }

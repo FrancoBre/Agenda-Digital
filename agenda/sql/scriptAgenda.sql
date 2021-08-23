@@ -44,7 +44,8 @@ CONSTRAINT fk_dom_localidad FOREIGN KEY (Localidad) REFERENCES localidad(idLocal
 CREATE TABLE personas (
 idPersona int(11) NOT NULL AUTO_INCREMENT, 
 Nombre varchar(45) NOT NULL, 
-Telefono varchar(20) NOT NULL, 
+Telefono varchar(20) NOT NULL,
+Email nvarchar(45), 
 Domicilio int(11), 
 Tipo_contacto int(11), 
 PRIMARY KEY (idPersona), 
@@ -114,3 +115,10 @@ INSERT INTO tipo_contacto (idTipo_contacto, Tipo) VALUES (2, 'Familiar');
 INSERT INTO tipo_contacto (idTipo_contacto, Tipo) VALUES (3, 'Trabajo');
 
 INSERT INTO tipo_contacto (idTipo_contacto, Tipo) VALUES (4, 'Futbol');
+
+-- prueba
+insert into personas (idPersona, Nombre, Telefono, Email, Domicilio, Tipo_Contacto) values 
+(1, 'Franco', 1135760584, 'bregolif.fb@gmail.com', 1, 1);
+
+insert into domicilio (idDomicilio, Calle, Altura, Piso, Depto, Localidad) values 
+(1, 'Plus Ultra', 6271, 1, 1, 1);

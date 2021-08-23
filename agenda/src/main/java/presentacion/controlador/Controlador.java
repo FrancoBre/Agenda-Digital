@@ -53,19 +53,19 @@ public class Controlador implements ActionListener
 				String calle = this.ventanaPersonaAgregar.getCalleInput().getText();
 				String altura = this.ventanaPersonaAgregar.getAlturaInput().getText();
 				String pisoStr = this.ventanaPersonaAgregar.getPisoInput().getText();
-				int piso = Integer.parseInt(pisoStr);
+				int piso = Integer.parseInt(pisoStr.trim());
 				String deptoStr = this.ventanaPersonaAgregar.getDeptoInput().getText();
-				int depto = Integer.parseInt(deptoStr);
+				int depto = Integer.parseInt(deptoStr.trim());
 				String pais = (String) this.ventanaPersonaAgregar.getPaisInput().getSelectedItem();
 				String provincia = (String) this.ventanaPersonaAgregar.getProvinciaInput().getSelectedItem();
 				String localidad = (String) this.ventanaPersonaAgregar.getLocalidadInput().getSelectedItem();
 				
-				int idLocalidad = 0;
-				
 				DomicilioDTO nuevoDomicilio = new DomicilioDTO(0, calle, altura, piso, depto, idLocalidad);
 
-				PersonaDTO nuevaPersona = new PersonaDTO(0, nombre, tel);
+				PersonaDTO nuevaPersona = new PersonaDTO(this.agenda.getPersonaMaxId()+1, nombre, tel, idDomicilio, 
+						idTipoContacto);
 				this.agenda.agregarPersona(nuevaPersona);
+				this.agenda.agregarDomicilio(nuevoDomicilio);
 				
 			}
 			this.refrescarTabla();
