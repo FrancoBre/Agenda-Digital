@@ -80,12 +80,14 @@ public class Controlador implements ActionListener
 				int piso = Integer.parseInt(pisoStr.trim());
 				String deptoStr = this.ventanaPersonaAgregar.getDeptoInput().getText();
 				int depto = Integer.parseInt(deptoStr.trim());
-				String pais = (String) this.ventanaPersonaAgregar.getPaisInput().getSelectedItem();
-				String provincia = (String) this.ventanaPersonaAgregar.getProvinciaInput().getSelectedItem();
 				String localidad = (String) this.ventanaPersonaAgregar.getLocalidadInput().getSelectedItem();
 				
+				//unused
+				String pais = (String) this.ventanaPersonaAgregar.getPaisInput().getSelectedItem();
+				String provincia = (String) this.ventanaPersonaAgregar.getProvinciaInput().getSelectedItem();
+				
 				//Estos datos tendrían que venir de la eleccion del usuario en la vista, y corresponden al id de cada entidad
-				int idLocalidad = 0;
+				int idLocalidad = this.agenda.getIdLocalidadByNombre(localidad);
 				int idTipoContacto = 0;
 				
 				int idDomicilio = this.agenda.getDomicilioMaxId() + 1;

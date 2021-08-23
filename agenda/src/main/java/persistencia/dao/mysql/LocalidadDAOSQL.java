@@ -12,10 +12,12 @@ import persistencia.dao.interfaz.LocalidadDAO;
 
 public class LocalidadDAOSQL implements LocalidadDAO {
 
-	private static final String readByNombreProv ="select * from localidad l,  provincia p where p.idprovincia = l.provincia and p.pais=l.pais and p.nombre= ?";
+	private static final String readByNombreProv ="SELECT * FROM localidad l, provincia p WHERE p.idProvincia "+
+	" = l.provincia AND p.pais=l.pais AND p.nombre = ?;";
 	private static final String readByProv = "SELECT * FROM localidad WHERE Provincia = ?;";
 	private static final String readNombreProvinciaById = "select b.nombre from localidad a inner " +
 	"join provincia b on (a.provincia = b.idProvincia) where a.idLocalidad = ? ;";
+	private static final String readIdByNombre = "SELECT idLocalidad FROM localidad WHERE nombre = '?';";
 	
 	public List<LocalidadDTO> readByProvincia(int idProvincia) {
 		PreparedStatement statement;
@@ -88,10 +90,30 @@ public class LocalidadDAOSQL implements LocalidadDAO {
 		return new LocalidadDTO(id, nombre, provincia, pais);
 	}
 
+	//unused
 	@Override
 	public String getNombreProvincia(int idLocalidad) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	public int readIdByNombre(String nombre) {
+		PreparedStatement statement;
+		ResultSet resultSet;
+		int idLocalidad = 0;
+		Conexion conexion = Conexion.getConexion();
+		try 
+		{
+			statement = conexion.getSQLConexion().prepareStatement(readIdByNombre);
+			statement.setString(1, nombre);
+			resultSet = statement.executeQuery();
+			idLocalidad = resultSet.getInt("idLocalidad");
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return idLocalidad;
 	}
 	
 }

@@ -103,5 +103,9 @@ public class Agenda
 	public int getDomicilioMaxId() {
 		return this.domicilio.readMaxId();
 	}
+
+	public int getIdLocalidadByNombre(String nombre) {
+		return this.localidad.readIdByNombre(nombre);
+	}
 	
 }
