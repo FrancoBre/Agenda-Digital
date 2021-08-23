@@ -55,7 +55,7 @@ public class Controlador implements ActionListener
 		private void cambioItemsL(ActionEvent c) {
 			this.ventanaPersonaAgregar.getLocalidadInput().removeAllItems();
 			int id = this.ventanaPersonaAgregar.getLocalidadInput().getSelectedIndex() + 1;
-			addLocalidadItems(agenda.getNombreLocalidad());
+			addLocalidadItems(agenda.getNombreLocalidad(id));
 			
 		}
 		
