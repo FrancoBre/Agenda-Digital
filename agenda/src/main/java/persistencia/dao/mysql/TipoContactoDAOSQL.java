@@ -1,5 +1,6 @@
 package persistencia.dao.mysql;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +15,7 @@ public class TipoContactoDAOSQL implements TipoContactoDAO {
 
 	private static final String readAll = "SELECT * FROM tipo_contacto;";
 	private static final String readIdByNombre = "SELECT idTipo_contacto FROM tipo_contacto WHERE Tipo = ?;";
+	private static final String readNombreById = "SELECT nombre FROM tipo_contacto WHERE idTipo_contacto = ?;";
 	
 	public List<TipoContactoDTO> readAll() {
 		PreparedStatement statement;
@@ -79,6 +81,26 @@ public class TipoContactoDAOSQL implements TipoContactoDAO {
 			e.printStackTrace();
 		}
 		return idTipoContacto;
+	}
+
+	@Override
+	public String readNombreById(int id) {
+		PreparedStatement statement;
+		Connection conexion = Conexion.getConexion().getSQLConexion();
+		ResultSet resultSet;
+		String ret = "";
+		try {
+			statement = conexion.prepareStatement(readNombreById);
+			statement.setInt(1, id);
+			resultSet = statement.executeQuery();
+			if(resultSet.next())
+				ret = resultSet.getString("Nombre");
+			
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ret;
 	}
 
 }

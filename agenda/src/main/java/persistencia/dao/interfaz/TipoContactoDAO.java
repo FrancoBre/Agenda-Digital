@@ -8,4 +8,6 @@ public interface TipoContactoDAO {
 	public List<TipoContactoDTO> readAll();
 
 	public int readIdByNombre(String nombre);
+	
+	public String readNombreById(int id);
 }

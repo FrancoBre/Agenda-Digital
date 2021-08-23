@@ -143,7 +143,7 @@ public class DomicilioDAOSQL implements DomicilioDAO {
 				ret.append(resultSet.getString("Altura"));
 		}
 		catch (SQLException e) {
-			
+			e.printStackTrace();
 		}
 		return ret.toString();
 	}
