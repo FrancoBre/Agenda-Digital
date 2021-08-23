@@ -3,6 +3,7 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import dto.DomicilioDTO;
 import dto.LocalidadDTO;
 import dto.PaisDTO;
 import dto.PersonaDTO;
@@ -61,6 +62,10 @@ public class Agenda
 			a.add(paisDTO.getNombre().toString());
 		}
 		return a;
+	}
+	
+	public void agregarDomicilio(DomicilioDTO domicilio) {
+		this.domicilio.insert(domicilio);
 	}
 	
 	public ArrayList<String> getNombreProvincia(int idpais){

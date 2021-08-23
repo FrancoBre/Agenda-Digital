@@ -100,7 +100,7 @@ public class VentanaPersona extends JFrame
         getPanel().add(nacimientoInput);
         nacimientoInput.setColumns(10);
         
-        dateFormatLabel = new JLabel("DD/MM/YYYY");
+        dateFormatLabel = new JLabel("DD MM YYYY");
         dateFormatLabel.setBounds(227, 142, 70, 14);
         getPanel().add(dateFormatLabel);
         

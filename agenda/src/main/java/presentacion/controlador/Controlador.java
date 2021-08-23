@@ -2,8 +2,15 @@ package presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
 import modelo.Agenda;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaPersonaAgregar;
@@ -68,11 +75,16 @@ public class Controlador implements ActionListener
 				String provincia = (String) this.ventanaPersonaAgregar.getProvinciaInput().getSelectedItem();
 				String localidad = (String) this.ventanaPersonaAgregar.getLocalidadInput().getSelectedItem();
 				
+				//Estos datos tendrían que venir de la eleccion del usuario en la vista, y corresponden al id de cada entidad
+				int idLocalidad = 0;
+				int idDomicilio = 0;
+				int idTipoContacto = 0;
+				
 				DomicilioDTO nuevoDomicilio = new DomicilioDTO(this.agenda.getDomicilioMaxId() + 1, calle, altura, piso,
 						depto, idLocalidad);
 
-				PersonaDTO nuevaPersona = new PersonaDTO(this.agenda.getPersonaMaxId() + 1, nombre, tel, idDomicilio, 
-						idTipoContacto);
+				PersonaDTO nuevaPersona = new PersonaDTO(this.agenda.getPersonaMaxId() + 1, nombre, tel, email, parseNacimiento(nacimiento),
+						idDomicilio, idTipoContacto);
 				this.agenda.agregarPersona(nuevaPersona);
 				this.agenda.agregarDomicilio(nuevoDomicilio);
 				
@@ -81,6 +93,18 @@ public class Controlador implements ActionListener
 			this.ventanaPersonaAgregar.cerrar();
 		}
 		
+		public LocalDate parseNacimiento(String nacimiento) {
+			DateTimeFormatter dateFormatter = 
+			        new DateTimeFormatterBuilder()
+			            .parseCaseInsensitive()
+			            .appendPattern("dd MM uuuu")
+			            .toFormatter(Locale.ENGLISH);
+			
+			LocalDate date = LocalDate.parse(nacimiento, dateFormatter);
+			
+			return date;
+		}
+
 		private void ventanaEditarPersona(ActionEvent e) {
 			if(this.vista.getTablaPersonas().getSelectedRows().length == 1) {
 				filasSeleccionadas = this.vista.getTablaPersonas().getSelectedRows();

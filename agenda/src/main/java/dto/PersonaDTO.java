@@ -1,20 +1,25 @@
 package dto;
 
+import java.time.LocalDate;
+
 public class PersonaDTO 
 {
 	private int idPersona;
 	private String nombre;
 	private String telefono;
 	private String email;
+	private LocalDate nacimiento;
 	private int domicilio;
 	private int tipoContacto;
 
-	public PersonaDTO(int idPersona, String nombre, String telefono, String email, int domicilio, int tipoContacto)
+	public PersonaDTO(int idPersona, String nombre, String telefono, String email, LocalDate nacimiento, int domicilio, 
+			int tipoContacto)
 	{
 		this.idPersona = idPersona;
 		this.nombre = nombre;
 		this.telefono = telefono;
-		this.setEmail(email);
+		this.email = email;
+		this.nacimiento = nacimiento;
 		this.domicilio = domicilio;
 		this.tipoContacto = tipoContacto;
 	}
@@ -77,5 +82,13 @@ public class PersonaDTO
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public LocalDate getNacimiento() {
+		return nacimiento;
+	}
+
+	public void setNacimiento(LocalDate nacimiento) {
+		this.nacimiento = nacimiento;
 	}
 }
