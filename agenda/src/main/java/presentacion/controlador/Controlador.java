@@ -5,14 +5,10 @@ import java.awt.event.ActionListener;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-
-import modelo.Agenda;
+import javax.swing.DefaultComboBoxModel;
+import modelo.*;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaPersonaAgregar;
 import presentacion.vista.VentanaPersonaEditar;
@@ -36,42 +32,42 @@ public class Controlador implements ActionListener
 			this.vista.getBtnAgregar().addActionListener(a->ventanaAgregarPersona(a));
 			this.vista.getBtnEditar().addActionListener(e->ventanaEditarPersona(e)); //*
 			this.vista.getBtnBorrar().addActionListener(s->borrarPersona(s));
-			this.vista.getBtnReporte().addActionListener(r->mostrarReporte(r));			
+			this.vista.getBtnReporte().addActionListener(r->mostrarReporte(r));	
+			
+			
 			this.ventanaPersonaAgregar = VentanaPersonaAgregar.getInstance();
-			this.ventanaPersonaAgregar.getBtnAgregarPersona().addActionListener(p->guardarPersona(p));
+			this.ventanaPersonaAgregar.getBtnAction().addActionListener(p->guardarPersona(p));
+			
 			this.ventanaPersonaEditar = VentanaPersonaEditar.getInstance();
-			this.ventanaPersonaEditar.getBtnEditarPersona().addActionListener(ep->editarPersona(ep));
+			this.ventanaPersonaEditar.getBtnAction().addActionListener(ep->editarPersona(ep));
+			
+			
+			this.ventanaPersonaAgregar.getComboBoxMes().addActionListener(e -> agregarD(e));
+			this.ventanaPersonaEditar.getComboBoxMes().addActionListener(e -> agregarDEdit(e));
+			
 			
 			this.ventanaPersonaAgregar.getPaisInput().addActionListener(combobox->cambioItemsP(combobox));
 			this.ventanaPersonaAgregar.getProvinciaInput().addActionListener(comboLocalidad -> cambioItemsL(comboLocalidad));
 			this.ventanaPersonaEditar.getPaisInput().addActionListener(combobox->cambioItemsPEdit(combobox));
 			this.ventanaPersonaEditar.getProvinciaInput().addActionListener(comboLocalidad -> cambioItemsLEdit(comboLocalidad));
 			
+			
+			
+			
 			addComboboxItems();
 		}
-
-		private void cambioItemsP(ActionEvent c) {
-			this.ventanaPersonaAgregar.getProvinciaInput().removeAllItems();
-			int id = this.ventanaPersonaAgregar.getPaisInput().getSelectedIndex() + 1;
-			addProvinciasItem(agenda.getNombreProvincia(id));
+		
+		public void inicializar()
+		{
+			this.refrescarTabla();
+			this.vista.show();
 		}
 		
-		private void cambioItemsL(ActionEvent c) {
-			this.ventanaPersonaAgregar.getLocalidadInput().removeAllItems();
-			String nombreProvincia = (String) this.ventanaPersonaAgregar.getProvinciaInput().getSelectedItem();
-			addLocalidadItems(agenda.getNombreLocalidad(nombreProvincia));
-		}
-		
-		private void cambioItemsPEdit(ActionEvent c) {
-			this.ventanaPersonaEditar.getProvinciaInput().removeAllItems();
-			int id = this.ventanaPersonaEditar.getPaisInput().getSelectedIndex() + 1;
-			addProvinciasItem(agenda.getNombreProvincia(id));
-		}
-		
-		private void cambioItemsLEdit(ActionEvent c) {
-			this.ventanaPersonaEditar.getLocalidadInput().removeAllItems();
-			String nombreProvincia = (String) this.ventanaPersonaEditar.getProvinciaInput().getSelectedItem();
-			addLocalidadItems(agenda.getNombreLocalidad(nombreProvincia));
+		private void addComboboxItems() {
+			addPaisesItems(agenda.getNombrePaises());
+			addTipoContacto(agenda.getNombreTipoContacto());
+			addIntegerComboBox(agenda.getYears(), Fecha.getMonths());
+			llenarDias(31);
 		}
 		
 		private void ventanaAgregarPersona(ActionEvent a) {
@@ -220,21 +216,68 @@ public class Controlador implements ActionListener
 			this.refrescarTabla();
 		}
 		
-		public void inicializar()
-		{
-			this.refrescarTabla();
-			this.vista.show();
-		}
-		
 		private void refrescarTabla()
 		{
 			this.personasEnTabla = agenda.obtenerPersonas();
 			this.vista.llenarTabla(this.personasEnTabla);
+		}		
+		
+		private void agregarD(ActionEvent e) {
+			this.ventanaPersonaAgregar.getComboBoxDia().removeAllItems();
+			int m = this.ventanaPersonaAgregar.getComboBoxMes().getItemAt(this.ventanaPersonaAgregar.getComboBoxMes().getSelectedIndex());
+			int y = this.ventanaPersonaAgregar.getComboBoxAnio().getItemAt(this.ventanaPersonaAgregar.getComboBoxAnio().getSelectedIndex());
+			
+			int dias = Fecha.numeroDeDiasMes(m, y);
+			llenarDias(dias);
 		}
 		
-		private void addComboboxItems() {
-			addPaisesItems(agenda.getNombrePaises());
-			addTipoContacto(agenda.getNombreTipoContacto());
+		private void agregarDEdit(ActionEvent e) {
+			this.ventanaPersonaEditar.getComboBoxDia().removeAllItems();
+			int m = this.ventanaPersonaEditar.getComboBoxMes().getItemAt(this.ventanaPersonaEditar.getComboBoxMes().getSelectedIndex());
+			int y = this.ventanaPersonaEditar.getComboBoxAnio().getItemAt(this.ventanaPersonaEditar.getComboBoxAnio().getSelectedIndex());
+			
+			int dias = Fecha.numeroDeDiasMes(m, y);
+			llenarDias(dias);
+		}
+		
+		private void llenarDias(int limite) {
+			for(int i = 1; i <= limite; i++) {
+				this.ventanaPersonaAgregar.getComboBoxDia().addItem(i);
+				this.ventanaPersonaEditar.getComboBoxDia().addItem(i);
+			}
+		}
+		
+		public void addIntegerComboBox(ArrayList<Integer> y, Integer[] m){
+			for (Integer integer : y) {
+				this.ventanaPersonaAgregar.getComboBoxAnio().addItem(integer);
+				this.ventanaPersonaEditar.getComboBoxAnio().addItem(integer);
+			}
+			this.ventanaPersonaAgregar.getComboBoxMes().setModel(new DefaultComboBoxModel<Integer>(m));
+			this.ventanaPersonaEditar.getComboBoxMes().setModel(new DefaultComboBoxModel<Integer>(m));
+		}
+
+		private void cambioItemsP(ActionEvent c) {
+			this.ventanaPersonaAgregar.getProvinciaInput().removeAllItems();
+			int id = this.ventanaPersonaAgregar.getPaisInput().getSelectedIndex() + 1;
+			addProvinciasItem(agenda.getNombreProvincia(id));
+		}
+		
+		private void cambioItemsL(ActionEvent c) {
+			this.ventanaPersonaAgregar.getLocalidadInput().removeAllItems();
+			String nombreProvincia = (String) this.ventanaPersonaAgregar.getProvinciaInput().getSelectedItem();
+			addLocalidadItems(agenda.getNombreLocalidad(nombreProvincia));
+		}
+		
+		private void cambioItemsPEdit(ActionEvent c) {
+			this.ventanaPersonaEditar.getProvinciaInput().removeAllItems();
+			int id = this.ventanaPersonaEditar.getPaisInput().getSelectedIndex() + 1;
+			addProvinciasItem(agenda.getNombreProvincia(id));
+		}
+		
+		private void cambioItemsLEdit(ActionEvent c) {
+			this.ventanaPersonaEditar.getLocalidadInput().removeAllItems();
+			String nombreProvincia = (String) this.ventanaPersonaEditar.getProvinciaInput().getSelectedItem();
+			addLocalidadItems(agenda.getNombreLocalidad(nombreProvincia));
 		}
 			
 		public void addTipoContacto(ArrayList<String> items) {

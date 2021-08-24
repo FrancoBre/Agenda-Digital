@@ -1,5 +1,6 @@
 package presentacion.vista;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,7 +17,9 @@ public class VentanaPersona extends JFrame
 	private JTextField telefonoInput;
     private JTextField emailInput;
     private JTextField nacimientoInput;
-    private JLabel dateFormatLabel;
+    private JComboBox<Integer> comboBoxAnio;
+    private JComboBox<Integer> comboBoxMes;
+    private JComboBox<Integer> comboBoxDia;
     private JLabel tipoContactoLabel;
     private JTextField calleInput;
     private JTextField alturaInput;
@@ -28,6 +31,7 @@ public class VentanaPersona extends JFrame
     private JComboBox<String> tipoContactoInput;
 	private static VentanaPersona INSTANCE;
 	private JPanel panel;
+	private JButton btnAction;
 	
 	public static VentanaPersona getInstance()
 	{
@@ -87,14 +91,17 @@ public class VentanaPersona extends JFrame
         nacimientoLabel.setBounds(10, 142, 99, 14);
         getPanel().add(nacimientoLabel);
         
-        nacimientoInput = new JTextField();
-        nacimientoInput.setBounds(133, 139, 84, 20);
-        getPanel().add(nacimientoInput);
-        nacimientoInput.setColumns(10);
-        
-        dateFormatLabel = new JLabel("YYYY MM DD");
-        dateFormatLabel.setBounds(227, 142, 70, 14);
-        getPanel().add(dateFormatLabel);
+		comboBoxAnio = new JComboBox<Integer>();
+		comboBoxAnio.setBounds(133, 140, 60, 22);
+		getPanel().add(comboBoxAnio);
+		
+		comboBoxMes = new JComboBox<Integer>();
+		comboBoxMes.setBounds(194, 140, 50, 22);
+		getPanel().add(comboBoxMes);
+		
+		comboBoxDia = new JComboBox<Integer>() ;
+		comboBoxDia.setBounds(246, 140, 50, 22);
+		getPanel().add(comboBoxDia);
         
         tipoContactoLabel = new JLabel("Tipo de contacto");
         tipoContactoLabel.setBounds(10, 193, 99, 14);
@@ -169,10 +176,38 @@ public class VentanaPersona extends JFrame
         localidadInput.setBounds(133, 451, 164, 22);
         getPanel().add(localidadInput);
 
-		
+        btnAction = new JButton("");
+        btnAction.setBounds(208, 493, 89, 29);
+        getPanel().add(btnAction);
+        
+        
 		this.setVisible(false);
 	}
 	
+	public JComboBox<Integer> getComboBoxAnio() {
+		return comboBoxAnio;
+	}
+
+	public void setComboBoxAnio(JComboBox<Integer> comboBoxAnio) {
+		this.comboBoxAnio = comboBoxAnio;
+	}
+
+	public JComboBox<Integer> getComboBoxMes() {
+		return comboBoxMes;
+	}
+
+	public void setComboBoxMes(JComboBox<Integer> comboBoxMes) {
+		this.comboBoxMes = comboBoxMes;
+	}
+
+	public JComboBox<Integer> getComboBoxDia() {
+		return comboBoxDia;
+	}
+
+	public void setComboBoxDia(JComboBox<Integer> comboBoxDia) {
+		this.comboBoxDia = comboBoxDia;
+	}
+
 	public void mostrarVentana()
 	{
 		this.setVisible(true);
@@ -294,5 +329,10 @@ public class VentanaPersona extends JFrame
 	public void setLocalidadInput(JComboBox<String> localidadInput) {
 		this.localidadInput = localidadInput;
 	}
+	
+    public JButton getBtnAction() 
+    {
+        return btnAction;
+    }
 	
 }

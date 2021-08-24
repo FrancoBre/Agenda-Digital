@@ -1,5 +1,6 @@
 package modelo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class Agenda
 	private PaisDAO pais;
 	private ProvinciaDAO provincia;
 	private LocalidadDAO localidad;
+	
 	public Agenda(DAOAbstractFactory metodo_persistencia)
 	{
 		this.persona = metodo_persistencia.createPersonaDAO();
@@ -95,6 +97,13 @@ public class Agenda
 		}
 		return a;
 	}
+	
+	
+	// ****************************
+	public ArrayList<Integer> getYears(){
+		return Fecha.lastYears(100);
+	}
+	
 	
 	public int getPersonaMaxId() {
 		return this.persona.readMaxId();
