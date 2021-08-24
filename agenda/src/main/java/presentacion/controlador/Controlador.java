@@ -146,29 +146,29 @@ public class Controlador implements ActionListener
 		}
 		
 		private void editarPersona(ActionEvent ep) {	
-			if (!ventanaPersonaAgregar.validarRequeridos()) {
+			if (!ventanaPersonaEditar.validarRequeridos()) {
 				//crear una ventana con mensaje de campos vacios
 			}else {
 				int idPersona = this.personasEnTabla.get(filasSeleccionadas[0]).getIdPersona();
 				int idDomicilio = this.personasEnTabla.get(filasSeleccionadas[0]).getDomicilio();
 				
-				String nombre = this.ventanaPersonaAgregar.getNombreInput().getText();
-				String tel = this.ventanaPersonaAgregar.getTelefonoInput().getText();
-				String email = this.ventanaPersonaAgregar.getEmailInput().getText();
-				String nacimiento = this.ventanaPersonaAgregar.getNacimientoInput().getText();
-				String tipoContacto = (String) this.ventanaPersonaAgregar.getTipoContactoInput().getSelectedItem();
+				String nombre = this.ventanaPersonaEditar.getNombreInput().getText();
+				String tel = this.ventanaPersonaEditar.getTelefonoInput().getText();
+				String email = this.ventanaPersonaEditar.getEmailInput().getText();
+				String nacimiento = this.ventanaPersonaEditar.getNacimientoInput().getText();
+				String tipoContacto = (String) this.ventanaPersonaEditar.getTipoContactoInput().getSelectedItem();
 				
-				String calle = this.ventanaPersonaAgregar.getCalleInput().getText();
-				String altura = this.ventanaPersonaAgregar.getAlturaInput().getText();
-				String pisoStr = this.ventanaPersonaAgregar.getPisoInput().getText();
+				String calle = this.ventanaPersonaEditar.getCalleInput().getText();
+				String altura = this.ventanaPersonaEditar.getAlturaInput().getText();
+				String pisoStr = this.ventanaPersonaEditar.getPisoInput().getText();
 				int piso = Integer.parseInt(pisoStr.trim());
-				String deptoStr = this.ventanaPersonaAgregar.getDeptoInput().getText();
+				String deptoStr = this.ventanaPersonaEditar.getDeptoInput().getText();
 				int depto = Integer.parseInt(deptoStr.trim());
-				String localidad = (String) this.ventanaPersonaAgregar.getLocalidadInput().getSelectedItem();
+				String localidad = (String) this.ventanaPersonaEditar.getLocalidadInput().getSelectedItem();
 				
 				//unused
-				String pais = (String) this.ventanaPersonaAgregar.getPaisInput().getSelectedItem();
-				String provincia = (String) this.ventanaPersonaAgregar.getProvinciaInput().getSelectedItem();
+				String pais = (String) this.ventanaPersonaEditar.getPaisInput().getSelectedItem();
+				String provincia = (String) this.ventanaPersonaEditar.getProvinciaInput().getSelectedItem();
 				
 				//Estos datos tendrían que venir de la eleccion del usuario en la vista, y corresponden al id de cada entidad
 				int idLocalidad = this.agenda.getIdLocalidadByNombre(localidad);

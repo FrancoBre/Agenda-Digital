@@ -7,17 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 /*import persistencia.conexion.Conexion;*/
 import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.PersonaDAO;
-import dto.DomicilioDTO;
 import dto.PersonaDTO;
 
 public class PersonaDAOSQL implements PersonaDAO
@@ -77,7 +72,6 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement.setDate(4, persona_a_editar.getNacimiento());
 			statement.setInt(5, persona_a_editar.getDomicilio());
 			statement.setInt(6, persona_a_editar.getTipoContacto());
-
 			statement.setInt(7, persona_a_editar.getIdPersona());
 			if(statement.executeUpdate() > 0)
 			{
