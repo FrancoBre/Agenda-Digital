@@ -129,14 +129,18 @@ public class Controlador implements ActionListener
 			this.ventanaPersonaAgregar.cerrar();
 		}
 		
-		public java.sql.Date parseNacimiento(String nacimiento) throws ParseException {
-			SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+		private java.sql.Date parseNacimiento(String nacimiento) throws ParseException {
+			/*SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 	        Date parsed = format.parse(nacimiento);
-	        java.sql.Date date = new java.sql.Date(parsed.getTime());
+	        java.sql.Date date = new java.sql.Date(parsed.getTime());*/
+			//nacimiento.replaceAll("\\s+","-");
+			SimpleDateFormat formato = new SimpleDateFormat("yyyy MM dd");
 			
-			return date;
+	        Date date = formato.parse(nacimiento);
+	        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+			return sqlDate;
 		}
-
+		
 		private void ventanaEditarPersona(ActionEvent e) {
 			if(this.vista.getTablaPersonas().getSelectedRows().length == 1) {
 				filasSeleccionadas = this.vista.getTablaPersonas().getSelectedRows();
