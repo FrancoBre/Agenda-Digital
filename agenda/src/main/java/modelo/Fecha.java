@@ -1,7 +1,10 @@
 package modelo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Fecha{
 	
@@ -11,7 +14,7 @@ public class Fecha{
 	
 	public static ArrayList<Integer> lastYears(Integer x){
 		ArrayList<Integer> year = new ArrayList<Integer>();
-		for (int i = LocalDate.now().getYear(); i>LocalDate.now().getYear()-x ; i--) {
+		for (int i = actual_Year(); i > actual_Year()-x ; i--) {
 			year.add(i);
 		}
 		return year;
@@ -57,4 +60,19 @@ public class Fecha{
 	    }
 	    return esBisiesto;	    
 	}
+	
+	public static java.sql.Date parseNacimiento(String nacimiento) throws ParseException {
+		/*SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+        Date parsed = format.parse(nacimiento);
+        java.sql.Date date = new java.sql.Date(parsed.getTime());*/
+		//nacimiento.replaceAll("\\s+","-");
+		SimpleDateFormat formato = new SimpleDateFormat("yyyyMMdd");
+		
+        Date date = formato.parse(nacimiento);
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+		return sqlDate;
+	}
+	
+	
+	
 }

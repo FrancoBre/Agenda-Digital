@@ -1,6 +1,5 @@
 package modelo;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,7 +102,6 @@ public class Agenda
 	public ArrayList<Integer> getYears(){
 		return Fecha.lastYears(100);
 	}
-	
 	
 	public int getPersonaMaxId() {
 		return this.persona.readMaxId();
