@@ -81,7 +81,6 @@ public class Controlador implements ActionListener
 				String nombre = this.ventanaPersonaAgregar.getNombreInput().getText();
 				String tel = this.ventanaPersonaAgregar.getTelefonoInput().getText();
 				String email = this.ventanaPersonaAgregar.getEmailInput().getText();
-				String nacimiento = this.ventanaPersonaAgregar.getNacimientoInput().getText();
 				String tipoContacto = (String) this.ventanaPersonaAgregar.getTipoContactoInput().getSelectedItem();
 				
 				String calle = this.ventanaPersonaAgregar.getCalleInput().getText();
@@ -91,6 +90,11 @@ public class Controlador implements ActionListener
 				String deptoStr = this.ventanaPersonaAgregar.getDeptoInput().getText();
 				int depto = Integer.parseInt(deptoStr.trim());
 				String localidad = (String) this.ventanaPersonaAgregar.getLocalidadInput().getSelectedItem();
+				
+				int year = (int) this.ventanaPersonaAgregar.getComboBoxAnio().getSelectedItem();
+				int month = (int) this.ventanaPersonaAgregar.getComboBoxMes().getSelectedItem();
+				int date = (int) this.ventanaPersonaAgregar.getComboBoxDia().getSelectedItem();
+				String nacimiento = year +""+ month +""+ date;
 				
 				//unused
 				String pais = (String) this.ventanaPersonaAgregar.getPaisInput().getSelectedItem();
@@ -130,7 +134,7 @@ public class Controlador implements ActionListener
 	        Date parsed = format.parse(nacimiento);
 	        java.sql.Date date = new java.sql.Date(parsed.getTime());*/
 			//nacimiento.replaceAll("\\s+","-");
-			SimpleDateFormat formato = new SimpleDateFormat("yyyy MM dd");
+			SimpleDateFormat formato = new SimpleDateFormat("yyyyMMdd");
 			
 	        Date date = formato.parse(nacimiento);
 	        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
@@ -155,7 +159,6 @@ public class Controlador implements ActionListener
 				String nombre = this.ventanaPersonaEditar.getNombreInput().getText();
 				String tel = this.ventanaPersonaEditar.getTelefonoInput().getText();
 				String email = this.ventanaPersonaEditar.getEmailInput().getText();
-				String nacimiento = this.ventanaPersonaEditar.getNacimientoInput().getText();
 				String tipoContacto = (String) this.ventanaPersonaEditar.getTipoContactoInput().getSelectedItem();
 				
 				String calle = this.ventanaPersonaEditar.getCalleInput().getText();
@@ -165,6 +168,11 @@ public class Controlador implements ActionListener
 				String deptoStr = this.ventanaPersonaEditar.getDeptoInput().getText();
 				int depto = Integer.parseInt(deptoStr.trim());
 				String localidad = (String) this.ventanaPersonaEditar.getLocalidadInput().getSelectedItem();
+				
+				int year = (int) this.ventanaPersonaEditar.getComboBoxAnio().getSelectedItem();
+				int month = (int) this.ventanaPersonaEditar.getComboBoxMes().getSelectedItem();
+				int date = (int) this.ventanaPersonaEditar.getComboBoxDia().getSelectedItem();
+				String nacimiento = year +""+ month +""+ date;
 				
 				//unused
 				String pais = (String) this.ventanaPersonaEditar.getPaisInput().getSelectedItem();

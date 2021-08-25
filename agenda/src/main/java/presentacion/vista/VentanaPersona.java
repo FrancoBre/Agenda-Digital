@@ -16,7 +16,6 @@ public class VentanaPersona extends JFrame
 	private JTextField nombreInput;
 	private JTextField telefonoInput;
     private JTextField emailInput;
-    private JTextField nacimientoInput;
     private JComboBox<Integer> comboBoxAnio;
     private JComboBox<Integer> comboBoxMes;
     private JComboBox<Integer> comboBoxDia;
@@ -256,14 +255,6 @@ public class VentanaPersona extends JFrame
 
 	public void setEmailInput(JTextField emailInput) {
 		this.emailInput = emailInput;
-	}
-
-	public JTextField getNacimientoInput() {
-		return nacimientoInput;
-	}
-
-	public void setNacimientoInput(JTextField nacimientoInput) {
-		this.nacimientoInput = nacimientoInput;
 	}
 
 	public JTextField getCalleInput() {
