@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JSeparator;
+import javax.swing.border.BevelBorder;
 
 
 public class VentanaPersona extends JFrame 
@@ -31,6 +33,8 @@ public class VentanaPersona extends JFrame
 	private static VentanaPersona INSTANCE;
 	private JPanel panel;
 	private JButton btnAction;
+	private JSeparator separator;
+	private JSeparator separator_1;
 	
 	public static VentanaPersona getInstance()
 	{
@@ -48,136 +52,149 @@ public class VentanaPersona extends JFrame
 		super();
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 343, 580);
+		setBounds(100, 100, 580, 320);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		panel = new JPanel();
-		panel.setBounds(10, 11,  307, 600);
+		panel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		panel.setBounds(10, 11,  544, 259);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
+		JLabel datosContactoLabel = new JLabel("Datos Contacto");
+		datosContactoLabel.setBounds(10, 11, 264, 14);
+		panel.add(datosContactoLabel);
+		
 		JLabel lblNombreYApellido = new JLabel("Nombre y apellido");
-		lblNombreYApellido.setBounds(10, 11, 113, 14);
+		lblNombreYApellido.setBounds(10, 52, 99, 14);
 		panel.add(lblNombreYApellido);
 		
 		JLabel lblTelfono = new JLabel("Telefono");
-		lblTelfono.setBounds(10, 52, 113, 14);
+		lblTelfono.setBounds(10, 77, 113, 14);
 		panel.add(lblTelfono);
 		
 		nombreInput = new JTextField();
-		nombreInput.setBounds(133, 8, 164, 20);
+		nombreInput.setBounds(110, 49, 164, 20);
 		panel.add(nombreInput);
 		nombreInput.setColumns(10);
 		
 		telefonoInput = new JTextField();
-		telefonoInput.setBounds(133, 49, 164, 20);
+		telefonoInput.setBounds(110, 74, 164, 20);
 		panel.add(telefonoInput);
 		telefonoInput.setColumns(10);
 				
 		JLabel label = new JLabel("Email");
-        label.setBounds(10, 93, 49, 14);
+        label.setBounds(10, 102, 49, 14);
         getPanel().add(label);
         
         emailInput = new JTextField();
-        emailInput.setBounds(133, 93, 164, 20);
+        emailInput.setBounds(110, 99, 164, 20);
         getPanel().add(emailInput);
         emailInput.setColumns(10);
         
         JLabel nacimientoLabel = new JLabel("Nacimiento");
-        nacimientoLabel.setBounds(10, 142, 99, 14);
+        nacimientoLabel.setBounds(10, 134, 99, 14);
         getPanel().add(nacimientoLabel);
         
 		comboBoxAnio = new JComboBox<Integer>();
-		comboBoxAnio.setBounds(133, 140, 60, 22);
+		comboBoxAnio.setBounds(110, 130, 60, 22);
 		getPanel().add(comboBoxAnio);
 		
 		comboBoxMes = new JComboBox<Integer>();
-		comboBoxMes.setBounds(194, 140, 50, 22);
+		comboBoxMes.setBounds(172, 130, 50, 22);
 		getPanel().add(comboBoxMes);
 		
 		comboBoxDia = new JComboBox<Integer>() ;
-		comboBoxDia.setBounds(246, 140, 50, 22);
+		comboBoxDia.setBounds(224, 130, 50, 22);
 		getPanel().add(comboBoxDia);
         
         tipoContactoLabel = new JLabel("Tipo de contacto");
-        tipoContactoLabel.setBounds(10, 193, 99, 14);
+        tipoContactoLabel.setBounds(10, 160, 99, 14);
         getPanel().add(tipoContactoLabel);
         
         tipoContactoInput = new JComboBox<String>();
-        tipoContactoInput.setBounds(133, 189, 164, 22);
+        tipoContactoInput.setBounds(110, 156, 164, 22);
         getPanel().add(tipoContactoInput);
         
-        JLabel datosDomicilioLabel = new JLabel("Datos de domicilio");
-        datosDomicilioLabel.setBounds(10, 242, 123, 14);
+        JLabel datosDomicilioLabel = new JLabel("Datos de domicilio del contacto");
+        datosDomicilioLabel.setBounds(307, 11, 224, 14);
         getPanel().add(datosDomicilioLabel);
         
         JLabel calleLabel = new JLabel("Calle");
-        calleLabel.setBounds(10, 281, 49, 14);
+        calleLabel.setBounds(307, 52, 49, 14);
         getPanel().add(calleLabel);
         
         calleInput = new JTextField();
-        calleInput.setBounds(133, 275, 164, 20);
+        calleInput.setBounds(367, 49, 164, 20);
         getPanel().add(calleInput);
         calleInput.setColumns(10);
         
         JLabel alturaLabel = new JLabel("Altura");
-        alturaLabel.setBounds(10, 328, 49, 14);
+        alturaLabel.setBounds(307, 77, 40, 14);
         getPanel().add(alturaLabel);
         
         alturaInput = new JTextField();
-        alturaInput.setBounds(69, 325, 58, 20);
+        alturaInput.setBounds(346, 74, 30, 20);
         getPanel().add(alturaInput);
         alturaInput.setColumns(10);
         
         JLabel pisoLabel = new JLabel("Piso");
-        pisoLabel.setBounds(137, 328, 26, 14);
+        pisoLabel.setBounds(393, 77, 29, 14);
         getPanel().add(pisoLabel);
         
         pisoInput = new JTextField();
-        pisoInput.setBounds(173, 325, 37, 20);
+        pisoInput.setBounds(420, 74, 30, 20);
         getPanel().add(pisoInput);
         pisoInput.setColumns(10);
         
         JLabel deptoLabel = new JLabel("Depto");
-        deptoLabel.setBounds(220, 328, 37, 14);
+        deptoLabel.setBounds(465, 77, 40, 14);
         getPanel().add(deptoLabel);
         
         deptoInput = new JTextField();
-        deptoInput.setBounds(256, 325, 41, 20);
+        deptoInput.setBounds(501, 74, 30, 20);
         getPanel().add(deptoInput);
         deptoInput.setColumns(10);
         
         JLabel paisLabel = new JLabel("Pais");
-        paisLabel.setBounds(10, 368, 49, 14);
+        paisLabel.setBounds(307, 108, 49, 14);
         getPanel().add(paisLabel);
         
         paisInput = new JComboBox<String>();
-        paisInput.setBounds(133, 364, 164, 22);
+        paisInput.setBounds(367, 104, 164, 22);
         getPanel().add(paisInput);        
         
         
         JLabel provinciaLabel = new JLabel("Provincia");
-        provinciaLabel.setBounds(10, 413, 49, 14);
+        provinciaLabel.setBounds(307, 134, 69, 14);
         getPanel().add(provinciaLabel);
         
         provinciaInput = new JComboBox<String>();
-        provinciaInput.setBounds(133, 409, 164, 22);
+        provinciaInput.setBounds(367, 130, 164, 22);
         getPanel().add(provinciaInput);
         
         JLabel localidadLabel = new JLabel("Localidad");
-        localidadLabel.setBounds(10, 455, 49, 14);
+        localidadLabel.setBounds(307, 160, 69, 14);
         getPanel().add(localidadLabel);
         
         localidadInput = new JComboBox<String>();
-        localidadInput.setBounds(133, 451, 164, 22);
+        localidadInput.setBounds(367, 156, 164, 22);
         getPanel().add(localidadInput);
 
         btnAction = new JButton("");
-        btnAction.setBounds(208, 493, 89, 29);
+        btnAction.setBounds(367, 219, 164, 29);
         getPanel().add(btnAction);
+        
+        separator = new JSeparator();
+        separator.setBounds(10, 35, 264, 2);
+        panel.add(separator);
+        
+        separator_1 = new JSeparator();
+        separator_1.setBounds(307, 35, 224, 2);
+        panel.add(separator_1);
         
         
 		this.setVisible(false);
@@ -325,5 +342,4 @@ public class VentanaPersona extends JFrame
     {
         return btnAction;
     }
-	
 }
