@@ -47,16 +47,18 @@ public class ControladorABM_Tipo implements ActionListener
 		
 		public void activoComboBox(ActionEvent e) {
 			String seleccion = (String) this.ventanaTipo.getOpcionesComboBox().getSelectedItem();
-			setTextField("");
+			refreshListTipos();
 			if(seleccion==agenda.AMB()[0]) {
 				setABM_default();
 			}else if(seleccion == agenda.AMB()[1]){
+				setBoundsModificacion();
 				setVisible_ComboBoxTipos(true);
 				setVisible_TextFieldTipos(true);
 				setTextField_selected();
 				this.ventanaTipo.getBtnActionTipo().setText(agenda.AMB()[1]);
 			}
 			else if(seleccion == agenda.AMB()[2]){
+				setBoundsEliminar();
 				setVisible_ComboBoxTipos(true);
 				setVisible_TextFieldTipos(false);
 				this.ventanaTipo.getBtnActionTipo().setText(agenda.AMB()[2]);
@@ -68,25 +70,28 @@ public class ControladorABM_Tipo implements ActionListener
 		};
 		
 		private void actionbtn(ActionEvent e) {
-			String seleccion = (String) this.ventanaTipo.getOpcionesComboBox().getSelectedItem();
+			String opcion = this.ventanaTipo.getOpcionesComboBox().getSelectedItem().toString();
+			String seleccion = this.ventanaTipo.getTiposComboBox().getSelectedItem().toString();
 			String txt = this.ventanaTipo.getNuevaEtiquetaTextField().getText();
-			if(seleccion==agenda.AMB()[0]) {
+			if(opcion==agenda.AMB()[0]) {
 				TipoContactoDTO nuevoTipo = new TipoContactoDTO(0, txt);
 				agenda.agregarTipo(nuevoTipo);
+				setTextField("");
 			}
-			else if(seleccion == agenda.AMB()[1]){
-				String tipoSeleccionado = this.ventanaTipo.getTiposComboBox().getSelectedItem().toString();
-				int idTipo = agenda.getIdTipoContactoByNombre(tipoSeleccionado);
+			else if(opcion == agenda.AMB()[1]){
+				int idTipo = agenda.getIdTipoContactoByNombre(seleccion);
 				TipoContactoDTO editarTipo = new TipoContactoDTO(idTipo, txt);
 				agenda.editarTipo(editarTipo);
+				refreshListTipos();
 			}
-			else if(seleccion == agenda.AMB()[2]){
-				agenda.borrarTipo(txt);
+			else if(opcion == agenda.AMB()[2]){
+				agenda.borrarTipo(seleccion);
+				refreshListTipos();
 			}
-			refreshListTipos();
 		}
 		
 		public void setABM_default() {
+			setBoundsAgregar();
 			refreshListTipos();
 			setVisible_ComboBoxTipos(false);
 			setVisible_TextFieldTipos(true);
@@ -124,6 +129,19 @@ public class ControladorABM_Tipo implements ActionListener
 			this.ventanaTipo.getNuevaEtiquetaTextField().setVisible(b);
 		}
 			
+		public void setBoundsAgregar() {		
+			this.ventanaTipo.getNuevaEtiquetaTextField().setBounds(66, 32, 224, 22);
+		}
+		
+		public void setBoundsModificacion() {
+			this.ventanaTipo.getNuevaEtiquetaTextField().setBounds(66, 33, 105, 20);			
+			this.ventanaTipo.getTiposComboBox().setBounds(172, 32, 118, 22);
+		}
+		
+		public void setBoundsEliminar() {		
+			this.ventanaTipo.getTiposComboBox().setBounds(66, 32, 224, 22);
+		}
+		
 
 		@Override
 		public void actionPerformed(ActionEvent e) { }
