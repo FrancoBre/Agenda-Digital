@@ -56,6 +56,25 @@ public class Agenda
 	{
 		return this.persona.readAll();		
 	}
+	
+	//TIPO CONTACTO
+	
+	public void agregarTipo(TipoContactoDTO nuevoTipo) {
+		this.tipoContacto.insert(nuevoTipo);
+	}
+	
+	public void editarTipo(TipoContactoDTO editTipo) {
+		this.tipoContacto.update(editTipo);
+	}
+	
+	public void borrarTipo(String borrarTipo) {		
+		this.tipoContacto.delete(borrarTipo);
+	}	
+	
+	
+	public String[] AMB(){
+		return new String[]{"Agregar", "Modificar", "Eliminar"};
+	}
 		
 	public ArrayList<String> getNombrePaises(){
 		List<PaisDTO> paises = this.pais.readAll();

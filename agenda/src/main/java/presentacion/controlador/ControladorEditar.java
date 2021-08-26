@@ -104,7 +104,6 @@ public class ControladorEditar implements ActionListener
 					personaEditada = new PersonaDTO(idPersona, nombre, tel, email, Fecha.parseNacimiento(nacimiento),
 							idDomicilio, idTipoContacto);
 					
-					System.out.println(personaEditada.toString());
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}

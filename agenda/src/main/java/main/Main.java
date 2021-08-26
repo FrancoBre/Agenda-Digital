@@ -2,9 +2,7 @@ package main;
 
 import modelo.Agenda;
 import persistencia.dao.mysql.DAOSQLFactory;
-import presentacion.controlador.ControladorAgregar;
-import presentacion.controlador.ControladorEditar;
-import presentacion.controlador.ControladorVista;
+import presentacion.controlador.*;
 import presentacion.vista.Vista;
 
 public class Main 
@@ -16,8 +14,10 @@ public class Main
 		ControladorVista controladorVista = new ControladorVista(vista, modelo);
 		ControladorAgregar controladorAgregar = new ControladorAgregar(vista,modelo);
 		ControladorEditar controladorEditar = new ControladorEditar(vista,modelo);
+		ControladorABM_Tipo controladorTipo = new ControladorABM_Tipo(vista, modelo);
 		controladorVista.inicializar();
 		controladorAgregar.inicializar();
 		controladorEditar.inicializar();
+		controladorTipo.inicializar();
 	}
 }

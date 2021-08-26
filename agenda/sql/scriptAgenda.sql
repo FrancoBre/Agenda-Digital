@@ -3,7 +3,7 @@ USE agenda;
 
 CREATE TABLE tipo_contacto (
 idTipo_contacto int(11) NOT NULL AUTO_INCREMENT, 
-Tipo enum('Amigo', 'Trabajo', 'Futbol'), 
+Tipo varchar(45) NOT NULL, 
 PRIMARY KEY (idTipo_contacto)); 
 
 CREATE TABLE pais (

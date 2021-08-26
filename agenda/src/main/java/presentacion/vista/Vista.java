@@ -27,6 +27,7 @@ public class Vista
 	private JButton btnEditar; //*
 	private JButton btnBorrar;
 	private JButton btnReporte;
+	private JButton btnABM_tipo;
 	private DefaultTableModel modelPersonas;
 	private  String[] nombreColumnas = {"Nombre y apellido","Telefono","Email","Nacimiento","Domicilio","Tipo de Contacto"};
 
@@ -79,6 +80,11 @@ public class Vista
 		btnReporte = new JButton("Reporte");
 		btnReporte.setBounds(307, 228, 89, 23);
 		panel.add(btnReporte);
+		
+		btnABM_tipo = new JButton("ABM Tipo");
+		btnABM_tipo.setBounds(406, 228, 89, 23);
+		panel.add(btnABM_tipo);
+		
 	}
 	
 	public void show()
@@ -118,6 +124,10 @@ public class Vista
 	public JButton getBtnReporte() 
 	{
 		return btnReporte;
+	}
+	
+	public JButton getBtnAMB_tipo() {
+		return btnABM_tipo;
 	}
 	
 	public DefaultTableModel getModelPersonas() 
