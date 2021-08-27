@@ -28,6 +28,7 @@ public class Controlador implements ActionListener {
     private List<ProvinciaDTO> provincias;
     private List<LocalidadDTO> localidades;
     private List<TipoContactoDTO> tiposContacto;
+    private List<DomicilioDTO> domicilios;
     private VentanaPersonaAgregar ventanaPersonaAgregar;
     private VentanaPersonaEditar ventanaPersonaEditar;
     private Agenda agenda;
@@ -80,8 +81,9 @@ public class Controlador implements ActionListener {
 	this.provincias = agenda.obtenerProvincias();
 	this.localidades = agenda.obtenerLocalidades();
 	this.tiposContacto = agenda.obtenerTiposContacto();
+	this.domicilios = agenda.obtenerDomicilios();
 
-	agenda.wire(personasEnTabla, paises, provincias, localidades, tiposContacto);
+	Agenda.wire(personasEnTabla, paises, provincias, localidades, tiposContacto, domicilios);
     }
 
     private void addComboboxItems() {

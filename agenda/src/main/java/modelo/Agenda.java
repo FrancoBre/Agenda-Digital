@@ -42,27 +42,32 @@ public class Agenda {
      * Lo hice static para poder probarlo
      */
     public static void wire(List<PersonaDTO> personas, List<PaisDTO> paises, List<ProvinciaDTO> provincias,
-	    List<LocalidadDTO> localidades, List<TipoContactoDTO> tiposContacto) {
+	    List<LocalidadDTO> localidades, List<TipoContactoDTO> tiposContacto, List<DomicilioDTO> domicilios) {
 
 	for (PaisDTO pais : paises) {
 	    for (ProvinciaDTO provincia : provincias) {
 		if (provincia.getIdPais() == pais.getIdPais())
 		    provincia.setPais(pais);
-		
+
 		for (LocalidadDTO localidad : localidades) {
 		    if (localidad.getIdPais() == pais.getIdPais())
 			localidad.setPais(pais);
 
 		    if (localidad.getIdProvincia() == provincia.getIdProvincia())
 			localidad.setProvincia(provincia);
+
 		}
 	    }
 	}
-	
+
 	for (PersonaDTO persona : personas) {
 	    for (TipoContactoDTO tipo : tiposContacto) {
-		if(persona.getIdTipoContacto() == tipo.getIdTipoContacto())
+		if (persona.getIdTipoContacto() == tipo.getIdTipoContacto())
 		    persona.setTipoContacto(tipo);
+	    }
+	    for (DomicilioDTO domicilio : domicilios) {
+		if (persona.getIdDomicilio() == domicilio.getIdDomicilio())
+		    persona.setDomicilio(domicilio);
 	    }
 	}
     }
@@ -89,8 +94,8 @@ public class Agenda {
     /*
      * Estos metodos se usan para cargar los comboboxes correspondientes sin tener
      * que hacer una consulta a la bdd cada vez que se cargue la ventana:
-     * obtenerPaises(), obtenerProvincias(), obtenerLocalidades() y
-     * obtenerTiposContacto()
+     * obtenerPaises(), obtenerProvincias(), obtenerLocalidades(),
+     * obtenerTiposContacto() y obtenerDomicilios()
      */
     public List<PaisDTO> obtenerPaises() {
 	return this.pais.readAll();
@@ -106,6 +111,10 @@ public class Agenda {
 
     public List<TipoContactoDTO> obtenerTiposContacto() {
 	return this.tipoContacto.readAll();
+    }
+
+    public List<DomicilioDTO> obtenerDomicilios() {
+	return this.domicilio.readAll();
     }
 
     public List<String> getNombrePaises(List<PaisDTO> paises) {
