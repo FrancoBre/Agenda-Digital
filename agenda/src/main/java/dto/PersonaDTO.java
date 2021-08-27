@@ -23,6 +23,17 @@ public class PersonaDTO {
 	this.domicilio = domicilio;
 	this.tipoContacto = tipoContacto;
     }
+    
+    public PersonaDTO(int idPersona, String nombre, String telefono, String email, Date nacimiento,
+	    DomicilioDTO domicilio, int idTipoContacto) {
+	this.idPersona = idPersona;
+	this.nombre = nombre;
+	this.telefono = telefono;
+	this.email = email;
+	this.nacimiento = nacimiento;
+	this.domicilio = domicilio;
+	this.idTipoContacto = idTipoContacto;
+    }
 
     public PersonaDTO(int idPersona, String nombre, String telefono, String email, Date nacimiento, int idDomicilio,
 	    int idTipoContacto) {

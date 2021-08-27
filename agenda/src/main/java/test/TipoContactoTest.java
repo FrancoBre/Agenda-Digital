@@ -3,7 +3,6 @@ package test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.EnumMap;
 import java.util.List;
 
 import org.junit.Test;
@@ -31,6 +30,24 @@ public class TipoContactoTest {
 	tiposString.add("Amante");
 
 	assertEquals(Agenda.getNombreTipoContacto(tiposContacto), tiposString);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void tipoContactoConstructorConStringFailTest() {
+	@SuppressWarnings("unused")
+	TipoContactoDTO tipo = new TipoContactoDTO(1, "Zumba");
+    }
+    
+    @Test
+    public void tipoContactoConstructorConStringTest1() {
+	TipoContactoDTO tipo = new TipoContactoDTO(1, "Amigo");
+	assertEquals(tipo.getTipoContacto(), Tipo.Amigo);
+    }
+    
+    @Test
+    public void tipoContactoConstructorConStringTest2() {
+	TipoContactoDTO tipo = new TipoContactoDTO(1, "Familiar");
+	assertEquals(tipo.getTipoContacto(), Tipo.Familiar);
     }
 
 }
