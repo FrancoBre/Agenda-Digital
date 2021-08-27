@@ -3,9 +3,6 @@ package presentacion.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-
-import javax.swing.DefaultComboBoxModel;
-
 import modelo.*;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.Vista;

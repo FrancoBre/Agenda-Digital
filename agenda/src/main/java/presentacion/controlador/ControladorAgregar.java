@@ -84,8 +84,8 @@ public class ControladorAgregar implements ActionListener
 				
 				int idDomicilio = this.agenda.getDomicilioMaxId() + 1;
 				
-				DomicilioDTO nuevoDomicilio = new DomicilioDTO(idDomicilio, calle, altura, piso,
-						depto, idLocalidad);
+//				DomicilioDTO nuevoDomicilio = new DomicilioDTO(idDomicilio, calle, altura, piso,
+//						depto, idLocalidad);
 
 				PersonaDTO nuevaPersona;
 				
@@ -98,7 +98,7 @@ public class ControladorAgregar implements ActionListener
 					e.printStackTrace();
 				}
 
-				this.agenda.agregarDomicilio(nuevoDomicilio);
+//				this.agenda.agregarDomicilio(nuevoDomicilio);
 				
 				this.agenda.agregarPersona(nuevaPersona);
 				

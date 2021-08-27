@@ -35,7 +35,7 @@ public class PersonaDAOSQL implements PersonaDAO {
 	    statement.setString(4, persona.getEmail());
 	    statement.setDate(5, persona.getNacimiento());
 	    statement.setInt(6, persona.getDomicilio().getIdDomicilio());
-	    statement.setInt(7, persona.getTipoContacto().getIdTipoContacto());
+	    statement.setInt(7, persona.getTipoContacto().getIdTipo());
 
 	    if (statement.executeUpdate() > 0) {
 		conexion.commit();
@@ -64,7 +64,7 @@ public class PersonaDAOSQL implements PersonaDAO {
 	    statement.setString(3, persona_a_editar.getEmail());
 	    statement.setDate(4, persona_a_editar.getNacimiento());
 	    statement.setInt(5, persona_a_editar.getDomicilio().getIdDomicilio());
-	    statement.setInt(6, persona_a_editar.getTipoContacto().getIdTipoContacto());
+	    statement.setInt(6, persona_a_editar.getTipoContacto().getIdTipo());
 	    statement.setInt(7, persona_a_editar.getIdPersona());
 	    if (statement.executeUpdate() > 0) {
 		conexion.commit();

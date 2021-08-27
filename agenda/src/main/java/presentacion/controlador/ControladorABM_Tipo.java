@@ -3,14 +3,10 @@ package presentacion.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.DefaultComboBoxModel;
-
 import modelo.*;
 import presentacion.vista.VentanaTipo;
 import presentacion.vista.Vista;
-import dto.PersonaDTO;
 import dto.TipoContactoDTO;
 
 public class ControladorABM_Tipo implements ActionListener

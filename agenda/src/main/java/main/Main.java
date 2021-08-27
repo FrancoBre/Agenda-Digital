@@ -5,16 +5,6 @@ import persistencia.dao.mysql.DAOSQLFactory;
 import presentacion.controlador.*;
 import presentacion.vista.Vista;
 
-<<<<<<< HEAD
-public class Main {
-
-    public static void main(String[] args) {
-	Vista vista = new Vista();
-	Agenda modelo = new Agenda(new DAOSQLFactory());
-	Controlador controlador = new Controlador(vista, modelo);
-	controlador.inicializar();
-    }
-=======
 public class Main 
 {
 	public static void main(String[] args) 
@@ -30,5 +20,4 @@ public class Main
 		controladorEditar.inicializar();
 		controladorTipo.inicializar();
 	}
->>>>>>> branch 'master' of https://github.com/FrancoBre/Agenda-Digital
 }

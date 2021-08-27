@@ -41,7 +41,6 @@ public class Agenda {
      */
     public void wire(List<PersonaDTO> personasEnTabla, List<PaisDTO> paises, List<ProvinciaDTO> provincias,
 	    List<LocalidadDTO> localidades, List<TipoContactoDTO> tiposContacto) {
-	// TODO Auto-generated method stub
 
     }
     
@@ -62,6 +61,7 @@ public class Agenda {
      */
     public List<PersonaDTO> obtenerPersonas() {
 	return this.persona.readAll();
+	
     }
 
     /*
@@ -93,55 +93,6 @@ public class Agenda {
 
 	return ret;
     }
-
-    public void agregarDomicilio(DomicilioDTO domicilio) {
-	this.domicilio.insert(domicilio);
-    }
-
-    // Cambiar
-    public ArrayList<String> getNombreProvincia(int idpais) {
-	List<ProvinciaDTO> provincias = this.provincia.readByPais(idpais);
-	ArrayList<String> a = new ArrayList<String>();
-	for (ProvinciaDTO provinciaDTO : provincias) {
-	    a.add(provinciaDTO.getNombre());
-	}
-	return a;
-    }
-
-    // Cambiar
-    public ArrayList<String> getNombreLocalidad(String nombreProvincia) {
-	List<LocalidadDTO> localidad = this.localidad.readByNombreProvincia(nombreProvincia);
-	ArrayList<String> a = new ArrayList<String>();
-	for (LocalidadDTO localidadDTO : localidad) {
-	    a.add(localidadDTO.getNombre());
-	}
-<<<<<<< HEAD
-	return a;
-    }
-
-    /*
-     * Lo hice static para poder probarlo
-     */
-    public static List<String> getNombreTipoContacto(List<TipoContactoDTO> tiposContacto) {
-	List<String> ret = new ArrayList<String>();
-	for (TipoContactoDTO tipo : tiposContacto) {
-	    ret.add(tipo.getTipoContacto().name());
-=======
-	
-	public void editarPersona(PersonaDTO persona_a_editar)
-	{
-		this.persona.update(persona_a_editar);
-	}
-	
-	public void borrarPersona(PersonaDTO persona_a_eliminar) 
-	{
-		this.persona.delete(persona_a_eliminar);
-	}
-	
-	public List<PersonaDTO> obtenerPersonas()
-	{
-		return this.persona.readAll();		
-	}
 	
 	//TIPO CONTACTO
 	
@@ -214,33 +165,18 @@ public class Agenda {
 	
 	public int getDomicilioMaxId() {
 		return this.domicilio.readMaxId();
->>>>>>> branch 'master' of https://github.com/FrancoBre/Agenda-Digital
 	}
 
-	return ret;
-    }
-
     // ****************************
-    public ArrayList<Integer> getYears() {
-	return Fecha.lastYears(100);
-    }
-
-    public int getPersonaMaxId() {
-	return this.persona.readMaxId();
-    }
-
-    public int getDomicilioMaxId() {
-	return this.domicilio.readMaxId();
-    }
 
     public int getIdLocalidadByNombre(String nombre) {
 	return this.localidad.readIdByNombre(nombre);
     }
 
-    /*
-     * public int getIdTipoContactoByNombre(String nombre) { return
-     * this.tipoContacto.readIdByNombre(nombre); }
-     */
+    
+    public int getIdTipoContactoByNombre(String nombre) {
+    	return this.tipoContacto.readIdByNombre(nombre); 
+    }
 
     public void editarDomicilio(DomicilioDTO domicilioEditado) {
 	this.domicilio.update(domicilioEditado);

@@ -63,7 +63,7 @@ public class ControladorEditar implements ActionListener
 				//crear una ventana con mensaje de campos vacios
 			}else {
 				int idPersona = this.personasEnTabla.get(filasSeleccionadas[0]).getIdPersona();
-				int idDomicilio = this.personasEnTabla.get(filasSeleccionadas[0]).getDomicilio();
+				int idDomicilio = this.personasEnTabla.get(filasSeleccionadas[0]).getDomicilio().getIdDomicilio();
 				
 				String nombre = this.ventanaPersonaEditar.getNombreInput().getText();
 				String tel = this.ventanaPersonaEditar.getTelefonoInput().getText();
@@ -91,10 +91,10 @@ public class ControladorEditar implements ActionListener
 				int idLocalidad = this.agenda.getIdLocalidadByNombre(localidad);
 				int idTipoContacto = this.agenda.getIdTipoContactoByNombre(tipoContacto);
 				
-				DomicilioDTO domicilioEditado = new DomicilioDTO(idDomicilio, calle, altura, piso,
-						depto, idLocalidad);
+//				DomicilioDTO domicilioEditado = new DomicilioDTO(idDomicilio, calle, altura, piso,
+//						depto, idLocalidad);
 				
-				this.agenda.editarDomicilio(domicilioEditado);
+//				this.agenda.editarDomicilio(domicilioEditado);
 
 				PersonaDTO personaEditada;
 				
