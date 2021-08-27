@@ -1,15 +1,17 @@
 package persistencia.dao.interfaz;
 
-import java.util.EnumMap;
+import java.util.List;
 
-import dto.TipoContacto;
+import dto.TipoContactoDTO;
 
 public interface TipoContactoDAO {
-    public EnumMap<TipoContacto, Integer> readAll();
+
+    public List<TipoContactoDTO> readAll();
 
     /*
      * public int readIdByNombre(String nombre);
      * 
      * public String readNombreById(int id);
      */
+
 }

@@ -9,7 +9,7 @@ import dto.LocalidadDTO;
 import dto.PaisDTO;
 import dto.PersonaDTO;
 import dto.ProvinciaDTO;
-import dto.TipoContacto;
+import dto.TipoContactoDTO;
 import persistencia.dao.interfaz.DAOAbstractFactory;
 import persistencia.dao.interfaz.DomicilioDAO;
 import persistencia.dao.interfaz.LocalidadDAO;
@@ -35,6 +35,16 @@ public class Agenda {
 	this.localidad = metodo_persistencia.createLocalidadDAO();
     }
 
+    /*
+     * Este metodo se encarga de "cablear" las dependencias entre los objetos, segun
+     * los id correspondientes
+     */
+    public void wire(List<PersonaDTO> personasEnTabla, List<PaisDTO> paises, List<ProvinciaDTO> provincias,
+	    List<LocalidadDTO> localidades, List<TipoContactoDTO> tiposContacto) {
+	// TODO Auto-generated method stub
+
+    }
+    
     public void agregarPersona(PersonaDTO nuevaPersona) {
 	this.persona.insert(nuevaPersona);
     }
@@ -72,16 +82,9 @@ public class Agenda {
 	return this.localidad.readAll();
     }
 
-    public EnumMap<TipoContacto, Integer> obtenerTiposContacto() {
+    public List<TipoContactoDTO> obtenerTiposContacto() {
 	return this.tipoContacto.readAll();
     }
-
-    /*
-     * public ArrayList<String> getNombrePaises() { List<PaisDTO> paises =
-     * this.pais.readAll(); ArrayList<String> a = new ArrayList<String>(); for
-     * (PaisDTO paisDTO : paises) { a.add(paisDTO.getNombre().toString()); } return
-     * a; }
-     */
 
     public List<String> getNombrePaises(List<PaisDTO> paises) {
 	List<String> ret = new ArrayList<String>();
@@ -95,6 +98,7 @@ public class Agenda {
 	this.domicilio.insert(domicilio);
     }
 
+    // Cambiar
     public ArrayList<String> getNombreProvincia(int idpais) {
 	List<ProvinciaDTO> provincias = this.provincia.readByPais(idpais);
 	ArrayList<String> a = new ArrayList<String>();
@@ -104,6 +108,7 @@ public class Agenda {
 	return a;
     }
 
+    // Cambiar
     public ArrayList<String> getNombreLocalidad(String nombreProvincia) {
 	List<LocalidadDTO> localidad = this.localidad.readByNombreProvincia(nombreProvincia);
 	ArrayList<String> a = new ArrayList<String>();
@@ -116,10 +121,10 @@ public class Agenda {
     /*
      * Lo hice static para poder probarlo
      */
-    public static List<String> getNombreTipoContacto(EnumMap<TipoContacto, Integer> tiposContacto) {
+    public static List<String> getNombreTipoContacto(List<TipoContactoDTO> tiposContacto) {
 	List<String> ret = new ArrayList<String>();
-	for (TipoContacto tipo : tiposContacto.keySet()) {
-	    ret.add(tipo.toString());
+	for (TipoContactoDTO tipo : tiposContacto) {
+	    ret.add(tipo.getTipoContacto().name());
 	}
 
 	return ret;

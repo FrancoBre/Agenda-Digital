@@ -10,6 +10,8 @@ public class PersonaDTO {
     private Date nacimiento;
     private DomicilioDTO domicilio;
     private TipoContactoDTO tipoContacto;
+    private int idDomicilio;
+    private int idTipoContacto;
 
     public PersonaDTO(int idPersona, String nombre, String telefono, String email, Date nacimiento,
 	    DomicilioDTO domicilio, TipoContactoDTO tipoContacto) {
@@ -22,10 +24,15 @@ public class PersonaDTO {
 	this.tipoContacto = tipoContacto;
     }
 
-    public PersonaDTO(int idPersona, String nombre, String telefono) {
+    public PersonaDTO(int idPersona, String nombre, String telefono, String email, Date nacimiento, int idDomicilio,
+	    int idTipoContacto) {
 	this.idPersona = idPersona;
 	this.nombre = nombre;
 	this.telefono = telefono;
+	this.email = email;
+	this.nacimiento = nacimiento;
+	this.setIdDomicilio(idDomicilio);
+	this.setIdTipoContacto(idTipoContacto);
     }
 
     public int getIdPersona() {
@@ -84,11 +91,20 @@ public class PersonaDTO {
 	this.nacimiento = nacimiento;
     }
 
-    @Override
-    public String toString() {
-	return "PersonaDTO [idPersona=" + idPersona + ", nombre=" + nombre + ", telefono=" + telefono + ", email="
-		+ email + ", nacimiento=" + nacimiento + ", domicilio=" + domicilio + ", tipoContacto=" + tipoContacto
-		+ "]";
+    public int getIdDomicilio() {
+	return idDomicilio;
+    }
+
+    public void setIdDomicilio(int idDomicilio) {
+	this.idDomicilio = idDomicilio;
+    }
+
+    public int getIdTipoContacto() {
+	return idTipoContacto;
+    }
+
+    public void setIdTipoContacto(int idTipoContacto) {
+	this.idTipoContacto = idTipoContacto;
     }
 
 }

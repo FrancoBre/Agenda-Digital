@@ -8,19 +8,20 @@ import java.util.List;
 
 import org.junit.Test;
 
-import dto.TipoContacto;
+import dto.TipoContactoDTO;
+import dto.TipoContactoDTO.Tipo;
 import modelo.Agenda;
 
 public class TipoContactoTest {
 
     @Test
     public void getNombreTipoContactoTest() {
-	EnumMap<TipoContacto, Integer> tiposContacto = new EnumMap<TipoContacto, Integer>(TipoContacto.class);
-	tiposContacto.put(TipoContacto.Familiar, 1);
-	tiposContacto.put(TipoContacto.Amigo, 2);
-	tiposContacto.put(TipoContacto.Trabajo, 3);
-	tiposContacto.put(TipoContacto.Futbol, 4);
-	tiposContacto.put(TipoContacto.Amante, 5);
+	List<TipoContactoDTO> tiposContacto = new ArrayList<TipoContactoDTO>();
+	tiposContacto.add(new TipoContactoDTO(1, Tipo.Familiar));
+	tiposContacto.add(new TipoContactoDTO(2, Tipo.Amigo));
+	tiposContacto.add(new TipoContactoDTO(3, Tipo.Trabajo));
+	tiposContacto.add(new TipoContactoDTO(4, Tipo.Futbol));
+	tiposContacto.add(new TipoContactoDTO(5, Tipo.Amante));
 
 	List<String> tiposString = new ArrayList<String>();
 	tiposString.add("Familiar");

@@ -1,10 +1,13 @@
 package persistencia.dao.mysql;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.EnumMap;
+import java.util.ArrayList;
+import java.util.List;
 
-import dto.TipoContacto;
+import dto.TipoContactoDTO;
+import dto.TipoContactoDTO.Tipo;
 import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.TipoContactoDAO;
 
@@ -18,17 +21,16 @@ public class TipoContactoDAOSQL implements TipoContactoDAO {
      * "SELECT nombre FROM tipo_contacto WHERE idTipo_contacto = ?;";
      */
 
-    public EnumMap<TipoContacto, Integer> readAll() {
+    public List<TipoContactoDTO> readAll() {
 	PreparedStatement statement;
 	ResultSet resultSet;
-	EnumMap<TipoContacto, Integer> ret = new EnumMap<TipoContacto, Integer>(TipoContacto.class);
+	List<TipoContactoDTO> ret = new ArrayList<TipoContactoDTO>();
 	Conexion conexion = Conexion.getConexion();
 	try {
 	    statement = conexion.getSQLConexion().prepareStatement(readAll);
 	    resultSet = statement.executeQuery();
 	    while (resultSet.next()) {
-
-		ret.put(getTipoContacto(resultSet), getIdTipoContacto(resultSet));
+		ret.add(getTipoContacto(resultSet));
 	    }
 	} catch (SQLException e) {
 	    e.printStackTrace();
@@ -36,14 +38,10 @@ public class TipoContactoDAOSQL implements TipoContactoDAO {
 	return ret;
     }
 
-    private TipoContacto getTipoContacto(ResultSet resultSet) throws SQLException {
-
-	TipoContacto ret = TipoContacto.valueOf(resultSet.getString("tipo"));
-	return ret;
-    }
-
-    private Integer getIdTipoContacto(ResultSet resultSet) throws SQLException {
-	int ret = resultSet.getInt("idTipo_contacto");
+    private TipoContactoDTO getTipoContacto(ResultSet resultSet) throws SQLException {
+	TipoContactoDTO ret = new TipoContactoDTO();
+	ret.setTipoContacto(Tipo.valueOf(resultSet.getString("tipo")));
+	ret.setIdTipoContacto(resultSet.getInt("idTipo_contacto"));
 	return ret;
     }
 
