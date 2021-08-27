@@ -12,7 +12,34 @@ public class PersonaDTO {
     private TipoContactoDTO tipoContacto;
     private int idDomicilio;
     private int idTipoContacto;
+    
+    private String calle;
+    private String altura;
+    private String piso;
+    private String depto;
+    private String localidad;
+    private String provincia; 
+    private String pais;
+    private String Etiqueta;
+    
 
+    public PersonaDTO(int idPersona, String nombre, String telefono, String email, Date nacimiento, String calle, String altura, String piso,
+    		String depto,String localidad, String provincia, String pais, String Etiqueta) {
+    		this.idPersona = idPersona;
+    		this.nombre = nombre;
+    		this.telefono = telefono;
+    		this.email = email;
+    		this.nacimiento = nacimiento;
+    		this.calle = calle;
+    		this.altura = altura;
+    		this.piso = piso;
+    		this.depto = depto;
+    		this.localidad = localidad;
+    		this.provincia = provincia;
+    		this.pais = pais;
+    		this.Etiqueta = Etiqueta;
+        }
+    
     public PersonaDTO(int idPersona, String nombre, String telefono, String email, Date nacimiento,
 	    DomicilioDTO domicilio, TipoContactoDTO tipoContacto) {
 		this.idPersona = idPersona;
@@ -106,5 +133,71 @@ public class PersonaDTO {
     public void setIdTipoContacto(int idTipoContacto) {
     	this.idTipoContacto = idTipoContacto;
     }
+    
+    //
+
+	public String getCalle() {
+		return calle;
+	}
+
+	public void setCalle(String calle) {
+		this.calle = calle;
+	}
+
+	public String getAltura() {
+		return altura;
+	}
+
+	public void setAltura(String altura) {
+		this.altura = altura;
+	}
+
+	public String getPiso() {
+		return piso;
+	}
+
+	public void setPiso(String piso) {
+		this.piso = piso;
+	}
+
+	public String getDepto() {
+		return depto;
+	}
+
+	public void setDepto(String depto) {
+		this.depto = depto;
+	}
+
+	public String getLocalidad() {
+		return localidad;
+	}
+
+	public void setLocalidad(String localidad) {
+		this.localidad = localidad;
+	}
+
+	public String getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
+
+	public String getPais() {
+		return pais;
+	}
+
+	public void setPais(String pais) {
+		this.pais = pais;
+	}
+
+	public String getEtiqueta() {
+		return Etiqueta;
+	}
+
+	public void setEtiqueta(String etiqueta) {
+		Etiqueta = etiqueta;
+	}
 
 }

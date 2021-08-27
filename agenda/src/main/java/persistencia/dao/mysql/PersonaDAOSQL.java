@@ -24,9 +24,9 @@ public class PersonaDAOSQL implements PersonaDAO {
     private static final String readMaxId = "SELECT idPersona FROM personas ORDER BY idPersona DESC LIMIT 0, 1;";
     private static final String READALLDATE = 
     		"SELECT p.idPersona, p.nombre, p.telefono, p.email, p.nacimiento, d.calle, d.altura, d.piso, d.depto, "
-    		+ "l.nombre AS localidad, pr.nombre AS provincia, pa.nombre AS pais "
-    		+ "FROM personas p, domicilio d, localidad l, provincia pr, pais pa "
-    		+ "WHERE p.Domicilio = d.idDomicilio AND d.Localidad = l.idLocalidad AND l.provincia = idProvincia AND pr.pais = pa.idPais;";
+    		+ "l.nombre AS localidad, pr.nombre AS provincia, pa.nombre AS pais, c.Tipo AS Etiqueta "
+    		+ "FROM personas p, domicilio d, localidad l, provincia pr, pais pa, tipo_contacto c "
+    		+ "WHERE p.Domicilio = d.idDomicilio AND d.Localidad=l.idLocalidad AND l.provincia= idProvincia AND pr.pais=pa.idPais AND p.tipo_contacto = c.idTipo_contacto;";
     
     public boolean insert(PersonaDTO persona) {
 	PreparedStatement statement;
@@ -104,7 +104,7 @@ public class PersonaDAOSQL implements PersonaDAO {
 	return isdeleteExitoso;
     }
     
-    public List<PersonaDTO> readAllDATE() {
+    public List<PersonaDTO> READALLDATE() {
 		PreparedStatement statement;
 		ResultSet resultSet; // Guarda el resultado de la query
 		ArrayList<PersonaDTO> personas = new ArrayList<PersonaDTO>();
@@ -146,19 +146,40 @@ public class PersonaDAOSQL implements PersonaDAO {
 		return personas;
     }
 
-    private PersonaDTO getPersonaDTO(ResultSet resultSet) throws SQLException, ParseException {
+  private PersonaDTO getPersonaDTO(ResultSet resultSet) throws SQLException, ParseException {
 		int id = resultSet.getInt("idPersona");
 		String nombre = resultSet.getString("Nombre");
 		String tel = resultSet.getString("Telefono");
 		String email = resultSet.getString("Email");
 		String nac = resultSet.getString("Nacimiento");
-		int idDomicilio = resultSet.getInt("Domicilio");
-		int idTipoContacto = resultSet.getInt("Tipo_contacto");
+		String calle = resultSet.getString("calle");
+		String altura = resultSet.getString("altura");
+		String piso = resultSet.getString("piso");
+		String depto = resultSet.getString("depto");
+		String localidad = resultSet.getString("localidad");
+		String provincia = resultSet.getString("provincia");
+		String pais = resultSet.getString("pais");
+		String Etiqueta = resultSet.getString("Etiqueta");
 
 		java.sql.Date nacimiento = parseNacimiento(nac);
 	
-		return new PersonaDTO(id, nombre, tel, email, nacimiento, idDomicilio, idTipoContacto);
-    }
+		return new PersonaDTO(id, nombre, tel, email, nacimiento,calle,altura,piso,depto,localidad,provincia,pais,Etiqueta);
+  }
+    
+    
+//    private PersonaDTO getPersonaDTO(ResultSet resultSet) throws SQLException, ParseException {
+//		int id = resultSet.getInt("idPersona");
+//		String nombre = resultSet.getString("Nombre");
+//		String tel = resultSet.getString("Telefono");
+//		String email = resultSet.getString("Email");
+//		String nac = resultSet.getString("Nacimiento");
+//		int idDomicilio = resultSet.getInt("Domicilio");
+//		int idTipoContacto = resultSet.getInt("Tipo_contacto");
+//
+//		java.sql.Date nacimiento = parseNacimiento(nac);
+//	
+//		return new PersonaDTO(id, nombre, tel, email, nacimiento, idDomicilio, idTipoContacto);
+//    }
 
     /*
      *  Esto no deberia estar aca otra vez pero bueno

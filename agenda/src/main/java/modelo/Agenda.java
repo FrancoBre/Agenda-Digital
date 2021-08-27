@@ -59,7 +59,7 @@ public class Agenda {
      * Este metodo se usa para cargar las personas a la ventana principal
      */
     public List<PersonaDTO> obtenerPersonas() {
-    	return this.persona.readAll();
+    	return this.persona.READALLDATE();
     }
 
     /*

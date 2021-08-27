@@ -10,6 +10,7 @@ import modelo.*;
 import presentacion.vista.VentanaPersonaEditar;
 import presentacion.vista.Vista;
 import dto.DomicilioDTO;
+import dto.LocalidadDTO;
 import dto.PersonaDTO;
 
 public class ControladorEditar implements ActionListener
@@ -91,8 +92,10 @@ public class ControladorEditar implements ActionListener
 				int idLocalidad = this.agenda.getIdLocalidadByNombre(localidad);
 				int idTipoContacto = this.agenda.getIdTipoContactoByNombre(tipoContacto);
 				
-//				DomicilioDTO domicilioEditado = new DomicilioDTO(idDomicilio, calle, altura, piso,
-//						depto, idLocalidad);
+				
+				
+				DomicilioDTO domicilioEditado = new DomicilioDTO(idDomicilio, calle, altura, piso,
+						depto, Localidad);
 				
 //				this.agenda.editarDomicilio(domicilioEditado);
 

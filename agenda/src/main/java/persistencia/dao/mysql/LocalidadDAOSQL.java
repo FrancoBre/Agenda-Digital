@@ -16,16 +16,12 @@ public class LocalidadDAOSQL implements LocalidadDAO {
 
     private static final String readAll = "SELECT * FROM localidad";
     
-      private static final String readByNombreProv =
-      "SELECT * FROM localidad l, provincia p WHERE p.idProvincia " +
-      " = l.provincia AND p.pais=l.pais AND p.nombre = ?;"; private static final
-      String readByProv = "SELECT * FROM localidad WHERE Provincia = ?;"; private
-      static final String readNombreProvinciaById =
-      "select b.nombre from localidad a inner " +
-      "join provincia b on (a.provincia = b.idProvincia) where a.idLocalidad = ? ;"
-      ; private static final String readIdByNombre =
-      "SELECT idLocalidad FROM localidad WHERE nombre = ?;";
+    private static final String readByNombreProv = "SELECT * FROM localidad l, provincia p WHERE p.idProvincia = l.provincia AND p.pais=l.pais AND p.nombre = ?;"; 
+    private static final String readByProv = "SELECT * FROM localidad WHERE Provincia = ?;"; 
+    private static final String readNombreProvinciaById = "select b.nombre from localidad a inner join provincia b on (a.provincia = b.idProvincia) where a.idLocalidad = ? ;";
+    private static final String readIdByNombre = "SELECT idLocalidad FROM localidad WHERE nombre = ?;";
      
+    private static final String selectById = "SELECT * FROM localidad WHERE idLocalidad = ? ";
 
     public List<LocalidadDTO> readAll() {
 	PreparedStatement statement;
