@@ -22,7 +22,12 @@ public class PersonaDAOSQL implements PersonaDAO {
     private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
     private static final String readall = "SELECT * FROM personas";
     private static final String readMaxId = "SELECT idPersona FROM personas ORDER BY idPersona DESC LIMIT 0, 1;";
-
+    private static final String READALLDATE = 
+    		"SELECT p.idPersona, p.nombre, p.telefono, p.email, p.nacimiento, d.calle, d.altura, d.piso, d.depto, "
+    		+ "l.nombre AS localidad, pr.nombre AS provincia, pa.nombre AS pais "
+    		+ "FROM personas p, domicilio d, localidad l, provincia pr, pais pa "
+    		+ "WHERE p.Domicilio = d.idDomicilio AND d.Localidad = l.idLocalidad AND l.provincia = idProvincia AND pr.pais = pa.idPais;";
+    
     public boolean insert(PersonaDTO persona) {
 	PreparedStatement statement;
 	Connection conexion = Conexion.getConexion().getSQLConexion();
@@ -98,40 +103,61 @@ public class PersonaDAOSQL implements PersonaDAO {
 	}
 	return isdeleteExitoso;
     }
-
-    public List<PersonaDTO> readAll() {
-	PreparedStatement statement;
-	ResultSet resultSet; // Guarda el resultado de la query
-	ArrayList<PersonaDTO> personas = new ArrayList<PersonaDTO>();
-	Conexion conexion = Conexion.getConexion();
-	try {
-	    statement = conexion.getSQLConexion().prepareStatement(readall);
-	    resultSet = statement.executeQuery();
-	    while (resultSet.next()) {
+    
+    public List<PersonaDTO> readAllDATE() {
+		PreparedStatement statement;
+		ResultSet resultSet; // Guarda el resultado de la query
+		ArrayList<PersonaDTO> personas = new ArrayList<PersonaDTO>();
+		Conexion conexion = Conexion.getConexion();
 		try {
-		    personas.add(getPersonaDTO(resultSet));
-		} catch (ParseException e) {
+		    statement = conexion.getSQLConexion().prepareStatement(READALLDATE);
+		    resultSet = statement.executeQuery();
+		    while (resultSet.next()) {
+			try {
+			    personas.add(getPersonaDTO(resultSet));
+			} catch (ParseException e) {
+			    e.printStackTrace();
+			}
+		    }
+		} catch (SQLException e) {
 		    e.printStackTrace();
 		}
-	    }
-	} catch (SQLException e) {
-	    e.printStackTrace();
-	}
-	return personas;
+		return personas;
+    }
+    
+    public List<PersonaDTO> readAll() {
+		PreparedStatement statement;
+		ResultSet resultSet; // Guarda el resultado de la query
+		ArrayList<PersonaDTO> personas = new ArrayList<PersonaDTO>();
+		Conexion conexion = Conexion.getConexion();
+		try {
+		    statement = conexion.getSQLConexion().prepareStatement(readall);
+		    resultSet = statement.executeQuery();
+		    while (resultSet.next()) {
+			try {
+			    personas.add(getPersonaDTO(resultSet));
+			} catch (ParseException e) {
+			    e.printStackTrace();
+			}
+		    }
+		} catch (SQLException e) {
+		    e.printStackTrace();
+		}
+		return personas;
     }
 
     private PersonaDTO getPersonaDTO(ResultSet resultSet) throws SQLException, ParseException {
-	int id = resultSet.getInt("idPersona");
-	String nombre = resultSet.getString("Nombre");
-	String tel = resultSet.getString("Telefono");
-	String email = resultSet.getString("Email");
-	String nac = resultSet.getString("Nacimiento");
-	int idDomicilio = resultSet.getInt("Domicilio");
-	int idTipoContacto = resultSet.getInt("Tipo_contacto");
+		int id = resultSet.getInt("idPersona");
+		String nombre = resultSet.getString("Nombre");
+		String tel = resultSet.getString("Telefono");
+		String email = resultSet.getString("Email");
+		String nac = resultSet.getString("Nacimiento");
+		int idDomicilio = resultSet.getInt("Domicilio");
+		int idTipoContacto = resultSet.getInt("Tipo_contacto");
 
-	java.sql.Date nacimiento = parseNacimiento(nac);
-
-	return new PersonaDTO(id, nombre, tel, email, nacimiento, idDomicilio, idTipoContacto);
+		java.sql.Date nacimiento = parseNacimiento(nac);
+	
+		return new PersonaDTO(id, nombre, tel, email, nacimiento, idDomicilio, idTipoContacto);
     }
 
     /*
@@ -139,29 +165,29 @@ public class PersonaDAOSQL implements PersonaDAO {
      *  Arreglar porque no anda
      */
     private java.sql.Date parseNacimiento(String nacimiento) throws ParseException {
-	SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-	Date parsed = format.parse(nacimiento);
-	java.sql.Date date = new java.sql.Date(parsed.getTime());
-
-	return date;
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+		Date parsed = format.parse(nacimiento);
+		java.sql.Date date = new java.sql.Date(parsed.getTime());
+	
+		return date;
     }
 
     public int readMaxId() {
-	PreparedStatement statement;
-	Connection conexion = Conexion.getConexion().getSQLConexion();
-	ResultSet resultSet;
-	int maxId = 0;
-	try {
-	    statement = conexion.prepareStatement(readMaxId);
-	    resultSet = statement.executeQuery();
-	    if (resultSet.next())
-		maxId = resultSet.getInt("idPersona");
-
-	} catch (SQLException e) {
-	    e.printStackTrace();
-
-	}
-	return maxId;
+		PreparedStatement statement;
+		Connection conexion = Conexion.getConexion().getSQLConexion();
+		ResultSet resultSet;
+		int maxId = 0;
+		try {
+		    statement = conexion.prepareStatement(readMaxId);
+		    resultSet = statement.executeQuery();
+		    if (resultSet.next())
+			maxId = resultSet.getInt("idPersona");
+	
+		} catch (SQLException e) {
+		    e.printStackTrace();
+	
+		}
+		return maxId;
     }
 
 }

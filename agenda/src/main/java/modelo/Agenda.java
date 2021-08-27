@@ -27,12 +27,12 @@ public class Agenda {
     private LocalidadDAO localidad;
 
     public Agenda(DAOAbstractFactory metodo_persistencia) {
-	this.persona = metodo_persistencia.createPersonaDAO();
-	this.domicilio = metodo_persistencia.createDomicilioDAO();
-	this.tipoContacto = metodo_persistencia.createTipoContactoDAO();
-	this.pais = metodo_persistencia.createPaisDAO();
-	this.provincia = metodo_persistencia.createProvinciaDAO();
-	this.localidad = metodo_persistencia.createLocalidadDAO();
+		this.persona = metodo_persistencia.createPersonaDAO();
+		this.domicilio = metodo_persistencia.createDomicilioDAO();
+		this.tipoContacto = metodo_persistencia.createTipoContactoDAO();
+		this.pais = metodo_persistencia.createPaisDAO();
+		this.provincia = metodo_persistencia.createProvinciaDAO();
+		this.localidad = metodo_persistencia.createLocalidadDAO();
     }
 
     /*
@@ -41,27 +41,25 @@ public class Agenda {
      */
     public void wire(List<PersonaDTO> personasEnTabla, List<PaisDTO> paises, List<ProvinciaDTO> provincias,
 	    List<LocalidadDTO> localidades, List<TipoContactoDTO> tiposContacto) {
-
     }
     
     public void agregarPersona(PersonaDTO nuevaPersona) {
-	this.persona.insert(nuevaPersona);
+    	this.persona.insert(nuevaPersona);
     }
 
     public void editarPersona(PersonaDTO persona_a_editar) {
-	this.persona.update(persona_a_editar);
+    	this.persona.update(persona_a_editar);
     }
 
     public void borrarPersona(PersonaDTO persona_a_eliminar) {
-	this.persona.delete(persona_a_eliminar);
+    	this.persona.delete(persona_a_eliminar);
     }
 
     /*
      * Este metodo se usa para cargar las personas a la ventana principal
      */
     public List<PersonaDTO> obtenerPersonas() {
-	return this.persona.readAll();
-	
+    	return this.persona.readAll();
     }
 
     /*
@@ -71,27 +69,27 @@ public class Agenda {
      * obtenerTiposContacto()
      */
     public List<PaisDTO> obtenerPaises() {
-	return this.pais.readAll();
+    	return this.pais.readAll();
     }
 
     public List<ProvinciaDTO> obtenerProvincias() {
-	return this.provincia.readAll();
+    	return this.provincia.readAll();
     }
 
     public List<LocalidadDTO> obtenerLocalidades() {
-	return this.localidad.readAll();
+    	return this.localidad.readAll();
     }
 
     public List<TipoContactoDTO> obtenerTiposContacto() {
-	return this.tipoContacto.readAll();
+    	return this.tipoContacto.readAll();
     }
 
     public List<String> getNombrePaises(List<PaisDTO> paises) {
-	List<String> ret = new ArrayList<String>();
-	for (PaisDTO pais : paises)
-	    ret.add(pais.getNombre());
+    	List<String> ret = new ArrayList<String>();
+    	for (PaisDTO pais : paises)
+    		ret.add(pais.getNombre());
 
-	return ret;
+    	return ret;
     }
 	
 	//TIPO CONTACTO
@@ -173,7 +171,6 @@ public class Agenda {
 	return this.localidad.readIdByNombre(nombre);
     }
 
-    
     public int getIdTipoContactoByNombre(String nombre) {
     	return this.tipoContacto.readIdByNombre(nombre); 
     }
@@ -181,5 +178,4 @@ public class Agenda {
     public void editarDomicilio(DomicilioDTO domicilioEditado) {
 	this.domicilio.update(domicilioEditado);
     }
-
 }
