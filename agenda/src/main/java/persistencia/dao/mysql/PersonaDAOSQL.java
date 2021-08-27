@@ -29,33 +29,33 @@ public class PersonaDAOSQL implements PersonaDAO {
     		+ "WHERE p.Domicilio = d.idDomicilio AND d.Localidad=l.idLocalidad AND l.provincia= idProvincia AND pr.pais=pa.idPais AND p.tipo_contacto = c.idTipo_contacto;";
     
     public boolean insert(PersonaDTO persona) {
-	PreparedStatement statement;
-	Connection conexion = Conexion.getConexion().getSQLConexion();
-	boolean isInsertExitoso = false;
-	try {
-	    statement = conexion.prepareStatement(insert);
-	    statement.setInt(1, persona.getIdPersona());
-	    statement.setString(2, persona.getNombre());
-	    statement.setString(3, persona.getTelefono());
-	    statement.setString(4, persona.getEmail());
-	    statement.setDate(5, persona.getNacimiento());
-	    statement.setInt(6, persona.getDomicilio().getIdDomicilio());
-	    statement.setInt(7, persona.getTipoContacto().getIdTipo());
-
-	    if (statement.executeUpdate() > 0) {
-		conexion.commit();
-		isInsertExitoso = true;
-	    }
-	} catch (SQLException e) {
-	    e.printStackTrace();
-	    try {
-		conexion.rollback();
-	    } catch (SQLException e1) {
-		e1.printStackTrace();
-	    }
-	}
-
-	return isInsertExitoso;
+		PreparedStatement statement;
+		Connection conexion = Conexion.getConexion().getSQLConexion();
+		boolean isInsertExitoso = false;
+		try {
+		    statement = conexion.prepareStatement(insert);
+		    statement.setInt(1, persona.getIdPersona());
+		    statement.setString(2, persona.getNombre());
+		    statement.setString(3, persona.getTelefono());
+		    statement.setString(4, persona.getEmail());
+		    statement.setDate(5, persona.getNacimiento());
+		    statement.setInt(6, persona.getDomicilio().getIdDomicilio());
+		    statement.setInt(7, persona.getTipoContacto().getIdTipo());
+	
+		    if (statement.executeUpdate() > 0) {
+			conexion.commit();
+			isInsertExitoso = true;
+		    }
+		} catch (SQLException e) {
+		    e.printStackTrace();
+		    try {
+			conexion.rollback();
+		    } catch (SQLException e1) {
+			e1.printStackTrace();
+		    }
+		}
+	
+		return isInsertExitoso;
     }
 
     public boolean update(PersonaDTO persona_a_editar) {
@@ -68,8 +68,8 @@ public class PersonaDAOSQL implements PersonaDAO {
 	    statement.setString(2, persona_a_editar.getTelefono());
 	    statement.setString(3, persona_a_editar.getEmail());
 	    statement.setDate(4, persona_a_editar.getNacimiento());
-	    statement.setInt(5, persona_a_editar.getDomicilio().getIdDomicilio());
-	    statement.setInt(6, persona_a_editar.getTipoContacto().getIdTipo());
+	    statement.setInt(5, persona_a_editar.getIdDomicilio());
+	    statement.setInt(6, persona_a_editar.getIdTipoContacto());
 	    statement.setInt(7, persona_a_editar.getIdPersona());
 	    if (statement.executeUpdate() > 0) {
 		conexion.commit();

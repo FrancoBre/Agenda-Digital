@@ -64,7 +64,7 @@ public class ControladorEditar implements ActionListener
 				//crear una ventana con mensaje de campos vacios
 			}else {
 				int idPersona = this.personasEnTabla.get(filasSeleccionadas[0]).getIdPersona();
-				int idDomicilio = this.personasEnTabla.get(filasSeleccionadas[0]).getDomicilio().getIdDomicilio();
+				int idDomicilio = this.personasEnTabla.get(filasSeleccionadas[0]).getIdDomicilio();
 				
 				String nombre = this.ventanaPersonaEditar.getNombreInput().getText();
 				String tel = this.ventanaPersonaEditar.getTelefonoInput().getText();
@@ -74,15 +74,15 @@ public class ControladorEditar implements ActionListener
 				String calle = this.ventanaPersonaEditar.getCalleInput().getText();
 				String altura = this.ventanaPersonaEditar.getAlturaInput().getText();
 				String pisoStr = this.ventanaPersonaEditar.getPisoInput().getText();
-				int piso = Integer.parseInt(pisoStr.trim());
+				String piso = pisoStr.trim();
 				String deptoStr = this.ventanaPersonaEditar.getDeptoInput().getText();
-				int depto = Integer.parseInt(deptoStr.trim());
+				String depto = deptoStr.trim();
 				String localidad = (String) this.ventanaPersonaEditar.getLocalidadInput().getSelectedItem();
 				
 				int year = (int) this.ventanaPersonaEditar.getComboBoxAnio().getSelectedItem();
 				int month = (int) this.ventanaPersonaEditar.getComboBoxMes().getSelectedItem();
 				int date = (int) this.ventanaPersonaEditar.getComboBoxDia().getSelectedItem();
-				String nacimiento = year +""+ month +""+ date;
+				String nacimiento = year +" "+ month +" "+ date;
 				
 				//unused
 				String pais = (String) this.ventanaPersonaEditar.getPaisInput().getSelectedItem();
@@ -92,12 +92,12 @@ public class ControladorEditar implements ActionListener
 				int idLocalidad = this.agenda.getIdLocalidadByNombre(localidad);
 				int idTipoContacto = this.agenda.getIdTipoContactoByNombre(tipoContacto);
 				
+				LocalidadDTO local = this.agenda.getLocalidadById(idLocalidad);
 				
 				
-				DomicilioDTO domicilioEditado = new DomicilioDTO(idDomicilio, calle, altura, piso,
-						depto, Localidad);
+				DomicilioDTO domicilioEditado = new DomicilioDTO(idDomicilio, calle, altura, piso, depto, local);
 				
-//				this.agenda.editarDomicilio(domicilioEditado);
+				this.agenda.editarDomicilio(domicilioEditado);
 
 				PersonaDTO personaEditada;
 				
@@ -111,7 +111,7 @@ public class ControladorEditar implements ActionListener
 					e.printStackTrace();
 				}
 
-				//this.agenda.agregarDomicilio(nuevoDomicilio);
+//				this.agenda.agregarDomicilio(nuevoDomicilio);
 				
 				this.agenda.editarPersona(personaEditada);
 			}

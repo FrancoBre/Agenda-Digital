@@ -91,6 +91,10 @@ public class Agenda {
 
     	return ret;
     }
+    
+    public LocalidadDTO getLocalidadById(int id) {
+    	return this.localidad.readByID(id);
+    }
 	
 	//TIPO CONTACTO
 	
@@ -178,4 +182,5 @@ public class Agenda {
     public void editarDomicilio(DomicilioDTO domicilioEditado) {
 	this.domicilio.update(domicilioEditado);
     }
+    
 }
