@@ -14,5 +14,6 @@ public interface PersonaDAO {
 
     public List<PersonaDTO> readAll();
 
+    public List<PersonaDTO> READALLDATE();
     public int readMaxId();
 }

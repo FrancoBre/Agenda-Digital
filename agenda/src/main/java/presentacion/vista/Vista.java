@@ -29,8 +29,8 @@ public class Vista
 	private JButton btnReporte;
 	private JButton btnABM_tipo;
 	private DefaultTableModel modelPersonas;
-	private  String[] nombreColumnas = {"Nombre y apellido","Telefono","Email","Nacimiento","Domicilio","Tipo de Contacto"};
-
+	private  String[] nombreColumnas = {"Nombre y apellido","Telefono","Email","Nacimiento","Calle", "Altura", "Piso", "Depto", "Localidad", "Provincia", "Pais", "Etiqueta"};
+	
 	public Vista() 
 	{
 		super();
@@ -42,17 +42,17 @@ public class Vista
 	{
 		frame = new JFrame();
 		frame.setTitle("Agenda");
-		frame.setBounds(100, 100, 700, 300);
+		frame.setBounds(100, 100, 1200, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 695, 262);
+		panel.setBounds(0, 0, 1190, 262);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JScrollPane spPersonas = new JScrollPane();
-		spPersonas.setBounds(10, 11, 670, 182);
+		spPersonas.setBounds(10, 11, 1160, 182);
 		panel.add(spPersonas);
 		
 		modelPersonas = new DefaultTableModel(null,nombreColumnas);
@@ -154,15 +154,23 @@ public class Vista
 		for (PersonaDTO p : personasEnTabla)
 		{
 			String nombre = p.getNombre();
-			String tel = p.getTelefono();
+			String telefono = p.getTelefono();
 			String email = p.getEmail();
-			String nac = p.getNacimiento().toString();
+			String nacimiento = p.getNacimiento().toString();
 			String domicilio = p.getDomicilio()+"";
 			String t_contacto = p.getTipoContacto()+"";
 			
-			Object[] fila = {nombre, tel, email, nac, domicilio, t_contacto};
+			String calle = p.getCalle();
+			String altura = p.getAltura();
+			String piso = p.getPiso();
+			String depto = p.getDepto();
+			String localidad = p.getLocalidad();
+			String provincia = p.getProvincia();
+			String pais = p.getPais();
+			String Etiqueta = p.getEtiqueta();
+			
+			Object[] fila = {nombre, telefono, email, nacimiento, calle, altura, piso, depto, localidad, provincia, pais, Etiqueta};
 			this.getModelPersonas().addRow(fila);
 		}
-		
 	}
 }

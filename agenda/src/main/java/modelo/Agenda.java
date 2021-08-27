@@ -1,7 +1,6 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.EnumMap;
 import java.util.List;
 
 import dto.DomicilioDTO;
@@ -88,7 +87,7 @@ public class Agenda {
      * Este metodo se usa para cargar las personas a la ventana principal
      */
     public List<PersonaDTO> obtenerPersonas() {
-	return this.persona.readAll();
+	return this.persona.READALLDATE();
     }
 
     /*
@@ -125,8 +124,8 @@ public class Agenda {
 	return ret;
     }
 
-    public void agregarDomicilio(DomicilioDTO domicilio) {
-	this.domicilio.insert(domicilio);
+    public LocalidadDTO getLocalidadById(int id) {
+	return this.localidad.readByID(id);
     }
 
     // Cambiar
@@ -156,7 +155,6 @@ public class Agenda {
 	List<String> ret = new ArrayList<String>();
 	for (TipoContactoDTO tipo : tiposContacto)
 	    ret.add(tipo.getTipoContacto().name());
-
 	return ret;
     }
 
@@ -187,6 +185,10 @@ public class Agenda {
 	return a;
     }
 
+    public void agregarDomicilio(DomicilioDTO domicilio) {
+	this.domicilio.insert(domicilio);
+    }
+
     // ****************************
     public ArrayList<Integer> getYears() {
 	return Fecha.lastYears(100);
@@ -200,6 +202,8 @@ public class Agenda {
 	return this.domicilio.readMaxId();
     }
 
+    // ****************************
+
     // Pasar al modelo
     public int getIdLocalidadByNombre(String nombre, List<LocalidadDTO> localidades) {
 	for (LocalidadDTO localidad : localidades) {
@@ -209,10 +213,9 @@ public class Agenda {
 	return 0;
     }
 
-    /*
-     * public int getIdTipoContactoByNombre(String nombre) { return
-     * this.tipoContacto.readIdByNombre(nombre); }
-     */
+    public int getIdTipoContactoByNombre(String nombre) {
+	return this.tipoContacto.readIdByNombre(nombre);
+    }
 
     public void editarDomicilio(DomicilioDTO domicilioEditado) {
 	this.domicilio.update(domicilioEditado);

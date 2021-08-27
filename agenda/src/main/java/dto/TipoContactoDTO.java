@@ -45,5 +45,4 @@ public class TipoContactoDTO {
     public void setTipoContacto(Tipo tipoContacto) {
 	this.tipoContacto = tipoContacto;
     }
-
 }
