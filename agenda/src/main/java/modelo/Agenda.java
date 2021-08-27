@@ -115,6 +115,7 @@ public class Agenda {
 	for (LocalidadDTO localidadDTO : localidad) {
 	    a.add(localidadDTO.getNombre());
 	}
+<<<<<<< HEAD
 	return a;
     }
 
@@ -125,6 +126,95 @@ public class Agenda {
 	List<String> ret = new ArrayList<String>();
 	for (TipoContactoDTO tipo : tiposContacto) {
 	    ret.add(tipo.getTipoContacto().name());
+=======
+	
+	public void editarPersona(PersonaDTO persona_a_editar)
+	{
+		this.persona.update(persona_a_editar);
+	}
+	
+	public void borrarPersona(PersonaDTO persona_a_eliminar) 
+	{
+		this.persona.delete(persona_a_eliminar);
+	}
+	
+	public List<PersonaDTO> obtenerPersonas()
+	{
+		return this.persona.readAll();		
+	}
+	
+	//TIPO CONTACTO
+	
+	public void agregarTipo(TipoContactoDTO nuevoTipo) {
+		this.tipoContacto.insert(nuevoTipo);
+	}
+	
+	public void editarTipo(TipoContactoDTO editTipo) {
+		this.tipoContacto.update(editTipo);
+	}
+	
+	public void borrarTipo(String borrarTipo) {		
+		this.tipoContacto.delete(borrarTipo);
+	}	
+	
+	
+	public String[] AMB(){
+		return new String[]{"Agregar", "Modificar", "Eliminar"};
+	}
+		
+	public ArrayList<String> getNombrePaises(){
+		List<PaisDTO> paises = this.pais.readAll();
+		ArrayList<String> a = new ArrayList<String>();
+		for (PaisDTO paisDTO : paises) {
+			a.add(paisDTO.getNombre().toString());
+		}
+		return a;
+	}
+	
+	public void agregarDomicilio(DomicilioDTO domicilio) {
+		this.domicilio.insert(domicilio);
+	}
+	
+	public ArrayList<String> getNombreProvincia(int idpais){
+		List<ProvinciaDTO> provincias = this.provincia.readByPais(idpais);
+		ArrayList<String> a = new ArrayList<String>();
+		for (ProvinciaDTO provinciaDTO : provincias) {
+			a.add(provinciaDTO.getNombre());
+		}
+		return a;
+	}
+	
+	public ArrayList<String> getNombreLocalidad(String nombreProvincia){
+		List<LocalidadDTO>localidad = this.localidad.readByNombreProvincia(nombreProvincia);
+		ArrayList<String> a = new ArrayList<String>();
+		for (LocalidadDTO localidadDTO: localidad) {
+			a.add(localidadDTO.getNombre());
+		}
+		return a;
+	}
+	
+	public ArrayList<String> getNombreTipoContacto(){
+		List<TipoContactoDTO> tipo = this.tipoContacto.readAll();
+		ArrayList<String> a = new ArrayList<String>();
+		for (TipoContactoDTO tipoContactoDTO: tipo) {
+			a.add(tipoContactoDTO.getDescripcion());
+		}
+		return a;
+	}
+	
+	
+	// ****************************
+	public ArrayList<Integer> getYears(){
+		return Fecha.lastYears(100);
+	}
+	
+	public int getPersonaMaxId() {
+		return this.persona.readMaxId();
+	}
+	
+	public int getDomicilioMaxId() {
+		return this.domicilio.readMaxId();
+>>>>>>> branch 'master' of https://github.com/FrancoBre/Agenda-Digital
 	}
 
 	return ret;
