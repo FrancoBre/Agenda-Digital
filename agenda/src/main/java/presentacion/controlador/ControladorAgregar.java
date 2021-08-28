@@ -44,7 +44,9 @@ public class ControladorAgregar implements ActionListener {
     }
 
     private void addComboboxItems() {
-	addPaisesItems(agenda.getNombrePaises());
+	// addPaisesItems(agenda.getNombrePaises()); ¿donde es conveniente que esten los
+	// datos de los paises???
+	addPaisesItems(Controlador.paises);
 	addTipoContacto(Controlador.tiposContacto);
 	addIntegerComboBox(agenda.getYears(), Fecha.getMonths());
 	llenarDias(31);
