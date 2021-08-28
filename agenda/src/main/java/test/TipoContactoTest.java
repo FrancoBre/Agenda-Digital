@@ -20,14 +20,12 @@ public class TipoContactoTest {
 	tiposContacto.add(new TipoContactoDTO(2, Tipo.Amigo));
 	tiposContacto.add(new TipoContactoDTO(3, Tipo.Trabajo));
 	tiposContacto.add(new TipoContactoDTO(4, Tipo.Futbol));
-	tiposContacto.add(new TipoContactoDTO(5, Tipo.Amante));
 
 	List<String> tiposString = new ArrayList<String>();
 	tiposString.add("Familiar");
 	tiposString.add("Amigo");
 	tiposString.add("Trabajo");
 	tiposString.add("Futbol");
-	tiposString.add("Amante");
 
 	assertEquals(Agenda.getNombreTipoContacto(tiposContacto), tiposString);
     }

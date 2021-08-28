@@ -1,3 +1,5 @@
+//full deprecated
+
 package presentacion.controlador;
 
 import java.awt.event.ActionEvent;
@@ -21,24 +23,21 @@ import dto.PersonaDTO;
 import dto.ProvinciaDTO;
 import dto.TipoContactoDTO;
 
-public class Controlador  {
-    private Vista vista;
-    private VentanaPersonaAgregar ventanaPersonaAgregar;
-    private VentanaPersonaEditar ventanaPersonaEditar;
-    private Agenda agenda;
-    private int[] filasSeleccionadas = null;
+public class Controlador {
     /*
+     * private Vista vista; private VentanaPersonaAgregar ventanaPersonaAgregar;
+     * private VentanaPersonaEditar ventanaPersonaEditar; private Agenda agenda;
+     * private int[] filasSeleccionadas = null;
+     * 
      * Estas listas se hacen static para que puedan ser accedidas desde los otros
      * controladores
-     */
-    public static List<PersonaDTO> personasEnTabla;
-    public static List<PaisDTO> paises;
-    public static List<ProvinciaDTO> provincias;
-    public static List<LocalidadDTO> localidades;
-    public static List<TipoContactoDTO> tiposContacto;
-    public static List<DomicilioDTO> domicilios;
-
-    /*
+     * 
+     * public static List<PersonaDTO> personasEnTabla; public static List<PaisDTO>
+     * paises; public static List<ProvinciaDTO> provincias; public static
+     * List<LocalidadDTO> localidades; public static List<TipoContactoDTO>
+     * tiposContacto; public static List<DomicilioDTO> domicilios;
+     * 
+     * 
      * public Controlador(Vista vista, Agenda agenda) { this.vista = vista;
      * this.agenda = agenda; this.vista.getBtnAgregar().addActionListener(a ->
      * ventanaAgregarPersona(a)); // this.vista.getBtnEditar().addActionListener(e
@@ -66,34 +65,36 @@ public class Controlador  {
      * .addActionListener(comboLocalidad -> cambioItemsLEdit(comboLocalidad));
      * 
      * addComboboxItems(); }
-     */
-
-    public void inicializar() {
-	this.refrescarTabla();
-	this.cargarDatos();
-	this.vista.show();
-    }
-
-    private void refrescarTabla() {
-	Controlador.personasEnTabla = agenda.obtenerPersonas();
-	this.vista.llenarTabla(Controlador.personasEnTabla);
-    }
-
-    /*
+     * 
+     * 
+     * public Controlador(Agenda agenda) {
+     * 
+     * this.agenda = agenda;
+     * 
+     * }
+     * 
+     * public void inicializar() { this.cargarDatos(); this.refrescarTabla();
+     * this.vista.show(); }
+     * 
+     * private void refrescarTabla() { Controlador.personasEnTabla =
+     * agenda.obtenerPersonas();
+     * this.vista.llenarTabla(Controlador.personasEnTabla); }
+     * 
+     * 
      * Busca los paises, provincias, localidades y tipos de contactos de la base de
      * datos y los guarda en listas
-     */
-    private void cargarDatos() {
-	Controlador.paises = agenda.obtenerPaises();
-	Controlador.provincias = agenda.obtenerProvincias();
-	Controlador.localidades = agenda.obtenerLocalidades();
-	Controlador.tiposContacto = agenda.obtenerTiposContacto();
-	Controlador.domicilios = agenda.obtenerDomicilios();
-
-	Agenda.wire(personasEnTabla, paises, provincias, localidades, tiposContacto, domicilios);
-    }
-
-    /*
+     * 
+     * private void cargarDatos() { System.out.println("eshquere");
+     * Controlador.paises = agenda.obtenerPaises(); Controlador.provincias =
+     * agenda.obtenerProvincias(); Controlador.localidades =
+     * agenda.obtenerLocalidades(); Controlador.tiposContacto =
+     * agenda.obtenerTiposContacto(); Controlador.domicilios =
+     * agenda.obtenerDomicilios();
+     * 
+     * Agenda.wire(personasEnTabla, paises, provincias, localidades, tiposContacto,
+     * domicilios); }
+     * 
+     * 
      * private void addComboboxItems() {
      * addPaisesItems(agenda.getNombrePaises(paises));
      * addTipoContacto(Agenda.getNombreTipoContacto(tiposContacto));

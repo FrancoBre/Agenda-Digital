@@ -31,7 +31,14 @@ public class ControladorEditar implements ActionListener {
 
 	this.ventanaPersonaEditar = VentanaPersonaEditar.getInstance();
 
-	this.ventanaPersonaEditar.getBtnAction().addActionListener(ep -> editarPersona(ep));
+	this.ventanaPersonaEditar.getBtnAction().addActionListener(ep -> {
+	    try {
+		editarPersona(ep);
+	    } catch (ParseException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	    }
+	});
 	this.ventanaPersonaEditar.getComboBoxMes().addActionListener(e -> agregarDias(e));
 	this.ventanaPersonaEditar.getPaisInput().addActionListener(combobox -> cambioItemsProvincia(combobox));
 	this.ventanaPersonaEditar.getProvinciaInput()
@@ -60,7 +67,7 @@ public class ControladorEditar implements ActionListener {
 	llenarDias(31);
     }
 
-    private void editarPersona(ActionEvent ep) {
+    private void editarPersona(ActionEvent ep) throws ParseException {
 	if (!ventanaPersonaEditar.validarRequeridos()) {
 	    // crear una ventana con mensaje de campos vacios
 	} else {
@@ -84,7 +91,12 @@ public class ControladorEditar implements ActionListener {
 	    int month = (int) this.ventanaPersonaEditar.getComboBoxMes().getSelectedItem();
 	    int date = (int) this.ventanaPersonaEditar.getComboBoxDia().getSelectedItem();
 	    String nacimiento = year + " " + month + " " + date;
-
+	    
+	    DomicilioDTO domicilio = new DomicilioDTO(idDomicilio, calle, altura, piso, depto, this.agenda.getLocalidad(localidad).getIdLocalidad());
+	    PersonaDTO persona = new PersonaDTO(idPersona, nombre, tel, email, Fecha.parseNacimiento(nacimiento), 
+		    idDomicilio, this.agenda.getTipoContacto(tipoContacto).getIdTipoContacto());
+	    
+/*
 	    // unused
 	    String pais = (String) this.ventanaPersonaEditar.getPaisInput().getSelectedItem();
 	    String provincia = (String) this.ventanaPersonaEditar.getProvinciaInput().getSelectedItem();
@@ -111,10 +123,10 @@ public class ControladorEditar implements ActionListener {
 	    } catch (ParseException e) {
 		e.printStackTrace();
 	    }
+*/
+	    this.agenda.editarDomicilio(domicilio);
 
-//				this.agenda.agregarDomicilio(nuevoDomicilio);
-
-	    this.agenda.editarPersona(personaEditada);
+	    this.agenda.editarPersona(persona);
 	}
 	this.refrescarTabla();
 	this.ventanaPersonaEditar.cerrar();
@@ -162,13 +174,13 @@ public class ControladorEditar implements ActionListener {
     }
 
     public void addTipoContacto() {
-	for (TipoContactoDTO tipo : Controlador.tiposContacto) {
+	for (TipoContactoDTO tipo : Agenda.tiposContacto) {
 	    this.ventanaPersonaEditar.getTipoContactoInput().addItem(tipo.getTipoContacto().name());
 	}
     }
 
     public void addPaisesItems() {
-	for (PaisDTO pais : Controlador.paises) {
+	for (PaisDTO pais : Agenda.paises) {
 	    this.ventanaPersonaEditar.getPaisInput().addItem(pais.getNombre());
 	}
     }

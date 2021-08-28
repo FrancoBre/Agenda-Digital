@@ -30,7 +30,14 @@ public class ControladorAgregar implements ActionListener {
 
 	this.ventanaPersonaAgregar = VentanaPersonaAgregar.getInstance();
 
-	this.ventanaPersonaAgregar.getBtnAction().addActionListener(p -> guardarPersona(p));
+	this.ventanaPersonaAgregar.getBtnAction().addActionListener(p -> {
+	    try {
+		guardarPersona(p);
+	    } catch (ParseException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	    }
+	});
 	this.ventanaPersonaAgregar.getComboBoxMes().addActionListener(e -> agregarDias(e));
 	this.ventanaPersonaAgregar.getPaisInput().addActionListener(combobox -> cambioItemsProvincia(combobox));
 	this.ventanaPersonaAgregar.getProvinciaInput()
@@ -46,8 +53,8 @@ public class ControladorAgregar implements ActionListener {
     private void addComboboxItems() {
 	// addPaisesItems(agenda.getNombrePaises()); ¿donde es conveniente que esten los
 	// datos de los paises???
-	addPaisesItems(Controlador.paises);
-	addTipoContacto(Controlador.tiposContacto);
+	addPaisesItems(Agenda.paises);
+	addTipoContacto(Agenda.tiposContacto);
 	addIntegerComboBox(agenda.getYears(), Fecha.getMonths());
 	llenarDias(31);
     }
@@ -56,7 +63,7 @@ public class ControladorAgregar implements ActionListener {
 	this.ventanaPersonaAgregar.mostrarVentana();
     }
 
-    private void guardarPersona(ActionEvent p) {
+    private void guardarPersona(ActionEvent p) throws ParseException {
 	if (!ventanaPersonaAgregar.validarRequeridos()) {
 	    // crear una ventana con mensaje de campos vacios
 	} else {
@@ -156,8 +163,15 @@ public class ControladorAgregar implements ActionListener {
 
     private void cambioItemsProvincia(ActionEvent c) {
 	this.ventanaPersonaAgregar.getProvinciaInput().removeAllItems();
-	int id = this.ventanaPersonaAgregar.getPaisInput().getSelectedIndex() + 1;
-	addProvinciasItem(agenda.getProvincias(id));
+	/*
+	 * el problema esta aca
+	for (ProvinciaDTO provincia : agenda.getProvincias(1)) {
+	    System.out.println(provincia.getIdPais());
+	}
+	*/
+	
+	int idPais = this.ventanaPersonaAgregar.getPaisInput().getSelectedIndex() + 1;
+	addProvinciasItem(agenda.getProvincias(idPais));
     }
 
     private void cambioItemsLocalidad(ActionEvent c) {

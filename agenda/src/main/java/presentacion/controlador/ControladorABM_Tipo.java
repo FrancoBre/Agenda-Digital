@@ -92,7 +92,7 @@ public class ControladorABM_Tipo implements ActionListener {
 
     private void refreshListTipos() {
 	this.ventanaTipo.getTiposComboBox().removeAllItems();
-	addTipoContacto(Controlador.tiposContacto);
+	addTipoContacto(Agenda.tiposContacto);
     }
 
     public void addTipoContacto(List<TipoContactoDTO> tipos) {

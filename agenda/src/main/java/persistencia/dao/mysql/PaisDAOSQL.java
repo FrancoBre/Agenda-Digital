@@ -12,34 +12,29 @@ import persistencia.dao.interfaz.PaisDAO;
 
 public class PaisDAOSQL implements PaisDAO {
 
-	private static final String readAll = "SELECT * FROM pais;";
-	
-	public List<PaisDTO> readAll() {
-		PreparedStatement statement;
-		ResultSet resultSet;
-		ArrayList<PaisDTO> paises = new ArrayList<PaisDTO>();
-		Conexion conexion = Conexion.getConexion();
-		try 
-		{
-			statement = conexion.getSQLConexion().prepareStatement(readAll);
-			resultSet = statement.executeQuery();
-			while(resultSet.next())
-			{
-				paises.add(getPaisDTO(resultSet));
-			}
-		} 
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-		}
-		return paises;
+    private static final String readAll = "SELECT * FROM pais;";
+
+    public List<PaisDTO> readAll() {
+	PreparedStatement statement;
+	ResultSet resultSet;
+	ArrayList<PaisDTO> paises = new ArrayList<PaisDTO>();
+	Conexion conexion = Conexion.getConexion();
+	try {
+	    statement = conexion.getSQLConexion().prepareStatement(readAll);
+	    resultSet = statement.executeQuery();
+	    while (resultSet.next()) {
+		paises.add(getPaisDTO(resultSet));
+	    }
+	} catch (SQLException e) {
+	    e.printStackTrace();
 	}
-	
-	private PaisDTO getPaisDTO(ResultSet resultSet) throws SQLException
-	{
-		int id = resultSet.getInt("idPais");
-		String nombre = resultSet.getString("Nombre");
-		return new PaisDTO(id, nombre);
-	}
+	return paises;
+    }
+
+    private PaisDTO getPaisDTO(ResultSet resultSet) throws SQLException {
+	int id = resultSet.getInt("idPais");
+	String nombre = resultSet.getString("Nombre");
+	return new PaisDTO(id, nombre);
+    }
 
 }

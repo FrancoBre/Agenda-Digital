@@ -26,6 +26,17 @@ public class Agenda {
     private ProvinciaDAO provincia;
     private LocalidadDAO localidad;
 
+    /*
+     * Estas listas se hacen static para que puedan ser accedidas desde los
+     * controladores
+     */
+    public static List<PersonaDTO> personas;
+    public static List<PaisDTO> paises;
+    public static List<ProvinciaDTO> provincias;
+    public static List<LocalidadDTO> localidades;
+    public static List<TipoContactoDTO> tiposContacto;
+    public static List<DomicilioDTO> domicilios;
+
     public Agenda(DAOAbstractFactory metodo_persistencia) {
 	this.persona = metodo_persistencia.createPersonaDAO();
 	this.domicilio = metodo_persistencia.createDomicilioDAO();
@@ -36,12 +47,29 @@ public class Agenda {
     }
 
     /*
+     * Busca los paises, provincias, localidades y tipos de contactos de la base de
+     * datos y los guarda en listas
+     */
+    public void cargarDatos() {
+	System.out.println("eshquere");
+	Agenda.personas = this.obtenerPersonas();
+	Agenda.paises = this.obtenerPaises();
+	Agenda.provincias = this.obtenerProvincias();
+	Agenda.localidades = this.obtenerLocalidades();
+	Agenda.tiposContacto = this.obtenerTiposContacto();
+	Agenda.domicilios = this.obtenerDomicilios();
+
+	System.out.println(paises);
+	this.wire(personas, paises, provincias, localidades, tiposContacto, domicilios);
+    }
+
+    /*
      * Este metodo se encarga de "cablear" las dependencias entre los objetos, segun
      * los id correspondientes
      * 
      * Lo hice static para poder probarlo
      */
-    public static void wire(List<PersonaDTO> personas, List<PaisDTO> paises, List<ProvinciaDTO> provincias,
+    private void wire(List<PersonaDTO> personas, List<PaisDTO> paises, List<ProvinciaDTO> provincias,
 	    List<LocalidadDTO> localidades, List<TipoContactoDTO> tiposContacto, List<DomicilioDTO> domicilios) {
 
 	for (PaisDTO pais : paises) {
@@ -131,16 +159,19 @@ public class Agenda {
 
     public List<ProvinciaDTO> getProvincias(int idpais) {
 	List<ProvinciaDTO> ret = new ArrayList<ProvinciaDTO>();
-	for (ProvinciaDTO provincia : Controlador.provincias) {
+	for (ProvinciaDTO provincia : Agenda.provincias) {
 	    if (provincia.getIdPais() == idpais)
 		ret.add(provincia);
 	}
+	if (ret.isEmpty())
+	    throw new IllegalArgumentException("No existe ninguna provincia para el pais con el id especificado");
+	else
 	return ret;
     }
 
     public List<LocalidadDTO> getLocalidades(String nombreProvincia) {
 	List<LocalidadDTO> ret = new ArrayList<LocalidadDTO>();
-	for (LocalidadDTO localidad : Controlador.localidades) {
+	for (LocalidadDTO localidad : Agenda.localidades) {
 	    if (localidad.getNombre().equals(nombreProvincia))
 		ret.add(localidad);
 	}
@@ -155,6 +186,22 @@ public class Agenda {
 	for (TipoContactoDTO tipo : tiposContacto)
 	    ret.add(tipo.getTipoContacto().name());
 	return ret;
+    }
+
+    public TipoContactoDTO getTipoContacto(String tipoNombre) {
+	for (TipoContactoDTO tipo : Agenda.tiposContacto) {
+	    if (tipo.getTipoContacto().name().equals(tipoNombre))
+		return tipo;
+	}
+	throw new IllegalArgumentException("No existe un tipo de contacto con el nombre especificado");
+    }
+
+    public LocalidadDTO getLocalidad(String localidadNombre) {
+	for (LocalidadDTO localidad : Agenda.localidades) {
+	    if (localidad.getNombre().equals(localidadNombre))
+		return localidad;
+	}
+	throw new IllegalArgumentException("No existe una localidad con el nombre especificado");
     }
 
     // TIPO CONTACTO
@@ -184,7 +231,7 @@ public class Agenda {
 
     public List<String> getNombrePaises() {
 	List<String> ret = new ArrayList<String>();
-	for (PaisDTO pais : Controlador.paises) {
+	for (PaisDTO pais : Agenda.paises) {
 	    ret.add(pais.getNombre());
 	}
 	return ret;

@@ -3,7 +3,7 @@ package dto;
 public class TipoContactoDTO {
 
     public enum Tipo {
-	Familiar, Amigo, Trabajo, Futbol, Amante
+	Familiar, Amigo, Trabajo, Futbol
     }
 
     private int idTipoContacto;
