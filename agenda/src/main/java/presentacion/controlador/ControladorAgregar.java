@@ -81,7 +81,7 @@ public class ControladorAgregar implements ActionListener {
 	    int year = (int) this.ventanaPersonaAgregar.getComboBoxAnio().getSelectedItem();
 	    int month = (int) this.ventanaPersonaAgregar.getComboBoxMes().getSelectedItem();
 	    int date = (int) this.ventanaPersonaAgregar.getComboBoxDia().getSelectedItem();
-	    String nacimiento = year + "" + month + "" + date;
+	    String nacimiento = year + " " + month + " " + date;
 
 	    int idPersona = this.agenda.getPersonaMaxId() + 1;
 	    int idDomicilio = this.agenda.getDomicilioMaxId() + 1;
