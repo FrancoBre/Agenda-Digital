@@ -171,6 +171,7 @@ public class ControladorAgregar implements ActionListener {
     private void cambioItemsLocalidad(ActionEvent c) {
 	this.ventanaPersonaAgregar.getLocalidadInput().removeAllItems();
 	String nombreProvincia = (String) this.ventanaPersonaAgregar.getProvinciaInput().getSelectedItem();
+	
 	addLocalidadItems(agenda.getLocalidades(nombreProvincia));
     }
 

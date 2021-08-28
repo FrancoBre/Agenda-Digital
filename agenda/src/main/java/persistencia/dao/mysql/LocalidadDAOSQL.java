@@ -7,9 +7,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import dto.DomicilioDTO;
 import dto.LocalidadDTO;
-import dto.PersonaDTO;
 import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.LocalidadDAO;
 

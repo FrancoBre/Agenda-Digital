@@ -171,7 +171,7 @@ public class Agenda {
     public List<LocalidadDTO> getLocalidades(String nombreProvincia) {
 	List<LocalidadDTO> ret = new ArrayList<LocalidadDTO>();
 	for (LocalidadDTO localidad : Agenda.localidades) {
-	    if (localidad.getNombre().equals(nombreProvincia))
+	    if (localidad.getProvincia().getNombre().equals(nombreProvincia))
 		ret.add(localidad);
 	}
 	return ret;
