@@ -163,13 +163,7 @@ public class ControladorAgregar implements ActionListener {
 
     private void cambioItemsProvincia(ActionEvent c) {
 	this.ventanaPersonaAgregar.getProvinciaInput().removeAllItems();
-	/*
-	 * el problema esta aca
-	for (ProvinciaDTO provincia : agenda.getProvincias(1)) {
-	    System.out.println(provincia.getIdPais());
-	}
-	*/
-	
+
 	int idPais = this.ventanaPersonaAgregar.getPaisInput().getSelectedIndex() + 1;
 	addProvinciasItem(agenda.getProvincias(idPais));
     }

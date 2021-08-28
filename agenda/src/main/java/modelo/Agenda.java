@@ -51,7 +51,6 @@ public class Agenda {
      * datos y los guarda en listas
      */
     public void cargarDatos() {
-	System.out.println("eshquere");
 	Agenda.personas = this.obtenerPersonas();
 	Agenda.paises = this.obtenerPaises();
 	Agenda.provincias = this.obtenerProvincias();
@@ -71,7 +70,7 @@ public class Agenda {
      */
     private void wire(List<PersonaDTO> personas, List<PaisDTO> paises, List<ProvinciaDTO> provincias,
 	    List<LocalidadDTO> localidades, List<TipoContactoDTO> tiposContacto, List<DomicilioDTO> domicilios) {
-
+	
 	for (PaisDTO pais : paises) {
 	    for (ProvinciaDTO provincia : provincias) {
 		if (provincia.getIdPais() == pais.getIdPais())
