@@ -175,13 +175,19 @@ public class Agenda {
 	return new String[] { "Agregar", "Modificar", "Eliminar" };
     }
 
-    public ArrayList<String> getNombrePaises() {
-	List<PaisDTO> paises = this.pais.readAll();
-	ArrayList<String> a = new ArrayList<String>();
-	for (PaisDTO paisDTO : paises) {
-	    a.add(paisDTO.getNombre().toString());
+    /*
+     * deprecated public ArrayList<String> getNombrePaises() { List<PaisDTO> paises
+     * = this.pais.readAll(); ArrayList<String> a = new ArrayList<String>(); for
+     * (PaisDTO paisDTO : paises) { a.add(paisDTO.getNombre().toString()); } return
+     * a; }
+     */
+
+    public List<String> getNombrePaises() {
+	List<String> ret = new ArrayList<String>();
+	for (PaisDTO pais : Controlador.paises) {
+	    ret.add(pais.getNombre());
 	}
-	return a;
+	return ret;
     }
 
     public void agregarDomicilio(DomicilioDTO domicilio) {
