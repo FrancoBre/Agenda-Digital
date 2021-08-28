@@ -97,7 +97,7 @@ public class ControladorABM_Tipo implements ActionListener {
 
     public void addTipoContacto(List<TipoContactoDTO> tipos) {
 	for (TipoContactoDTO tipo : tipos) {
-	    this.ventanaTipo.getTiposComboBox().addItem(tipo.getTipoContacto().name());
+	    this.ventanaTipo.getTiposComboBox().addItem(tipo.getDescripcion());
 	}
     }
 

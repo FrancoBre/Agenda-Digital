@@ -94,7 +94,7 @@ public class ControladorEditar implements ActionListener {
 	    
 	    DomicilioDTO domicilio = new DomicilioDTO(idDomicilio, calle, altura, piso, depto, this.agenda.getLocalidad(localidad).getIdLocalidad());
 	    PersonaDTO persona = new PersonaDTO(idPersona, nombre, tel, email, Fecha.parseNacimiento(nacimiento), 
-		    idDomicilio, this.agenda.getTipoContacto(tipoContacto).getIdTipoContacto());
+		    idDomicilio, this.agenda.getTipoContacto(tipoContacto).getIdTipo());
 	    
 /*
 	    // unused
@@ -175,7 +175,7 @@ public class ControladorEditar implements ActionListener {
 
     public void addTipoContacto() {
 	for (TipoContactoDTO tipo : Agenda.tiposContacto) {
-	    this.ventanaPersonaEditar.getTipoContactoInput().addItem(tipo.getTipoContacto().name());
+	    this.ventanaPersonaEditar.getTipoContactoInput().addItem(tipo.getDescripcion());
 	}
     }
 

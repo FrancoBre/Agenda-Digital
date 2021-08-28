@@ -14,12 +14,9 @@ public interface TipoContactoDAO {
 	
 	public boolean delete(String tipoContacto);
 	
+	public List<TipoContactoDTO> readAll();
 
-    public List<TipoContactoDTO> readAll();
-
-    public int readIdByNombre(String nombre);
-    
-    public String readNombreById(int id);
-     
-
+	public int readIdByNombre(String nombre);
+	
+	public String readNombreById(int id);
 }
