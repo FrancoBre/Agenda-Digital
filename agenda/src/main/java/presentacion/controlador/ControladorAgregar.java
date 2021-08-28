@@ -67,10 +67,8 @@ public class ControladorAgregar implements ActionListener {
 
 	    String calle = this.ventanaPersonaAgregar.getCalleInput().getText();
 	    String altura = this.ventanaPersonaAgregar.getAlturaInput().getText();
-	    String pisoStr = this.ventanaPersonaAgregar.getPisoInput().getText();
-	    int piso = Integer.parseInt(pisoStr.trim());
-	    String deptoStr = this.ventanaPersonaAgregar.getDeptoInput().getText();
-	    int depto = Integer.parseInt(deptoStr.trim());
+	    String piso = this.ventanaPersonaAgregar.getPisoInput().getText();
+	    String depto = this.ventanaPersonaAgregar.getDeptoInput().getText();
 	    String localidad = (String) this.ventanaPersonaAgregar.getLocalidadInput().getSelectedItem();
 
 	    int year = (int) this.ventanaPersonaAgregar.getComboBoxAnio().getSelectedItem();
@@ -78,35 +76,50 @@ public class ControladorAgregar implements ActionListener {
 	    int date = (int) this.ventanaPersonaAgregar.getComboBoxDia().getSelectedItem();
 	    String nacimiento = year + "" + month + "" + date;
 
-	    // unused
-	    String pais = (String) this.ventanaPersonaAgregar.getPaisInput().getSelectedItem();
-	    String provincia = (String) this.ventanaPersonaAgregar.getProvinciaInput().getSelectedItem();
-
-	    // Estos datos tendrían que venir de la eleccion del usuario en la vista, y
-	    // corresponden al id de cada entidad
-	    int idLocalidad = this.agenda.getIdLocalidadByNombre(localidad);
-	    int idTipoContacto = this.agenda.getIdTipoContactoByNombre(tipoContacto);
-
+	    int idPersona = this.agenda.getPersonaMaxId() + 1;
 	    int idDomicilio = this.agenda.getDomicilioMaxId() + 1;
 
-//				DomicilioDTO nuevoDomicilio = new DomicilioDTO(idDomicilio, calle, altura, piso,
-//						depto, idLocalidad);
+	    DomicilioDTO domicilio = new DomicilioDTO(idDomicilio, calle, altura, piso, depto,
+		    this.agenda.getLocalidad(localidad).getIdLocalidad());
 
-	    PersonaDTO nuevaPersona;
+	    PersonaDTO persona = new PersonaDTO(idPersona, nombre, tel, email, Fecha.parseNacimiento(nacimiento),
+		    idDomicilio, this.agenda.getTipoContacto(tipoContacto).getIdTipoContacto());
 
-	    nuevaPersona = null;
+	    this.agenda.agregarDomicilio(domicilio);
 
-	    try {
-		nuevaPersona = new PersonaDTO(this.agenda.getPersonaMaxId() + 1, nombre, tel, email,
-			Fecha.parseNacimiento(nacimiento), idDomicilio, idTipoContacto);
-	    } catch (ParseException e) {
-		e.printStackTrace();
-	    }
+	    this.agenda.agregarPersona(persona);
 
-//				this.agenda.agregarDomicilio(nuevoDomicilio);
-
-	    this.agenda.agregarPersona(nuevaPersona);
-
+	    // ############################################################################
+	    /*
+	     * String pais = (String)
+	     * this.ventanaPersonaAgregar.getPaisInput().getSelectedItem(); String provincia
+	     * = (String) this.ventanaPersonaAgregar.getProvinciaInput().getSelectedItem();
+	     * 
+	     * // Estos datos tendrían que venir de la eleccion del usuario en la vista, y
+	     * // corresponden al id de cada entidad int idLocalidad =
+	     * this.agenda.getIdLocalidadByNombre(localidad); int idTipoContacto =
+	     * this.agenda.getIdTipoContactoByNombre(tipoContacto);
+	     * 
+	     * int idDomicilio = this.agenda.getDomicilioMaxId() + 1;
+	     * 
+	     * // DomicilioDTO nuevoDomicilio = new DomicilioDTO(idDomicilio, calle, altura,
+	     * piso, // depto, idLocalidad);
+	     * 
+	     * PersonaDTO nuevaPersona;
+	     * 
+	     * nuevaPersona = null;
+	     * 
+	     * try { nuevaPersona = new PersonaDTO(this.agenda.getPersonaMaxId() + 1,
+	     * nombre, tel, email, Fecha.parseNacimiento(nacimiento), idDomicilio,
+	     * idTipoContacto); } catch (ParseException e) { e.printStackTrace(); }
+	     * 
+	     * // this.agenda.agregarDomicilio(nuevoDomicilio);
+	     * 
+	     * this.agenda.agregarPersona(nuevaPersona);
+	     * 
+	     * //
+	     * ############################################################################
+	     */
 	}
 	this.refrescarTabla();
 	this.ventanaPersonaAgregar.cerrar();
