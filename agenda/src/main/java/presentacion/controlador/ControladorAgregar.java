@@ -10,7 +10,11 @@ import modelo.*;
 import presentacion.vista.VentanaPersonaAgregar;
 import presentacion.vista.Vista;
 import dto.DomicilioDTO;
+import dto.LocalidadDTO;
+import dto.PaisDTO;
 import dto.PersonaDTO;
+import dto.ProvinciaDTO;
+import dto.TipoContactoDTO;
 
 public class ControladorAgregar implements ActionListener {
     private Vista vista;
@@ -41,7 +45,7 @@ public class ControladorAgregar implements ActionListener {
 
     private void addComboboxItems() {
 	addPaisesItems(agenda.getNombrePaises());
-	addTipoContacto(agenda.getNombreTipoContacto());
+	addTipoContacto(Controlador.tiposContacto);
 	addIntegerComboBox(agenda.getYears(), Fecha.getMonths());
 	llenarDias(31);
     }
@@ -138,36 +142,36 @@ public class ControladorAgregar implements ActionListener {
     private void cambioItemsProvincia(ActionEvent c) {
 	this.ventanaPersonaAgregar.getProvinciaInput().removeAllItems();
 	int id = this.ventanaPersonaAgregar.getPaisInput().getSelectedIndex() + 1;
-	addProvinciasItem(agenda.getNombreProvincia(id));
+	addProvinciasItem(agenda.getProvincias(id));
     }
 
     private void cambioItemsLocalidad(ActionEvent c) {
 	this.ventanaPersonaAgregar.getLocalidadInput().removeAllItems();
 	String nombreProvincia = (String) this.ventanaPersonaAgregar.getProvinciaInput().getSelectedItem();
-	addLocalidadItems(agenda.getNombreLocalidad(nombreProvincia));
+	addLocalidadItems(agenda.getLocalidades(nombreProvincia));
     }
 
-    public void addTipoContacto(ArrayList<String> items) {
-	for (String string : items) {
-	    this.ventanaPersonaAgregar.getTipoContactoInput().addItem(string);
+    public void addTipoContacto(List<TipoContactoDTO> tipos) {
+	for (TipoContactoDTO tipo : tipos) {
+	    this.ventanaPersonaAgregar.getTipoContactoInput().addItem(tipo.getTipoContacto().name());
 	}
     }
 
-    public void addPaisesItems(ArrayList<String> items) {
-	for (String string : items) {
-	    this.ventanaPersonaAgregar.getPaisInput().addItem(string);
+    public void addPaisesItems(List<PaisDTO> paises) {
+	for (PaisDTO pais : paises) {
+	    this.ventanaPersonaAgregar.getPaisInput().addItem(pais.getNombre());
 	}
     }
 
-    public void addProvinciasItem(ArrayList<String> items) {
-	for (String string : items) {
-	    this.ventanaPersonaAgregar.getProvinciaInput().addItem(string);
+    public void addProvinciasItem(List<ProvinciaDTO> provincias) {
+	for (ProvinciaDTO provincia : provincias) {
+	    this.ventanaPersonaAgregar.getProvinciaInput().addItem(provincia.getNombre());
 	}
     }
 
-    public void addLocalidadItems(ArrayList<String> items) {
-	for (String string : items) {
-	    this.ventanaPersonaAgregar.getLocalidadInput().addItem(string);
+    public void addLocalidadItems(List<LocalidadDTO> localidades) {
+	for (LocalidadDTO localidad : localidades) {
+	    this.ventanaPersonaAgregar.getLocalidadInput().addItem(localidad.getNombre());
 	}
     }
 

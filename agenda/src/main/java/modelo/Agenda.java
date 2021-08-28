@@ -15,6 +15,7 @@ import persistencia.dao.interfaz.LocalidadDAO;
 import persistencia.dao.interfaz.PersonaDAO;
 import persistencia.dao.interfaz.ProvinciaDAO;
 import persistencia.dao.interfaz.TipoContactoDAO;
+import presentacion.controlador.Controlador;
 import persistencia.dao.interfaz.PaisDAO;
 
 public class Agenda {
@@ -128,24 +129,22 @@ public class Agenda {
 	return this.localidad.readByID(id);
     }
 
-    // Cambiar
-    public ArrayList<String> getNombreProvincia(int idpais) {
-	List<ProvinciaDTO> provincias = this.provincia.readByPais(idpais);
-	ArrayList<String> a = new ArrayList<String>();
-	for (ProvinciaDTO provinciaDTO : provincias) {
-	    a.add(provinciaDTO.getNombre());
+    public List<ProvinciaDTO> getProvincias(int idpais) {
+	List<ProvinciaDTO> ret = new ArrayList<ProvinciaDTO>();
+	for (ProvinciaDTO provincia : Controlador.provincias) {
+	    if (provincia.getIdPais() == idpais)
+		ret.add(provincia);
 	}
-	return a;
+	return ret;
     }
 
-    // Cambiar
-    public ArrayList<String> getNombreLocalidad(String nombreProvincia) {
-	List<LocalidadDTO> localidad = this.localidad.readByNombreProvincia(nombreProvincia);
-	ArrayList<String> a = new ArrayList<String>();
-	for (LocalidadDTO localidadDTO : localidad) {
-	    a.add(localidadDTO.getNombre());
+    public List<LocalidadDTO> getLocalidades(String nombreProvincia) {
+	List<LocalidadDTO> ret = new ArrayList<LocalidadDTO>();
+	for (LocalidadDTO localidad : Controlador.localidades) {
+	    if (localidad.getNombre().equals(nombreProvincia))
+		ret.add(localidad);
 	}
-	return a;
+	return ret;
     }
 
     /*

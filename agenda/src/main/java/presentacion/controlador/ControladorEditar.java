@@ -11,7 +11,10 @@ import presentacion.vista.VentanaPersonaEditar;
 import presentacion.vista.Vista;
 import dto.DomicilioDTO;
 import dto.LocalidadDTO;
+import dto.PaisDTO;
 import dto.PersonaDTO;
+import dto.ProvinciaDTO;
+import dto.TipoContactoDTO;
 
 public class ControladorEditar implements ActionListener {
     private Vista vista;
@@ -51,8 +54,8 @@ public class ControladorEditar implements ActionListener {
     }
 
     private void addComboboxItems() {
-	addPaisesItems(agenda.getNombrePaises());
-	addTipoContacto(agenda.getNombreTipoContacto());
+	addPaisesItems();
+	addTipoContacto();
 	addIntegerComboBox(agenda.getYears(), Fecha.getMonths());
 	llenarDias(31);
     }
@@ -148,37 +151,44 @@ public class ControladorEditar implements ActionListener {
 
     private void cambioItemsProvincia(ActionEvent c) {
 	this.ventanaPersonaEditar.getProvinciaInput().removeAllItems();
-	int id = this.ventanaPersonaEditar.getPaisInput().getSelectedIndex() + 1;
-	addProvinciasItem(agenda.getNombreProvincia(id));
+	int idPais = this.ventanaPersonaEditar.getPaisInput().getSelectedIndex() + 1;
+	addProvinciasItem(agenda.getProvincias(idPais));
     }
 
     private void cambioItemsLocalidad(ActionEvent c) {
 	this.ventanaPersonaEditar.getLocalidadInput().removeAllItems();
 	String nombreProvincia = (String) this.ventanaPersonaEditar.getProvinciaInput().getSelectedItem();
-	addLocalidadItems(agenda.getNombreLocalidad(nombreProvincia));
+	addLocalidadItems(agenda.getLocalidades(nombreProvincia));
     }
 
-    public void addTipoContacto(ArrayList<String> items) {
-	for (String string : items) {
-	    this.ventanaPersonaEditar.getTipoContactoInput().addItem(string);
+    public void addTipoContacto() {
+	for (TipoContactoDTO tipo : Controlador.tiposContacto) {
+	    this.ventanaPersonaEditar.getTipoContactoInput().addItem(tipo.getTipoContacto().name());
 	}
     }
 
-    public void addPaisesItems(ArrayList<String> items) {
-	for (String string : items) {
-	    this.ventanaPersonaEditar.getPaisInput().addItem(string);
+    public void addPaisesItems() {
+	for (PaisDTO pais : Controlador.paises) {
+	    this.ventanaPersonaEditar.getPaisInput().addItem(pais.getNombre());
+	}
+    }
+    
+    /*
+     * public void addProvinciasItem() { for (ProvinciaDTO provincia :
+     * Controlador.provincias) {
+     * this.ventanaPersonaEditar.getProvinciaInput().addItem(provincia.getNombre());
+     * } }
+     */
+
+    public void addProvinciasItem(List<ProvinciaDTO> provincias) {
+	for (ProvinciaDTO provincia : provincias) {
+	    this.ventanaPersonaEditar.getProvinciaInput().addItem(provincia.getNombre());
 	}
     }
 
-    public void addProvinciasItem(ArrayList<String> items) {
-	for (String string : items) {
-	    this.ventanaPersonaEditar.getProvinciaInput().addItem(string);
-	}
-    }
-
-    public void addLocalidadItems(ArrayList<String> items) {
-	for (String string : items) {
-	    this.ventanaPersonaEditar.getLocalidadInput().addItem(string);
+    public void addLocalidadItems(List<LocalidadDTO> localidades) {
+	for (LocalidadDTO localidad : localidades) {
+	    this.ventanaPersonaEditar.getLocalidadInput().addItem(localidad.getNombre());
 	}
     }
 

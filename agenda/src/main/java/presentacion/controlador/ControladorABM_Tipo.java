@@ -2,7 +2,8 @@ package presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.DefaultComboBoxModel;
 import modelo.*;
 import presentacion.vista.VentanaTipo;
@@ -91,12 +92,12 @@ public class ControladorABM_Tipo implements ActionListener {
 
     private void refreshListTipos() {
 	this.ventanaTipo.getTiposComboBox().removeAllItems();
-	addTipoContacto(agenda.getNombreTipoContacto());
+	addTipoContacto(Controlador.tiposContacto);
     }
 
-    public void addTipoContacto(ArrayList<String> items) {
-	for (String string : items) {
-	    this.ventanaTipo.getTiposComboBox().addItem(string);
+    public void addTipoContacto(List<TipoContactoDTO> tipos) {
+	for (TipoContactoDTO tipo : tipos) {
+	    this.ventanaTipo.getTiposComboBox().addItem(tipo.getTipoContacto().name());
 	}
     }
 
