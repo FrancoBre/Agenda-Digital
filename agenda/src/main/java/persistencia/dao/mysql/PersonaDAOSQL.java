@@ -17,7 +17,7 @@ import dto.PersonaDTO;
 
 public class PersonaDAOSQL implements PersonaDAO {
 
-    private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono, email, nacimiento, domicilio, tipo_contacto) VALUES(?, ?, ?, ?, ?, ?, ?)";
+    private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono, email, nacimiento, domicilio, tipo_contacto) VALUES(default, ?, ?, ?, ?, ?, ?)";
     private static final String update = "UPDATE personas SET nombre = ? , telefono = ? , email = ? , nacimiento = ? , domicilio = ?, tipo_contacto = ? WHERE idPersona = ?;";
     private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
     private static final String readall = "SELECT * FROM personas";
@@ -34,13 +34,12 @@ public class PersonaDAOSQL implements PersonaDAO {
 		boolean isInsertExitoso = false;
 		try {
 		    statement = conexion.prepareStatement(insert);
-		    statement.setInt(1, persona.getIdPersona());
-		    statement.setString(2, persona.getNombre());
-		    statement.setString(3, persona.getTelefono());
-		    statement.setString(4, persona.getEmail());
-		    statement.setDate(5, persona.getNacimiento());
-		    statement.setInt(6, persona.getDomicilio().getIdDomicilio());
-		    statement.setInt(7, persona.getTipoContacto().getIdTipo());
+		    statement.setString(1, persona.getNombre());
+		    statement.setString(2, persona.getTelefono());
+		    statement.setString(3, persona.getEmail());
+		    statement.setDate(4, persona.getNacimiento());
+		    statement.setInt(5, persona.getIdDomicilio());
+		    statement.setInt(6, persona.getIdTipoContacto());
 	
 		    if (statement.executeUpdate() > 0) {
 			conexion.commit();
@@ -68,8 +67,8 @@ public class PersonaDAOSQL implements PersonaDAO {
 	    statement.setString(2, persona_a_editar.getTelefono());
 	    statement.setString(3, persona_a_editar.getEmail());
 	    statement.setDate(4, persona_a_editar.getNacimiento());
-	    statement.setInt(5, persona_a_editar.getDomicilio().getIdDomicilio());
-	    statement.setInt(6, persona_a_editar.getTipoContacto().getIdTipo());
+	    statement.setInt(5, persona_a_editar.getIdDomicilio());
+	    statement.setInt(6, persona_a_editar.getIdTipoContacto());
 	    statement.setInt(7, persona_a_editar.getIdPersona());
 	    if (statement.executeUpdate() > 0) {
 		conexion.commit();

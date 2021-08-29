@@ -1,79 +1,49 @@
 package dto;
 
 public class LocalidadDTO {
-    private int idLocalidad;
-    private String nombre;
-    private ProvinciaDTO provincia;
-    private int idProvincia;
-    private PaisDTO pais;
-    private int idPais;
+	private int idLocalidad;
+	private String nombre;
+	private int provincia;
+	private int pais;
+	
+	public LocalidadDTO(int idLocalidad, String nombre, int provincia, int pais) {
+		super();
+		this.idLocalidad = idLocalidad;
+		this.nombre = nombre;
+		this.provincia = provincia;
+		this.pais = pais;
+	}
 
-    public LocalidadDTO(int idLocalidad, String nombre, ProvinciaDTO provincia, PaisDTO pais) {
-	this.idLocalidad = idLocalidad;
-	this.nombre = nombre;
-	this.provincia = provincia;
-	this.pais = pais;
-    }
+	public int getIdLocalidad() {
+		return idLocalidad;
+	}
 
-    public LocalidadDTO(int idLocalidad, String nombre, int idProvincia, int idPais) {
-	this.idLocalidad = idLocalidad;
-	this.nombre = nombre;
-	this.setIdProvincia(idProvincia);
-	this.setIdPais(idPais);
-    }
+	public void setIdLocalidad(int idLocalidad) {
+		this.idLocalidad = idLocalidad;
+	}
 
-    public int getIdLocalidad() {
-	return idLocalidad;
-    }
+	public String getNombre() {
+		return nombre;
+	}
 
-    public void setIdLocalidad(int idLocalidad) {
-	this.idLocalidad = idLocalidad;
-    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public String getNombre() {
-	return nombre;
-    }
+	public int getProvincia() {
+		return provincia;
+	}
 
-    public void setNombre(String nombre) {
-	this.nombre = nombre;
-    }
+	public void setProvincia(int provincia) {
+		this.provincia = provincia;
+	}
 
-    public ProvinciaDTO getProvincia() {
-	return provincia;
-    }
+	public int getPais() {
+		return pais;
+	}
 
-    public void setProvincia(ProvinciaDTO provincia) {
-	this.provincia = provincia;
-    }
-
-    public PaisDTO getPais() {
-	return pais;
-    }
-
-    public void setPais(PaisDTO pais) {
-	this.pais = pais;
-    }
-
-    public int getIdProvincia() {
-	return idProvincia;
-    }
-
-    public void setIdProvincia(int idProvincia) {
-	this.idProvincia = idProvincia;
-    }
-
-    public int getIdPais() {
-	return idPais;
-    }
-
-    public void setIdPais(int idPais) {
-	this.idPais = idPais;
-    }
-
-    @Override
-    public String toString() {
-	return "LocalidadDTO [idLocalidad=" + idLocalidad + ", nombre=" + nombre + ", provincia=" + provincia
-		+ ", idProvincia=" + idProvincia + ", pais=" + pais + ", idPais=" + idPais + "]";
-    }
-
+	public void setPais(int pais) {
+		this.pais = pais;
+	}
+	
 }

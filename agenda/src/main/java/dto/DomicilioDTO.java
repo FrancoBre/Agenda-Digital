@@ -1,86 +1,74 @@
 package dto;
 
 public class DomicilioDTO {
-    private int idDomicilio;
-    private String calle;
-    private String altura;
-    private String piso;
-    private String depto;
-    private LocalidadDTO localidad;
-    private int idLocalidad;
+	private int idDomicilio;
+	private String calle;
+	private String altura;
+	private int piso;
+	private int depto;
+	private int localidad;
+	
+	public DomicilioDTO(int idDomicilio, String calle, String altura, int piso, int depto, int localidad) {
+		this.idDomicilio = idDomicilio;
+		this.calle = calle;
+		this.altura = altura;
+		this.piso = piso;
+		this.depto = depto;
+		this.localidad = localidad;
+	}
+	
+	public DomicilioDTO(int idDomicilio, String calle, String altura, int localidad) {
+		this.idDomicilio = idDomicilio;
+		this.calle = calle;
+		this.altura = altura;
+		this.localidad = localidad;
+	}
 
-    public DomicilioDTO(int idDomicilio, String calle, String altura, String piso, String depto,
-	    LocalidadDTO localidad) {
-	this.idDomicilio = idDomicilio;
-	this.calle = calle;
-	this.altura = altura;
-	this.piso = piso;
-	this.depto = depto;
-	this.localidad = localidad;
-    }
+	public int getIdDomicilio() {
+		return idDomicilio;
+	}
 
-    public DomicilioDTO(int idDomicilio, String calle, String altura, String piso, String depto, int idLocalidad) {
-	this.idDomicilio = idDomicilio;
-	this.calle = calle;
-	this.altura = altura;
-	this.piso = piso;
-	this.depto = depto;
-	this.idLocalidad = idLocalidad;
-    }
+	public void setIdDomicilio(int idDomicilio) {
+		this.idDomicilio = idDomicilio;
+	}
 
-    public int getIdDomicilio() {
-	return idDomicilio;
-    }
+	public String getCalle() {
+		return calle;
+	}
 
-    public void setIdDomicilio(int idDomicilio) {
-	this.idDomicilio = idDomicilio;
-    }
+	public void setCalle(String calle) {
+		this.calle = calle;
+	}
 
-    public String getCalle() {
-	return calle;
-    }
+	public String getAltura() {
+		return altura;
+	}
 
-    public void setCalle(String calle) {
-	this.calle = calle;
-    }
+	public void setAltura(String altura) {
+		this.altura = altura;
+	}
 
-    public String getAltura() {
-	return altura;
-    }
+	public int getPiso() {
+		return piso;
+	}
 
-    public void setAltura(String altura) {
-	this.altura = altura;
-    }
+	public void setPiso(int piso) {
+		this.piso = piso;
+	}
 
-    public String getPiso() {
-	return piso;
-    }
+	public int getDepto() {
+		return depto;
+	}
 
-    public void setPiso(String piso) {
-	this.piso = piso;
-    }
+	public void setDepto(int depto) {
+		this.depto = depto;
+	}
 
-    public String getDepto() {
-	return depto;
-    }
+	public int getLocalidad() {
+		return localidad;
+	}
 
-    public void setDepto(String depto) {
-	this.depto = depto;
-    }
-
-    public LocalidadDTO getLocalidad() {
-	return localidad;
-    }
-
-    public void setLocalidad(LocalidadDTO localidad) {
-	this.localidad = localidad;
-    }
-
-    public int getIdLocalidad() {
-	return idLocalidad;
-    }
-
-    public void setIdLocalidad(int idLocalidad) {
-	this.idLocalidad = idLocalidad;
-    }
+	public void setLocalidad(int localidad) {
+		this.localidad = localidad;
+	}
 }

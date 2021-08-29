@@ -2,9 +2,7 @@ package presentacion.vista;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.sql.Date;
 import java.util.List;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -30,6 +28,7 @@ public class Vista
 	private JButton btnABM_tipo;
 	private DefaultTableModel modelPersonas;
 	private  String[] nombreColumnas = {"Nombre y apellido","Telefono","Email","Nacimiento","Calle", "Altura", "Piso", "Depto", "Localidad", "Provincia", "Pais", "Etiqueta"};
+	private JButton btnABM_PPL;
 	
 	public Vista() 
 	{
@@ -41,7 +40,7 @@ public class Vista
 	private void initialize() 
 	{
 		frame = new JFrame();
-		frame.setTitle("Agenda");
+		frame.setTitle("Agenda 2");
 		frame.setBounds(100, 100, 1200, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -84,6 +83,10 @@ public class Vista
 		btnABM_tipo = new JButton("ABM Tipo");
 		btnABM_tipo.setBounds(406, 228, 89, 23);
 		panel.add(btnABM_tipo);
+		
+		btnABM_PPL = new JButton("Administrar Paises");
+		btnABM_PPL.setBounds(505, 228, 178, 23);
+		panel.add(btnABM_PPL);
 		
 	}
 	
@@ -130,6 +133,10 @@ public class Vista
 		return btnABM_tipo;
 	}
 	
+	public JButton getBtnAMB_PPL() {
+		return btnABM_PPL;
+	}
+	
 	public DefaultTableModel getModelPersonas() 
 	{
 		return modelPersonas;
@@ -156,10 +163,7 @@ public class Vista
 			String nombre = p.getNombre();
 			String telefono = p.getTelefono();
 			String email = p.getEmail();
-			String nacimiento = p.getNacimiento().toString();
-			String domicilio = p.getDomicilio()+"";
-			String t_contacto = p.getTipoContacto()+"";
-			
+			String nacimiento = p.getNacimiento().toString();			
 			String calle = p.getCalle();
 			String altura = p.getAltura();
 			String piso = p.getPiso();

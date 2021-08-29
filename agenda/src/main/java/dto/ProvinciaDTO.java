@@ -1,52 +1,37 @@
 package dto;
 
 public class ProvinciaDTO {
-    private int idProvincia;
-    private String nombre;
-    private PaisDTO pais;
-    private int idPais;
+	private int idProvincia;
+	private String nombre;
+	private int pais;
+	
+	public ProvinciaDTO(int idProvincia, String nombre, int pais) {
+		this.idProvincia = idProvincia;
+		this.nombre = nombre;
+		this.pais = pais;
+	}
 
-    public ProvinciaDTO(int idProvincia, String nombre, PaisDTO pais) {
-	this.idProvincia = idProvincia;
-	this.nombre = nombre;
-	this.pais = pais;
-    }
+	public int getIdProvincia() {
+		return idProvincia;
+	}
 
-    public ProvinciaDTO(int idProvincia, String nombre, int idPais) {
-	this.idProvincia = idProvincia;
-	this.nombre = nombre;
-	this.setIdPais(idPais);
-    }
+	public void setIdProvincia(int idProvincia) {
+		this.idProvincia = idProvincia;
+	}
 
-    public int getIdProvincia() {
-	return idProvincia;
-    }
+	public String getNombre() {
+		return nombre;
+	}
 
-    public void setIdProvincia(int idProvincia) {
-	this.idProvincia = idProvincia;
-    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public String getNombre() {
-	return nombre;
-    }
+	public int getPais() {
+		return pais;
+	}
 
-    public void setNombre(String nombre) {
-	this.nombre = nombre;
-    }
-
-    public PaisDTO getPais() {
-	return pais;
-    }
-
-    public void setPais(PaisDTO pais) {
-	this.pais = pais;
-    }
-
-    public int getIdPais() {
-	return idPais;
-    }
-
-    public void setIdPais(int idPais) {
-	this.idPais = idPais;
-    }
+	public void setPais(int pais) {
+		this.pais = pais;
+	}
 }
