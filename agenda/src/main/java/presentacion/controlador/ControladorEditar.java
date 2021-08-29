@@ -92,38 +92,14 @@ public class ControladorEditar implements ActionListener {
 	    int date = (int) this.ventanaPersonaEditar.getComboBoxDia().getSelectedItem();
 	    String nacimiento = year + " " + month + " " + date;
 	    
-	    DomicilioDTO domicilio = new DomicilioDTO(idDomicilio, calle, altura, piso, depto, this.agenda.getLocalidad(localidad).getIdLocalidad());
-	    PersonaDTO persona = new PersonaDTO(idPersona, nombre, tel, email, Fecha.parseNacimiento(nacimiento), 
-		    idDomicilio, this.agenda.getTipoContacto(tipoContacto).getIdTipo());
+	    DomicilioDTO domicilio = new DomicilioDTO(idDomicilio, calle, altura, piso, depto,
+		    this.agenda.getLocalidad(localidad));
 	    
-/*
-	    // unused
-	    String pais = (String) this.ventanaPersonaEditar.getPaisInput().getSelectedItem();
-	    String provincia = (String) this.ventanaPersonaEditar.getProvinciaInput().getSelectedItem();
+	    System.out.println(idDomicilio);
 
-	    // Estos datos tendrían que venir de la eleccion del usuario en la vista, y
-	    // corresponden al id de cada entidad
-	    int idLocalidad = this.agenda.getIdLocalidadByNombre(localidad);
-	    int idTipoContacto = this.agenda.getIdTipoContactoByNombre(tipoContacto);
+	    PersonaDTO persona = new PersonaDTO(idPersona, nombre, tel, email, Fecha.parseNacimiento(nacimiento),
+		    domicilio, this.agenda.getTipoContacto(tipoContacto));
 
-	    LocalidadDTO local = this.agenda.getLocalidadById(idLocalidad);
-
-	    DomicilioDTO domicilioEditado = new DomicilioDTO(idDomicilio, calle, altura, piso, depto, local);
-
-	    this.agenda.editarDomicilio(domicilioEditado);
-
-	    PersonaDTO personaEditada;
-
-	    personaEditada = null;
-	    System.out.println("Guasu guasol");
-	    try {
-		personaEditada = new PersonaDTO(idPersona, nombre, tel, email, Fecha.parseNacimiento(nacimiento),
-			idDomicilio, idTipoContacto);
-
-	    } catch (ParseException e) {
-		e.printStackTrace();
-	    }
-*/
 	    this.agenda.editarDomicilio(domicilio);
 
 	    this.agenda.editarPersona(persona);
