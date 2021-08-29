@@ -30,6 +30,7 @@ public class VentanaPersona extends JFrame {
     private JComboBox<String> provinciaInput;
     private JComboBox<String> localidadInput;
     private JComboBox<String> tipoContactoInput;
+    private JComboBox<String> medioTransporteInput;
     private static VentanaPersona INSTANCE;
     private JPanel panel;
     private JButton btnAction;
@@ -211,6 +212,14 @@ public class VentanaPersona extends JFrame {
 	domainEmailInput.setBounds(249, 100, 25, 19);
 	panel.add(domainEmailInput);
 	domainEmailInput.setColumns(10);
+	
+	JLabel medioTransporteLabel = new JLabel("Medio de transporte preferido");
+	medioTransporteLabel.setBounds(10, 186, 99, 15);
+	panel.add(medioTransporteLabel);
+	
+	medioTransporteInput = new JComboBox();
+	medioTransporteInput.setBounds(110, 181, 164, 24);
+	panel.add(medioTransporteInput);
 
 	this.setVisible(false);
     }
@@ -370,6 +379,13 @@ public class VentanaPersona extends JFrame {
     public void setDomainEmailInput(JTextField domainEmailInput) {
         this.domainEmailInput = domainEmailInput;
     }
-    
+
+    public JComboBox<String> getMedioTransporteInput() {
+        return medioTransporteInput;
+    }
+
+    public void setMedioTransporteInput(JComboBox<String> medioTransporteInput) {
+        this.medioTransporteInput = medioTransporteInput;
+    }
     
 }

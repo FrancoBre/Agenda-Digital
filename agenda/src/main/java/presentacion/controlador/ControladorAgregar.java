@@ -42,6 +42,7 @@ public class ControladorAgregar implements ActionListener {
     private void addComboboxItems() {
 	addPaisesItems(agenda.getNombrePaises());
 	addTipoContacto(agenda.getNombreTipoContacto());
+	addMedioTransporteItems(agenda.getNombreMedioTransporte());
 	addIntegerComboBox(agenda.getYears(), Fecha.getMonths());
 	llenarDias(31);
     }
@@ -59,13 +60,17 @@ public class ControladorAgregar implements ActionListener {
 
 	    StringBuilder emailSB = new StringBuilder();
 	    emailSB.append(this.ventanaPersonaAgregar.getLeftEmailInput().getText());
+	    emailSB.append("@");
 	    emailSB.append(this.ventanaPersonaAgregar.getRightEmailInput().getText());
+	    emailSB.append(".");
 	    emailSB.append(this.ventanaPersonaAgregar.getDomainEmailInput().getText());
 	    String email = emailSB.toString();
 
 	    String dominioEmail = this.ventanaPersonaAgregar.getRightEmailInput().getText();
 
 	    String tipoContacto = (String) this.ventanaPersonaAgregar.getTipoContactoInput().getSelectedItem();
+	    String medioTransporte = (String) this.ventanaPersonaAgregar.getMedioTransporteInput().getSelectedItem();
+	    
 	    String calle = this.ventanaPersonaAgregar.getCalleInput().getText();
 	    String altura = this.ventanaPersonaAgregar.getAlturaInput().getText();
 	    String pisoStr = this.ventanaPersonaAgregar.getPisoInput().getText();
@@ -87,6 +92,7 @@ public class ControladorAgregar implements ActionListener {
 	    // corresponden al id de cada entidad
 	    int idLocalidad = this.agenda.getIdLocalidadByNombre(localidad);
 	    int idTipoContacto = this.agenda.getIdTipoContactoByNombre(tipoContacto);
+	    int idMedioTransporte = this.agenda.getIdMedioTransporteByNombre(medioTransporte);
 
 	    int idDomicilio = this.agenda.getDomicilioMaxId() + 1;
 
@@ -98,7 +104,7 @@ public class ControladorAgregar implements ActionListener {
 
 	    try {
 		nuevaPersona = new PersonaDTO(0, nombre, tel, email, dominioEmail, Fecha.parseNacimiento(nacimiento),
-			idDomicilio, idTipoContacto);
+			idDomicilio, idTipoContacto, idMedioTransporte);
 	    } catch (ParseException e) {
 		e.printStackTrace();
 	    }
@@ -153,8 +159,8 @@ public class ControladorAgregar implements ActionListener {
 	addLocalidadItems(agenda.getNombreLocalidad(nombreProvincia));
     }
 
-    public void addTipoContacto(ArrayList<String> items) {
-	for (String string : items) {
+    public void addTipoContacto(List<String> list) {
+	for (String string : list) {
 	    this.ventanaPersonaAgregar.getTipoContactoInput().addItem(string);
 	}
     }
@@ -162,6 +168,12 @@ public class ControladorAgregar implements ActionListener {
     public void addPaisesItems(ArrayList<String> items) {
 	for (String string : items) {
 	    this.ventanaPersonaAgregar.getPaisInput().addItem(string);
+	}
+    }
+    
+    public void addMedioTransporteItems(List<String> medios) {
+	for (String medio : medios) {
+	    this.ventanaPersonaAgregar.getMedioTransporteInput().addItem(medio);
 	}
     }
 

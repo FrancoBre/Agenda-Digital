@@ -6,6 +6,7 @@ package persistencia.dao.mysql;
 import persistencia.dao.interfaz.DAOAbstractFactory;
 import persistencia.dao.interfaz.DomicilioDAO;
 import persistencia.dao.interfaz.LocalidadDAO;
+import persistencia.dao.interfaz.MedioTransporteDAO;
 import persistencia.dao.interfaz.PaisDAO;
 import persistencia.dao.interfaz.PersonaDAO;
 import persistencia.dao.interfaz.ProvinciaDAO;
@@ -39,6 +40,10 @@ public class DAOSQLFactory implements DAOAbstractFactory
 	
 	public TipoContactoDAO createTipoContactoDAO() {
 		return new TipoContactoDAOSQL();
+	}
+	
+	public MedioTransporteDAO createMedioTransporteDAO() {
+	    return new MedioTransporteDAOSQL();
 	}
 
 }

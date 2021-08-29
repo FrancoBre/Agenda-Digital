@@ -67,12 +67,15 @@ public class ControladorEditar implements ActionListener {
 	    String tel = this.ventanaPersonaEditar.getTelefonoInput().getText();
 	    StringBuilder emailSB = new StringBuilder();
 	    emailSB.append(this.ventanaPersonaEditar.getLeftEmailInput().getText());
+	    emailSB.append("@");
 	    emailSB.append(this.ventanaPersonaEditar.getRightEmailInput().getText());
+	    emailSB.append(".");
 	    emailSB.append(this.ventanaPersonaEditar.getDomainEmailInput().getText());
 	    String email = emailSB.toString();
 
 	    String dominioEmail = this.ventanaPersonaEditar.getRightEmailInput().getText();
 	    String tipoContacto = (String) this.ventanaPersonaEditar.getTipoContactoInput().getSelectedItem();
+	    String medioTransporte = (String) this.ventanaPersonaEditar.getMedioTransporteInput().getSelectedItem();
 
 	    String calle = this.ventanaPersonaEditar.getCalleInput().getText();
 	    String altura = this.ventanaPersonaEditar.getAlturaInput().getText();
@@ -95,6 +98,7 @@ public class ControladorEditar implements ActionListener {
 	    // corresponden al id de cada entidad
 	    int idLocalidad = this.agenda.getIdLocalidadByNombre(localidad);
 	    int idTipoContacto = this.agenda.getIdTipoContactoByNombre(tipoContacto);
+	    int idMedioTransporte = this.agenda.getIdMedioTransporteByNombre(medioTransporte);
 
 	    DomicilioDTO domicilioEditado = new DomicilioDTO(idDomicilio, calle, altura, piso, depto, idLocalidad);
 
@@ -103,10 +107,10 @@ public class ControladorEditar implements ActionListener {
 	    PersonaDTO personaEditada;
 
 	    personaEditada = null;
-	    System.out.println("Guasu guasol");
+
 	    try {
 		personaEditada = new PersonaDTO(idPersona, nombre, tel, email, dominioEmail, Fecha.parseNacimiento(nacimiento),
-			idDomicilio, idTipoContacto);
+			idDomicilio, idTipoContacto, idMedioTransporte);
 
 	    } catch (ParseException e) {
 		e.printStackTrace();

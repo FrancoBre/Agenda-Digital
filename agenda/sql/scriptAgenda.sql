@@ -2,57 +2,67 @@ CREATE DATABASE agenda;
 USE agenda;
 
 CREATE TABLE tipo_contacto (
-idTipo_contacto int(11) NOT NULL AUTO_INCREMENT, 
-Tipo varchar(45) NOT NULL, 
-PRIMARY KEY (idTipo_contacto)); 
+	idTipo_contacto int(11) NOT NULL AUTO_INCREMENT, 
+	Tipo varchar(45) NOT NULL, 
+	PRIMARY KEY (idTipo_contacto)
+); 
 
 CREATE TABLE pais (
-idPais int(11) NOT NULL AUTO_INCREMENT,
-Nombre varchar(45) NOT NULL,
-PRIMARY KEY (idPais)
+	idPais int(11) NOT NULL AUTO_INCREMENT,
+	Nombre varchar(45) NOT NULL,
+	PRIMARY KEY (idPais)
 );
 
 CREATE TABLE provincia (
-idProvincia int(11) NOT NULL AUTO_INCREMENT,
-Nombre varchar(45) NOT NULL,
-Pais int(11) NOT NULL,
-PRIMARY KEY (idProvincia), 
-CONSTRAINT fk_pais FOREIGN KEY (Pais) REFERENCES pais(idPais)
+	idProvincia int(11) NOT NULL AUTO_INCREMENT,
+	Nombre varchar(45) NOT NULL,
+	Pais int(11) NOT NULL,
+	PRIMARY KEY (idProvincia), 
+	CONSTRAINT fk_pais FOREIGN KEY (Pais) REFERENCES pais(idPais)
 );
 
 CREATE TABLE localidad (
-idLocalidad int(11) NOT NULL AUTO_INCREMENT,
-Nombre varchar(45) NOT NULL,
-Provincia int(11),
-Pais int(11), 
-PRIMARY KEY (idLocalidad), 
-CONSTRAINT fk_loc_pais FOREIGN KEY (Pais) REFERENCES pais(idPais), 
-CONSTRAINT fk_loc_provincia FOREIGN KEY (Provincia) REFERENCES provincia(idProvincia)
+	idLocalidad int(11) NOT NULL AUTO_INCREMENT,
+	Nombre varchar(45) NOT NULL,
+	Provincia int(11),
+	Pais int(11), 
+	PRIMARY KEY (idLocalidad), 
+	CONSTRAINT fk_loc_pais FOREIGN KEY (Pais) REFERENCES pais(idPais), 
+	CONSTRAINT fk_loc_provincia FOREIGN KEY (Provincia) REFERENCES provincia(idProvincia)
 );
 
 CREATE TABLE domicilio (
-idDomicilio int(11) NOT NULL AUTO_INCREMENT, 
-Calle varchar(45) NOT NULL, 
-Altura int(20) NOT NULL, 
-Piso int(20), 
-Depto int(20),
-Localidad int(11),
-PRIMARY KEY (idDomicilio), 
-CONSTRAINT fk_dom_localidad FOREIGN KEY (Localidad) REFERENCES localidad(idLocalidad)
+	idDomicilio int(11) NOT NULL AUTO_INCREMENT, 
+	Calle varchar(45) NOT NULL, 
+	Altura int(20) NOT NULL, 
+	Piso int(20), 
+	Depto int(20),
+	Localidad int(11),
+	PRIMARY KEY (idDomicilio), 
+	CONSTRAINT fk_dom_localidad FOREIGN KEY (Localidad) REFERENCES localidad(idLocalidad)
+);
+
+CREATE TABLE medio_transporte (
+	idMedio_transporte int(11) NOT NULL AUTO_INCREMENT,
+	Nombre varchar(45) NOT NULL,
+	PRIMARY KEY (idMedio_transporte)
 );
 
 CREATE TABLE personas (
-idPersona int(11) NOT NULL AUTO_INCREMENT, 
-Nombre varchar(45) NOT NULL, 
-Telefono varchar(20) NOT NULL,
-Email nvarchar(45), 
-DominioEmail nvarchar(45),
-Nacimiento date,
-Domicilio int(11), 
-Tipo_contacto int(11), 
-PRIMARY KEY (idPersona), 
-CONSTRAINT fk_per_domicilio FOREIGN KEY (Domicilio) REFERENCES domicilio(idDomicilio), 
-CONSTRAINT fk_per_tipo FOREIGN KEY (Tipo_contacto) REFERENCES tipo_contacto(idTipo_contacto));
+	idPersona int(11) NOT NULL AUTO_INCREMENT, 
+	Nombre varchar(45) NOT NULL, 
+	Telefono varchar(20) NOT NULL,
+	Email nvarchar(45), 
+	DominioEmail nvarchar(45),
+	Nacimiento date,
+	Domicilio int(11), 
+	Tipo_contacto int(11), 
+	Medio_transporte int(11),
+	PRIMARY KEY (idPersona), 
+	CONSTRAINT fk_per_domicilio FOREIGN KEY (Domicilio) REFERENCES domicilio(idDomicilio), 
+	CONSTRAINT fk_per_tipo FOREIGN KEY (Tipo_contacto) REFERENCES tipo_contacto(idTipo_contacto),
+	CONSTRAINT fk_per_mt FOREIGN KEY (Medio_transporte) REFERENCES medio_transporte(idMedio_transporte)
+);
 
 INSERT INTO pais (idPais, Nombre) VALUES (1, 'Argentina');
 
@@ -118,3 +128,12 @@ INSERT INTO tipo_contacto (idTipo_contacto, Tipo) VALUES (3, 'Trabajo');
 
 INSERT INTO tipo_contacto (idTipo_contacto, Tipo) VALUES (4, 'Futbol');
 
+INSERT INTO medio_transporte (idMedio_transporte, Nombre) VALUES (1, 'Auto');
+
+INSERT INTO medio_transporte (idMedio_transporte, Nombre) VALUES (2, 'Moto');
+
+INSERT INTO medio_transporte (idMedio_transporte, Nombre) VALUES (3, 'Transporte publico');
+
+INSERT INTO medio_transporte (idMedio_transporte, Nombre) VALUES (4, 'A pie');
+
+INSERT INTO medio_transporte (idMedio_transporte, Nombre) VALUES (5, 'Bici');

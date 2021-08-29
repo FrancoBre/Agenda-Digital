@@ -13,6 +13,7 @@ public class PersonaDTO {
     private TipoContactoDTO tipoContacto;
     private int idDomicilio;
     private int idTipoContacto;
+    private int idMedioTransporte;
 
     private String calle;
     private String altura;
@@ -25,7 +26,7 @@ public class PersonaDTO {
 
     public PersonaDTO(int idPersona, String nombre, String telefono, String email, String dominioEmail, Date nacimiento,
 	    String calle, String altura, String piso, String depto, String localidad, String provincia, String pais,
-	    String Etiqueta) {
+	    String Etiqueta, int idMedioTransporte) {
 	this.idPersona = idPersona;
 	this.nombre = nombre;
 	this.telefono = telefono;
@@ -40,10 +41,11 @@ public class PersonaDTO {
 	this.provincia = provincia;
 	this.pais = pais;
 	this.Etiqueta = Etiqueta;
+	this.idMedioTransporte = idMedioTransporte;
     }
 
     public PersonaDTO(int idPersona, String nombre, String telefono, String email, String dominioEmail, Date nacimiento,
-	    DomicilioDTO domicilio, TipoContactoDTO tipoContacto) {
+	    DomicilioDTO domicilio, TipoContactoDTO tipoContacto, int idMedioTransporte) {
 	this.idPersona = idPersona;
 	this.nombre = nombre;
 	this.telefono = telefono;
@@ -52,10 +54,11 @@ public class PersonaDTO {
 	this.nacimiento = nacimiento;
 	this.domicilio = domicilio;
 	this.tipoContacto = tipoContacto;
+	this.idMedioTransporte = idMedioTransporte;
     }
 
     public PersonaDTO(int idPersona, String nombre, String telefono, String email, String dominioEmail, Date nacimiento,
-	    DomicilioDTO domicilio, int idTipoContacto) {
+	    DomicilioDTO domicilio, int idTipoContacto, int idMedioTransporte) {
 	this.idPersona = idPersona;
 	this.nombre = nombre;
 	this.telefono = telefono;
@@ -64,10 +67,11 @@ public class PersonaDTO {
 	this.nacimiento = nacimiento;
 	this.domicilio = domicilio;
 	this.idTipoContacto = idTipoContacto;
+	this.idMedioTransporte = idMedioTransporte;
     }
 
     public PersonaDTO(int idPersona, String nombre, String telefono, String email, String dominioEmail, Date nacimiento,
-	    int idDomicilio, int idTipoContacto) {
+	    int idDomicilio, int idTipoContacto, int idMedioTransporte) {
 	this.idPersona = idPersona;
 	this.nombre = nombre;
 	this.telefono = telefono;
@@ -76,6 +80,7 @@ public class PersonaDTO {
 	this.nacimiento = nacimiento;
 	this.setIdDomicilio(idDomicilio);
 	this.setIdTipoContacto(idTipoContacto);
+	this.idMedioTransporte = idMedioTransporte;
     }
 
     public int getIdPersona() {
@@ -222,6 +227,14 @@ public class PersonaDTO {
 
     public void setDominioEmail(String dominioEmail) {
 	this.dominioEmail = dominioEmail;
+    }
+
+    public int getIdMedioTransporte() {
+	return idMedioTransporte;
+    }
+
+    public void setIdMedioTransporte(int idMedioTransporte) {
+	this.idMedioTransporte = idMedioTransporte;
     }
 
 }
