@@ -137,14 +137,16 @@ public class ControladorAgregar implements ActionListener
 
 		private void cambioItemsProvincia(ActionEvent c) {
 			this.ventanaPersonaAgregar.getProvinciaInput().removeAllItems();
-			int id = this.ventanaPersonaAgregar.getPaisInput().getSelectedIndex() + 1;
-			addProvinciasItem(agenda.getNombreProvincia(id));
+			String nombrePais = (String) this.ventanaPersonaAgregar.getPaisInput().getSelectedItem();
+			int idPais = agenda.getIdPaisByNombre(nombrePais);
+			addProvinciasItem(agenda.getNombreProvincia(idPais));
 		}
 		
 		private void cambioItemsLocalidad(ActionEvent c) {
 			this.ventanaPersonaAgregar.getLocalidadInput().removeAllItems();
 			String nombreProvincia = (String) this.ventanaPersonaAgregar.getProvinciaInput().getSelectedItem();
-			addLocalidadItems(agenda.getNombreLocalidad(nombreProvincia));
+			int idProvincia = agenda.getIdProvinciaByNombre(nombreProvincia);
+			addLocalidadItems(agenda.getNombreLocalidad(idProvincia));
 		}
 			
 		public void addTipoContacto(ArrayList<String> items) {

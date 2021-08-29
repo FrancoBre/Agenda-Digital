@@ -109,8 +109,8 @@ public class Agenda
 		this.provincia.insert(nuevaProvincia);
 	}
 
-	public void editarProvincia(ProvinciaDTO editarPais) {
-		this.provincia.update(editarPais);
+	public void editarProvincia(ProvinciaDTO editarLocalidad) {
+		this.provincia.update(editarLocalidad);
 	}
 
 	public void borrarProvincia(int idProvincia) {
@@ -119,6 +119,26 @@ public class Agenda
 	
 	public int getIdProvinciaByNombre(String nombreProvincia) {
 		 return this.provincia.getIdProvinciaByNombre(nombreProvincia);
+	}
+	// ****************************
+	
+	
+	// ************** ABM LOCALIDAD **************
+
+	public void agregarLocalidad(LocalidadDTO nuevaLocalidad) {
+		this.localidad.insert(nuevaLocalidad);
+	}
+
+	public void editarLocalidad(LocalidadDTO editarLocalidad) {
+		this.localidad.update(editarLocalidad);
+	}
+
+	public void borrarLocalidad(int idLocalidad) {
+		this.localidad.delete(idLocalidad);
+	}
+	
+	public int getIdLocalidadByNombre(String nombreLocalidad) {
+		 return this.localidad.getIdProvinciaByNombre(nombreLocalidad);
 	}
 	// ****************************
 	
@@ -144,8 +164,8 @@ public class Agenda
 		return a;
 	}
 	
-	public ArrayList<String> getNombreLocalidad(String nombreProvincia){
-		List<LocalidadDTO>localidad = this.localidad.readByNombreProvincia(nombreProvincia);
+	public ArrayList<String> getNombreLocalidad(int idProvincia){
+		List<LocalidadDTO>localidad = this.localidad.readByProvincia(idProvincia);
 		ArrayList<String> a = new ArrayList<String>();
 		for (LocalidadDTO localidadDTO: localidad) {
 			a.add(localidadDTO.getNombre());
@@ -164,10 +184,6 @@ public class Agenda
 	
 	public int getDomicilioMaxId() {
 		return this.domicilio.readMaxId();
-	}
-
-	public int getIdLocalidadByNombre(String nombre) {
-		return this.localidad.readIdByNombre(nombre);
 	}
 
 	public int getIdTipoContactoByNombre(String nombre) {

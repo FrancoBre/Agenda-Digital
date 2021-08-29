@@ -14,11 +14,11 @@ public class ProvinciaDAOSQL implements ProvinciaDAO {
 	private static final String readByPais = "SELECT * FROM provincia WHERE pais = ? ;";
 	private static final String getNombreById = "SELECT Nombre FROM provincia WHERE idProvincia = ? ;";
 	
-	private static final String insert = "INSERT INTO provincia(idProvincia, Nombre, Pais) VALUES(default, ?, ?):";
+	private static final String insert = "INSERT INTO provincia(idProvincia, Nombre, Pais) VALUES(default, ?, ?);";
 	private static final String update = "UPDATE provincia SET Nombre = ? WHERE idProvincia = ?;";
-	private static final String delete = "DELETE * FROM provincia WHERE idProvincia = ?;";
+	private static final String delete = "DELETE FROM provincia WHERE idProvincia = ?;";
 	
-	private static final String idProvinciaByNombre = "SELECT idPais FROM pais WHERE nombre = ?;";
+	private static final String idProvinciaByNombre = "SELECT idProvincia FROM Provincia WHERE nombre = ?;";
 
 	public List<ProvinciaDTO> readByPais(int idPais) 
 	{
