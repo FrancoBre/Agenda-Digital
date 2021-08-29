@@ -17,13 +17,13 @@ import dto.PersonaDTO;
 
 public class PersonaDAOSQL implements PersonaDAO {
 
-    private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono, email, nacimiento, domicilio, tipo_contacto) VALUES(default, ?, ?, ?, ?, ?, ?)";
-    private static final String update = "UPDATE personas SET nombre = ? , telefono = ? , email = ? , nacimiento = ? , domicilio = ?, tipo_contacto = ? WHERE idPersona = ?;";
+    private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono, email, dominioEmail, nacimiento, domicilio, tipo_contacto) VALUES(default, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String update = "UPDATE personas SET nombre = ? , telefono = ? , email = ? , dominioEmail = ? , nacimiento = ? , domicilio = ?, tipo_contacto = ? WHERE idPersona = ?;";
     private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
     private static final String readall = "SELECT * FROM personas";
     private static final String readMaxId = "SELECT idPersona FROM personas ORDER BY idPersona DESC LIMIT 0, 1;";
     private static final String READALLDATE = 
-    		"SELECT p.idPersona, p.nombre, p.telefono, p.email, p.nacimiento, d.calle, d.altura, d.piso, d.depto, "
+    		"SELECT p.idPersona, p.nombre, p.telefono, p.email, p.dominioEmail , p.nacimiento, d.calle, d.altura, d.piso, d.depto, "
     		+ "l.nombre AS localidad, pr.nombre AS provincia, pa.nombre AS pais, c.Tipo AS Etiqueta "
     		+ "FROM personas p, domicilio d, localidad l, provincia pr, pais pa, tipo_contacto c "
     		+ "WHERE p.Domicilio = d.idDomicilio AND d.Localidad=l.idLocalidad AND l.provincia= idProvincia AND pr.pais=pa.idPais AND p.tipo_contacto = c.idTipo_contacto;";
@@ -37,9 +37,10 @@ public class PersonaDAOSQL implements PersonaDAO {
 		    statement.setString(1, persona.getNombre());
 		    statement.setString(2, persona.getTelefono());
 		    statement.setString(3, persona.getEmail());
-		    statement.setDate(4, persona.getNacimiento());
-		    statement.setInt(5, persona.getIdDomicilio());
-		    statement.setInt(6, persona.getIdTipoContacto());
+		    statement.setString(4, persona.getDominioEmail());
+		    statement.setDate(5, persona.getNacimiento());
+		    statement.setInt(6, persona.getIdDomicilio());
+		    statement.setInt(7, persona.getIdTipoContacto());
 	
 		    if (statement.executeUpdate() > 0) {
 			conexion.commit();
@@ -66,10 +67,11 @@ public class PersonaDAOSQL implements PersonaDAO {
 	    statement.setString(1, persona_a_editar.getNombre());
 	    statement.setString(2, persona_a_editar.getTelefono());
 	    statement.setString(3, persona_a_editar.getEmail());
-	    statement.setDate(4, persona_a_editar.getNacimiento());
-	    statement.setInt(5, persona_a_editar.getIdDomicilio());
-	    statement.setInt(6, persona_a_editar.getIdTipoContacto());
-	    statement.setInt(7, persona_a_editar.getIdPersona());
+	    statement.setString(4, persona_a_editar.getDominioEmail());
+	    statement.setDate(5, persona_a_editar.getNacimiento());
+	    statement.setInt(6, persona_a_editar.getIdDomicilio());
+	    statement.setInt(7, persona_a_editar.getIdTipoContacto());
+	    statement.setInt(8, persona_a_editar.getIdPersona());
 	    if (statement.executeUpdate() > 0) {
 		conexion.commit();
 		isUpdateExitoso = true;
@@ -150,6 +152,7 @@ public class PersonaDAOSQL implements PersonaDAO {
 		String nombre = resultSet.getString("Nombre");
 		String tel = resultSet.getString("Telefono");
 		String email = resultSet.getString("Email");
+		String dominioEmail = resultSet.getString("DominioEmail");
 		String nac = resultSet.getString("Nacimiento");
 		String calle = resultSet.getString("calle");
 		String altura = resultSet.getString("altura");
@@ -162,7 +165,7 @@ public class PersonaDAOSQL implements PersonaDAO {
 
 		java.sql.Date nacimiento = parseNacimiento(nac);
 	
-		return new PersonaDTO(id, nombre, tel, email, nacimiento,calle,altura,piso,depto,localidad,provincia,pais,Etiqueta);
+		return new PersonaDTO(id, nombre, tel, email, dominioEmail, nacimiento,calle,altura,piso,depto,localidad,provincia,pais,Etiqueta);
   }
     
     

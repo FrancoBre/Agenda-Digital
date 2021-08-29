@@ -15,7 +15,9 @@ public class VentanaPersona extends JFrame {
     private JPanel contentPane;
     private JTextField nombreInput;
     private JTextField telefonoInput;
-    private JTextField emailInput;
+    private JTextField leftEmailInput;
+    private JTextField rightEmailInput;
+    private JTextField domainEmailInput;
     private JComboBox<Integer> comboBoxAnio;
     private JComboBox<Integer> comboBoxMes;
     private JComboBox<Integer> comboBoxDia;
@@ -87,10 +89,10 @@ public class VentanaPersona extends JFrame {
 	label.setBounds(10, 102, 49, 14);
 	getPanel().add(label);
 
-	emailInput = new JTextField();
-	emailInput.setBounds(110, 99, 69, 20);
-	getPanel().add(emailInput);
-	emailInput.setColumns(10);
+	leftEmailInput = new JTextField();
+	leftEmailInput.setBounds(110, 99, 69, 20);
+	getPanel().add(leftEmailInput);
+	leftEmailInput.setColumns(10);
 
 	JLabel nacimientoLabel = new JLabel("Nacimiento");
 	nacimientoLabel.setBounds(10, 134, 99, 14);
@@ -196,19 +198,19 @@ public class VentanaPersona extends JFrame {
 	label_1.setBounds(182, 102, 12, 15);
 	panel.add(label_1);
 	
-	textField = new JTextField();
-	textField.setBounds(197, 100, 40, 19);
-	panel.add(textField);
-	textField.setColumns(10);
+	rightEmailInput = new JTextField();
+	rightEmailInput.setBounds(197, 100, 40, 19);
+	panel.add(rightEmailInput);
+	rightEmailInput.setColumns(10);
 	
 	label_2 = new JLabel(".");
 	label_2.setBounds(240, 102, 5, 15);
 	panel.add(label_2);
 	
-	textField_1 = new JTextField();
-	textField_1.setBounds(249, 100, 25, 19);
-	panel.add(textField_1);
-	textField_1.setColumns(10);
+	domainEmailInput = new JTextField();
+	domainEmailInput.setBounds(249, 100, 25, 19);
+	panel.add(domainEmailInput);
+	domainEmailInput.setColumns(10);
 
 	this.setVisible(false);
     }
@@ -275,14 +277,6 @@ public class VentanaPersona extends JFrame {
 
     public void setTelefonoInput(JTextField telefonoInput) {
 	this.telefonoInput = telefonoInput;
-    }
-
-    public JTextField getEmailInput() {
-	return emailInput;
-    }
-
-    public void setEmailInput(JTextField emailInput) {
-	this.emailInput = emailInput;
     }
 
     public JTextField getCalleInput() {
@@ -352,4 +346,30 @@ public class VentanaPersona extends JFrame {
     public JButton getBtnAction() {
 	return btnAction;
     }
+
+    public JTextField getLeftEmailInput() {
+        return leftEmailInput;
+    }
+
+    public void setLeftEmailInput(JTextField leftEmailInput) {
+        this.leftEmailInput = leftEmailInput;
+    }
+
+    public JTextField getRightEmailInput() {
+        return rightEmailInput;
+    }
+
+    public void setRightEmailInput(JTextField rightEmailInput) {
+        this.rightEmailInput = rightEmailInput;
+    }
+
+    public JTextField getDomainEmailInput() {
+        return domainEmailInput;
+    }
+
+    public void setDomainEmailInput(JTextField domainEmailInput) {
+        this.domainEmailInput = domainEmailInput;
+    }
+    
+    
 }
