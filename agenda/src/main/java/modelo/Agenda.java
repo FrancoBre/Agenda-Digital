@@ -15,7 +15,6 @@ import persistencia.dao.interfaz.LocalidadDAO;
 import persistencia.dao.interfaz.PersonaDAO;
 import persistencia.dao.interfaz.ProvinciaDAO;
 import persistencia.dao.interfaz.TipoContactoDAO;
-import presentacion.controlador.Controlador;
 import persistencia.dao.interfaz.PaisDAO;
 
 public class Agenda {
@@ -70,7 +69,7 @@ public class Agenda {
      */
     private void wire(List<PersonaDTO> personas, List<PaisDTO> paises, List<ProvinciaDTO> provincias,
 	    List<LocalidadDTO> localidades, List<TipoContactoDTO> tiposContacto, List<DomicilioDTO> domicilios) {
-	
+
 	for (PaisDTO pais : paises) {
 	    for (ProvinciaDTO provincia : provincias) {
 		if (provincia.getIdPais() == pais.getIdPais())
@@ -100,22 +99,22 @@ public class Agenda {
     }
 
     public void agregarPersona(PersonaDTO nuevaPersona) {
-    	this.persona.insert(nuevaPersona);
+	this.persona.insert(nuevaPersona);
     }
 
     public void editarPersona(PersonaDTO persona_a_editar) {
-    	this.persona.update(persona_a_editar);
+	this.persona.update(persona_a_editar);
     }
 
     public void borrarPersona(PersonaDTO persona_a_eliminar) {
-    	this.persona.delete(persona_a_eliminar);
+	this.persona.delete(persona_a_eliminar);
     }
 
     /*
      * Este metodo se usa para cargar las personas a la ventana principal
      */
     public List<PersonaDTO> obtenerPersonas() {
-    	return this.persona.READALLDATE();
+	return this.persona.READALLDATE();
     }
 
     /*
@@ -125,100 +124,100 @@ public class Agenda {
      * obtenerTiposContacto() y obtenerDomicilios()
      */
     public List<PaisDTO> obtenerPaises() {
-    	return this.pais.readAll();
+	return this.pais.readAll();
     }
 
     public List<ProvinciaDTO> obtenerProvincias() {
-    	return this.provincia.readAll();
+	return this.provincia.readAll();
     }
 
     public List<LocalidadDTO> obtenerLocalidades() {
-    	return this.localidad.readAll();
+	return this.localidad.readAll();
     }
 
     public List<TipoContactoDTO> obtenerTiposContacto() {
-    	return this.tipoContacto.readAll();
+	return this.tipoContacto.readAll();
     }
 
     public List<DomicilioDTO> obtenerDomicilios() {
-    	return this.domicilio.readAll();
+	return this.domicilio.readAll();
     }
 
     public List<String> getNombrePaises(List<PaisDTO> paises) {
-		List<String> ret = new ArrayList<String>();
-		for (PaisDTO pais : paises)
-		    ret.add(pais.getNombre());
-	
-		return ret;
+	List<String> ret = new ArrayList<String>();
+	for (PaisDTO pais : paises)
+	    ret.add(pais.getNombre());
+
+	return ret;
     }
 
     public LocalidadDTO getLocalidadById(int id) {
-    	return this.localidad.readByID(id);
+	return this.localidad.readByID(id);
     }
 
     public List<ProvinciaDTO> getProvincias(int idpais) {
-		List<ProvinciaDTO> ret = new ArrayList<ProvinciaDTO>();
-		for (ProvinciaDTO provincia : Agenda.provincias) {
-		    if (provincia.getIdPais() == idpais)
-			ret.add(provincia);
-		}
-		if (ret.isEmpty())
-		    throw new IllegalArgumentException("No existe ninguna provincia para el pais con el id especificado");
-		else
-		return ret;
+	List<ProvinciaDTO> ret = new ArrayList<ProvinciaDTO>();
+	for (ProvinciaDTO provincia : Agenda.provincias) {
+	    if (provincia.getIdPais() == idpais)
+		ret.add(provincia);
+	}
+	if (ret.isEmpty())
+	    throw new IllegalArgumentException("No existe ninguna provincia para el pais con el id especificado");
+	else
+	    return ret;
     }
 
     public List<LocalidadDTO> getLocalidades(String nombreProvincia) {
-		List<LocalidadDTO> ret = new ArrayList<LocalidadDTO>();
-		for (LocalidadDTO localidad : Agenda.localidades) {
-		    if (localidad.getProvincia().getNombre().equals(nombreProvincia))
-			ret.add(localidad);
-		}
-		return ret;
+	List<LocalidadDTO> ret = new ArrayList<LocalidadDTO>();
+	for (LocalidadDTO localidad : Agenda.localidades) {
+	    if (localidad.getProvincia().getNombre().equals(nombreProvincia))
+		ret.add(localidad);
+	}
+	return ret;
     }
 
     /*
      * Lo hice static para poder probarlo
      */
     public static List<String> getNombreTipoContacto(List<TipoContactoDTO> tiposContacto) {
-		List<String> ret = new ArrayList<String>();
-		for (TipoContactoDTO tipo : tiposContacto)
-		    ret.add(tipo.getDescripcion());
-		return ret;
+	List<String> ret = new ArrayList<String>();
+	for (TipoContactoDTO tipo : tiposContacto)
+	    ret.add(tipo.getDescripcion());
+	return ret;
     }
 
     public TipoContactoDTO getTipoContacto(String tipoNombre) {
-		for (TipoContactoDTO tipo : Agenda.tiposContacto) {
-		    if (tipo.getDescripcion().equals(tipoNombre))
-			return tipo;
-		}
-		throw new IllegalArgumentException("No existe un tipo de contacto con el nombre especificado");
+	for (TipoContactoDTO tipo : Agenda.tiposContacto) {
+	    if (tipo.getDescripcion().equals(tipoNombre))
+		return tipo;
+	}
+	throw new IllegalArgumentException("No existe un tipo de contacto con el nombre especificado");
     }
 
     public LocalidadDTO getLocalidad(String localidadNombre) {
-		for (LocalidadDTO localidad : Agenda.localidades) {
-		    if (localidad.getNombre().equals(localidadNombre))
-			return localidad;
-		}
-		throw new IllegalArgumentException("No existe una localidad con el nombre especificado");
+	for (LocalidadDTO localidad : Agenda.localidades) {
+	    if (localidad.getNombre().equals(localidadNombre)) 
+		return localidad;
+	}
+	throw new IllegalArgumentException("No existe una localidad con el nombre especificado");
     }
 
     // TIPO CONTACTO
 
     public void agregarTipo(TipoContactoDTO nuevoTipo) {
-    	this.tipoContacto.insert(nuevoTipo);
+	this.tipoContacto.insert(nuevoTipo);
     }
 
     public void editarTipo(TipoContactoDTO editTipo) {
-    	this.tipoContacto.update(editTipo);
+	this.tipoContacto.update(editTipo);
     }
 
     public void borrarTipo(String borrarTipo) {
-    	this.tipoContacto.delete(borrarTipo);
+	this.tipoContacto.delete(borrarTipo);
     }
 
     public String[] AMB() {
-    	return new String[] { "Agregar", "Modificar", "Eliminar" };
+	return new String[] { "Agregar", "Modificar", "Eliminar" };
     }
 
     /*

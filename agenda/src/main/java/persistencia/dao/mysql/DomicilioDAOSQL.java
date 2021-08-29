@@ -9,14 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dto.DomicilioDTO;
-import dto.PersonaDTO;
 import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.DomicilioDAO;
 
 public class DomicilioDAOSQL implements DomicilioDAO {
 
-//    private static final String getById = "SELECT nombre FROM domicilio WHERE idDomicilio = ?;";
-//    private static final String getCalleAlturaById = "SELECT calle, altura FROM domicilio WHERE idDomicilio = ?;";
     private static final String readAll = "SELECT * FROM domicilio";
     private static final String insert = "INSERT INTO domicilio(idDomicilio, calle, altura, piso, depto, localidad) VALUES (?, ?, ?, ?, ?, ?);";
     private static final String update = "UPDATE domicilio SET calle = ? , altura = ? , piso = ?, depto = ? , localidad = ? WHERE idDomicilio = ?;";

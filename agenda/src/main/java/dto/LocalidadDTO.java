@@ -70,4 +70,10 @@ public class LocalidadDTO {
 	this.idPais = idPais;
     }
 
+    @Override
+    public String toString() {
+	return "LocalidadDTO [idLocalidad=" + idLocalidad + ", nombre=" + nombre + ", provincia=" + provincia
+		+ ", idProvincia=" + idProvincia + ", pais=" + pais + ", idPais=" + idPais + "]";
+    }
+
 }

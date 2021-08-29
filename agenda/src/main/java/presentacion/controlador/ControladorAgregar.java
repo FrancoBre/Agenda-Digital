@@ -85,12 +85,12 @@ public class ControladorAgregar implements ActionListener {
 
 	    int idPersona = this.agenda.getPersonaMaxId() + 1;
 	    int idDomicilio = this.agenda.getDomicilioMaxId() + 1;
-
+	    
 	    DomicilioDTO domicilio = new DomicilioDTO(idDomicilio, calle, altura, piso, depto,
-		    this.agenda.getLocalidad(localidad).getIdLocalidad());
+		    this.agenda.getLocalidad(localidad));
 
 	    PersonaDTO persona = new PersonaDTO(idPersona, nombre, tel, email, Fecha.parseNacimiento(nacimiento),
-		    idDomicilio, this.agenda.getTipoContacto(tipoContacto).getIdTipo());
+		    domicilio, this.agenda.getTipoContacto(tipoContacto));
 
 	    this.agenda.agregarDomicilio(domicilio);
 
