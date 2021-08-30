@@ -45,8 +45,8 @@ public class DomicilioDAOSQL implements DomicilioDAO {
 			statement = conexion.prepareStatement(insert);
 			statement.setString(1, domicilio.getCalle());
 			statement.setString(2, domicilio.getAltura());
-			statement.setInt(3, domicilio.getPiso());
-			statement.setInt(4, domicilio.getDepto());
+			statement.setString(3, domicilio.getPiso());
+			statement.setString(4, domicilio.getDepto());
 			statement.setInt(5, domicilio.getLocalidad());
 			if(statement.executeUpdate() > 0)
 			{
@@ -82,8 +82,8 @@ public class DomicilioDAOSQL implements DomicilioDAO {
 			
 			statement.setString(1, domicilio.getCalle());
 			statement.setString(2, domicilio.getAltura());
-			statement.setInt(3, domicilio.getPiso());
-			statement.setInt(4, domicilio.getDepto());
+			statement.setString(3, domicilio.getPiso());
+			statement.setString(4, domicilio.getDepto());
 			statement.setInt(5, domicilio.getLocalidad());
 			
 			statement.setInt(6, domicilio.getIdDomicilio());

@@ -80,9 +80,9 @@ public class ControladorEditar implements ActionListener {
 	    String calle = this.ventanaPersonaEditar.getCalleInput().getText();
 	    String altura = this.ventanaPersonaEditar.getAlturaInput().getText();
 	    String pisoStr = this.ventanaPersonaEditar.getPisoInput().getText();
-	    int piso = Integer.parseInt(pisoStr.trim());
+	    String piso = pisoStr.trim();
 	    String deptoStr = this.ventanaPersonaEditar.getDeptoInput().getText();
-	    int depto = Integer.parseInt(deptoStr.trim());
+	    String depto = deptoStr.trim();
 	    String localidad = (String) this.ventanaPersonaEditar.getLocalidadInput().getSelectedItem();
 
 	    int year = (int) this.ventanaPersonaEditar.getComboBoxAnio().getSelectedItem();
@@ -109,8 +109,8 @@ public class ControladorEditar implements ActionListener {
 	    personaEditada = null;
 
 	    try {
-		personaEditada = new PersonaDTO(idPersona, nombre, tel, email, dominioEmail, Fecha.parseNacimiento(nacimiento),
-			idDomicilio, idTipoContacto, idMedioTransporte);
+		personaEditada = new PersonaDTO(idPersona, nombre, tel, email, dominioEmail,
+			Fecha.parseNacimiento(nacimiento), idDomicilio, idTipoContacto, idMedioTransporte);
 
 	    } catch (ParseException e) {
 		e.printStackTrace();
@@ -192,5 +192,4 @@ public class ControladorEditar implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
     }
-
 }

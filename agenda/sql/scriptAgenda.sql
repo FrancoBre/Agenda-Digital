@@ -35,8 +35,8 @@ CREATE TABLE domicilio (
 	idDomicilio int(11) NOT NULL AUTO_INCREMENT, 
 	Calle varchar(45) NOT NULL, 
 	Altura int(20) NOT NULL, 
-	Piso int(20), 
-	Depto int(20),
+	Piso varchar(20), 
+	Depto varchar(20),
 	Localidad int(11),
 	PRIMARY KEY (idDomicilio), 
 	CONSTRAINT fk_dom_localidad FOREIGN KEY (Localidad) REFERENCES localidad(idLocalidad)

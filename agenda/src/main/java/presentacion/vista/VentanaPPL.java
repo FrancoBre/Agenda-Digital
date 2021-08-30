@@ -26,7 +26,7 @@ public class VentanaPPL extends JFrame
 	private JTextField LocalidadTextField;
 	private JComboBox<String> LocalidadComboBox;
 	private JComboBox<String> opcionesComboBox3;
-	private JButton btnAccionLOCALIDAD;
+	private JButton btnActionLOCALIDAD;
 
 	
 	public static VentanaPPL getInstance()
@@ -121,9 +121,9 @@ public class VentanaPPL extends JFrame
 		opcionesComboBox3.setBounds(390, 116, 154, 22);
 		panel.add(opcionesComboBox3);
 		
-		btnAccionLOCALIDAD = new JButton("accion3");
-		btnAccionLOCALIDAD.setBounds(554, 116, 154, 23);
-		panel.add(btnAccionLOCALIDAD);
+		btnActionLOCALIDAD = new JButton("accion3");
+		btnActionLOCALIDAD.setBounds(554, 116, 154, 23);
+		panel.add(btnActionLOCALIDAD);
 		
 		this.setVisible(false);
 	}
@@ -176,8 +176,8 @@ public class VentanaPPL extends JFrame
 		return LocalidadComboBox;
 	}
 
-	public JButton getBtnAccionLOCALIDAD() {
-		return btnAccionLOCALIDAD;
+	public JButton getBtnActionLOCALIDAD() {
+		return btnActionLOCALIDAD;
 	}
 
 	public JComboBox<String> getOpcionesComboBox1() {

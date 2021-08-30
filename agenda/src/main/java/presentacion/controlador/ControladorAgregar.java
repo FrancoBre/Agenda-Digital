@@ -70,13 +70,13 @@ public class ControladorAgregar implements ActionListener {
 
 	    String tipoContacto = (String) this.ventanaPersonaAgregar.getTipoContactoInput().getSelectedItem();
 	    String medioTransporte = (String) this.ventanaPersonaAgregar.getMedioTransporteInput().getSelectedItem();
-	    
+
 	    String calle = this.ventanaPersonaAgregar.getCalleInput().getText();
 	    String altura = this.ventanaPersonaAgregar.getAlturaInput().getText();
 	    String pisoStr = this.ventanaPersonaAgregar.getPisoInput().getText();
-	    int piso = Integer.parseInt(pisoStr.trim());
+	    String piso = pisoStr.trim();
 	    String deptoStr = this.ventanaPersonaAgregar.getDeptoInput().getText();
-	    int depto = Integer.parseInt(deptoStr.trim());
+	    String depto = deptoStr.trim();
 	    String localidad = (String) this.ventanaPersonaAgregar.getLocalidadInput().getSelectedItem();
 
 	    int year = (int) this.ventanaPersonaAgregar.getComboBoxAnio().getSelectedItem();
@@ -170,7 +170,7 @@ public class ControladorAgregar implements ActionListener {
 	    this.ventanaPersonaAgregar.getPaisInput().addItem(string);
 	}
     }
-    
+
     public void addMedioTransporteItems(List<String> medios) {
 	for (String medio : medios) {
 	    this.ventanaPersonaAgregar.getMedioTransporteInput().addItem(medio);

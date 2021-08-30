@@ -34,4 +34,6 @@ public class ProvinciaDTO {
 	public void setPais(int pais) {
 		this.pais = pais;
 	}
+		
+	
 }

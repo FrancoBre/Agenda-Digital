@@ -54,10 +54,69 @@ public class Agenda {
 	return this.persona.READALLDATE();
     }
 
-    // TIPO CONTACTO
-
     public void agregarTipo(TipoContactoDTO nuevoTipo) {
 	this.tipoContacto.insert(nuevoTipo);
+    }
+
+    // ****************************
+
+    // ************** ABM LOCALIDAD **************
+
+    public void agregarLocalidad(LocalidadDTO nuevaLocalidad) {
+	this.localidad.insert(nuevaLocalidad);
+    }
+
+    public void editarLocalidad(LocalidadDTO editarLocalidad) {
+	this.localidad.update(editarLocalidad);
+    }
+
+    public void borrarLocalidad(int idLocalidad) {
+	this.localidad.delete(idLocalidad);
+    }
+
+    // ****************************
+
+    public ArrayList<String> getNombrePaises() {
+	List<PaisDTO> paises = this.pais.readAll();
+	ArrayList<String> a = new ArrayList<String>();
+	for (PaisDTO paisDTO : paises) {
+	    a.add(paisDTO.getNombre().toString());
+	}
+	return a;
+    }
+
+    public void agregarDomicilio(DomicilioDTO domicilio) {
+	this.domicilio.insert(domicilio);
+    }
+
+    public ArrayList<String> getNombreProvincia(int idpais) {
+	List<ProvinciaDTO> provincias = this.provincia.readByPais(idpais);
+	ArrayList<String> a = new ArrayList<String>();
+	for (ProvinciaDTO provinciaDTO : provincias) {
+	    a.add(provinciaDTO.getNombre().toString());
+	}
+	return a;
+    }
+
+    public ArrayList<String> getNombreLocalidad(int idProvincia) {
+	List<LocalidadDTO> localidad = this.localidad.readByProvincia(idProvincia);
+	ArrayList<String> a = new ArrayList<String>();
+	for (LocalidadDTO localidadDTO : localidad) {
+	    a.add(localidadDTO.getNombre());
+	}
+	return a;
+    }
+
+    public ArrayList<Integer> getYears() {
+	return Fecha.lastYears(100);
+    }
+
+    public int getPersonaMaxId() {
+	return this.persona.readMaxId();
+    }
+
+    public int getDomicilioMaxId() {
+	return this.domicilio.readMaxId();
     }
 
     public void editarTipo(TipoContactoDTO editTipo) {
@@ -66,6 +125,10 @@ public class Agenda {
 
     public void borrarTipo(String borrarTipo) {
 	this.tipoContacto.delete(borrarTipo);
+    }
+
+    public int getIdTipoContactoByNombre(String nombre) {
+	return this.tipoContacto.readIdByNombre(nombre);
     }
 
     public ArrayList<String> getNombreTipoContacto() {
@@ -126,28 +189,6 @@ public class Agenda {
     }
     // ****************************
 
-    public ArrayList<String> getNombrePaises() {
-	List<PaisDTO> paises = this.pais.readAll();
-	ArrayList<String> a = new ArrayList<String>();
-	for (PaisDTO paisDTO : paises) {
-	    a.add(paisDTO.getNombre().toString());
-	}
-	return a;
-    }
-
-    public void agregarDomicilio(DomicilioDTO domicilio) {
-	this.domicilio.insert(domicilio);
-    }
-
-    public ArrayList<String> getNombreProvincia(int idpais) {
-	List<ProvinciaDTO> provincias = this.provincia.readByPais(idpais);
-	ArrayList<String> a = new ArrayList<String>();
-	for (ProvinciaDTO provinciaDTO : provincias) {
-	    a.add(provinciaDTO.getNombre().toString());
-	}
-	return a;
-    }
-
     public ArrayList<String> getNombreLocalidad(String nombreProvincia) {
 	List<LocalidadDTO> localidad = this.localidad.readByNombreProvincia(nombreProvincia);
 	ArrayList<String> a = new ArrayList<String>();
@@ -157,24 +198,8 @@ public class Agenda {
 	return a;
     }
 
-    public ArrayList<Integer> getYears() {
-	return Fecha.lastYears(100);
-    }
-
-    public int getPersonaMaxId() {
-	return this.persona.readMaxId();
-    }
-
-    public int getDomicilioMaxId() {
-	return this.domicilio.readMaxId();
-    }
-
     public int getIdLocalidadByNombre(String nombre) {
 	return this.localidad.readIdByNombre(nombre);
-    }
-
-    public int getIdTipoContactoByNombre(String nombre) {
-	return this.tipoContacto.readIdByNombre(nombre);
     }
 
     public int getIdMedioTransporteByNombre(String medioTransporte) {
