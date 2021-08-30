@@ -25,20 +25,21 @@ public class ReporteAgenda
 	private JasperPrint	reporteLleno;
 	private Logger log = Logger.getLogger(ReporteAgenda.class);
 	//Recibe la lista de personas para armar el reporte
+	private String jasperURL = "reporte_agenda2.jasper";
     public ReporteAgenda(List<PersonaDTO> personas)
     {
     	//Hardcodeado
 		Map<String, Object> parametersMap = new HashMap<String, Object>();
 		parametersMap.put("Fecha", new SimpleDateFormat("dd/MM/yyyy").format(new Date()));		
     	try		{
-			this.reporte = (JasperReport) JRLoader.loadObjectFromFile( "reportes" + File.separator + "ReporteAgenda.jasper" );
+			this.reporte = (JasperReport) JRLoader.loadObjectFromFile( "reportes" + File.separator + jasperURL );
 			this.reporteLleno = JasperFillManager.fillReport(this.reporte, parametersMap, 
 					new JRBeanCollectionDataSource(personas));
     		log.info("Se cargó correctamente el reporte");
 		}
 		catch( JRException ex ) 
 		{
-			log.error("Ocurrió un error mientras se cargaba el archivo ReporteAgenda.Jasper", ex);
+			log.error("Ocurrió un error mientras se cargaba el archivo "+ jasperURL, ex);
 		}
     }       
     
