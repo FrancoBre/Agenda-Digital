@@ -132,9 +132,10 @@ where d.idDomicilio = p.domicilio and m.idMedio_transporte = p.medio_transporte 
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="104" splitType="Stretch">
 			<textField>
 				<reportElement x="-20" y="0" width="60" height="50" uuid="d3cba895-d6dd-4659-af58-cc47b5e0ebc2"/>
+				<box padding="0"/>
 			</textField>
 			<textField>
 				<reportElement x="40" y="0" width="60" height="50" uuid="2c13c471-dbe3-4425-ab26-3abb8841f3f4"/>
@@ -165,6 +166,27 @@ where d.idDomicilio = p.domicilio and m.idMedio_transporte = p.medio_transporte 
 			</textField>
 			<line>
 				<reportElement x="-20" y="-52" width="595" height="1" uuid="679af2e5-b5ec-4daf-9398-aefe3068269e"/>
+			</line>
+			<textField evaluationTime="Report">
+				<reportElement x="455" y="60" width="120" height="20" uuid="3b0770de-83b4-40a8-8e2d-02bd6c96d374"/>
+				<textElement verticalAlignment="Middle"/>
+			</textField>
+			<staticText>
+				<reportElement x="400" y="60" width="55" height="20" uuid="e7cd948a-ad19-49dc-baaa-dd73ad69c964"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Cantidad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-11" y="60" width="51" height="20" uuid="329805a7-c1b3-4f86-8816-81b2f680ba03"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Dominio:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="40" y="60" width="100" height="20" uuid="9f3de366-840f-49f1-ad9f-fc5399d0b14c"/>
+				<textElement verticalAlignment="Middle"/>
+			</textField>
+			<line>
+				<reportElement x="-30" y="90" width="595" height="1" uuid="e97c3968-465d-4ec8-b27c-6b1da4be430c"/>
 			</line>
 		</band>
 	</detail>
