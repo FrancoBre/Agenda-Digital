@@ -190,13 +190,13 @@ where d.idDomicilio = p.domicilio and m.idMedio_transporte = p.medio_transporte 
 			</line>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
-	<pageFooter>
-		<band height="54" splitType="Stretch"/>
-	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="284" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="550" height="284" uuid="72261fd0-1e5f-463f-97bc-d1be6483c43f"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["reportes/grafico.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
 	</summary>
 </jasperReport>
