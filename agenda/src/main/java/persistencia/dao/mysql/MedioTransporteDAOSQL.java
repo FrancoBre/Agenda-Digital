@@ -13,14 +13,14 @@ import persistencia.dao.interfaz.MedioTransporteDAO;
 
 public class MedioTransporteDAOSQL implements MedioTransporteDAO {
 
-    private static final String insert = "INSERT INTO medio_transporte(idMedio_transporte, nombre) VALUES(default, ? )";
-	private static final String update = "UPDATE medio_transporte SET nombre = ? WHERE idMedio_transporte = ? ;";
-	private static final String deleteByNombre = "DELETE FROM medio_transporte WHERE nombre = ?";
+    private static final String insert = "INSERT INTO medio_transporte(idMedio_transporte, nombreMedioTransporte) VALUES(default, ? )";
+	private static final String update = "UPDATE medio_transporte SET nombreMedioTransporte = ? WHERE idMedio_transporte = ? ;";
+	private static final String deleteByNombre = "DELETE FROM medio_transporte WHERE nombreMedioTransporte = ?";
 	private static final String deleteById = "DELETE FROM medio_transporte WHERE idMedio_transporte = ?";
 	
 	private static final String readAll = "SELECT * FROM medio_transporte;";
-	private static final String readIdByNombre = "SELECT idMedio_transporte FROM medio_transporte WHERE nombre = ?;";
-	private static final String readNombreById = "SELECT nombre FROM medio_transporte WHERE idMedio_transporte = ?;";
+	private static final String readIdByNombre = "SELECT idMedio_transporte FROM medio_transporte WHERE nombreMedioTransporte = ?;";
+	private static final String readNombreById = "SELECT nombreMedioTransporte FROM medio_transporte WHERE idMedio_transporte = ?;";
 	
 	
 	public boolean insert(MedioTransporteDTO medioTransporte)
@@ -31,7 +31,7 @@ public class MedioTransporteDAOSQL implements MedioTransporteDAO {
 		try
 		{
 			statement = conexion.prepareStatement(insert);
-			statement.setString(1, medioTransporte.getNombre());
+			statement.setString(1, medioTransporte.getNombreMedioTransporte());
 			if(statement.executeUpdate() > 0)
 			{
 				conexion.commit();
@@ -58,7 +58,7 @@ public class MedioTransporteDAOSQL implements MedioTransporteDAO {
 		try
 		{
 			statement = conexion.prepareStatement(update);
-			statement.setString(1, medioTransporte.getNombre());
+			statement.setString(1, medioTransporte.getNombreMedioTransporte());
 			statement.setInt(2, medioTransporte.getIdMedioTransporte());
 			if(statement.executeUpdate() > 0)
 			{
@@ -148,7 +148,7 @@ public class MedioTransporteDAOSQL implements MedioTransporteDAO {
 	private MedioTransporteDTO getMedioTransporteDTO(ResultSet resultSet) throws SQLException
 	{
 		int id = resultSet.getInt("idMedio_transporte");
-		String nombre = resultSet.getString("Nombre");
+		String nombre = resultSet.getString("nombreMedioTransporte");
 		
 		return new MedioTransporteDTO(id, nombre);
 	}
@@ -182,7 +182,7 @@ public class MedioTransporteDAOSQL implements MedioTransporteDAO {
 			statement.setInt(1, id);
 			resultSet = statement.executeQuery();
 			if(resultSet.next())
-				ret = resultSet.getString("Nombre");
+				ret = resultSet.getString("NombreMedioTransporte");
 			
 		}
 		catch (SQLException e) {

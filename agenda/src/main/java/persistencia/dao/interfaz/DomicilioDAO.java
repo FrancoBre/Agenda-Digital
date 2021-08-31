@@ -1,10 +1,12 @@
 package persistencia.dao.interfaz;
 
+import java.util.List;
+
 import dto.DomicilioDTO;
 
 public interface DomicilioDAO {
 	
-	public String getNombreDomicilioById(int id);
+	//public String getNombreDomicilioById(int id);
 	
 	public boolean insert(DomicilioDTO domicilio);
 	
@@ -15,4 +17,6 @@ public interface DomicilioDAO {
 	public int readMaxId();
 	
 	public String getCalleAlturaById(int id);
+
+	public List<DomicilioDTO> readAll();
 }

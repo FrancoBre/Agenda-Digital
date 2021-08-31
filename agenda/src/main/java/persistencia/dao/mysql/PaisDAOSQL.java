@@ -13,10 +13,10 @@ import persistencia.dao.interfaz.PaisDAO;
 public class PaisDAOSQL implements PaisDAO {
 
 	private static final String readAll = "SELECT * FROM pais;";
-	private static final String insert = "INSERT INTO pais(idPais, nombre) VALUES(default, ?);";
+	private static final String insert = "INSERT INTO pais(idPais, nombrePais) VALUES(default, ?);";
     private static final String update = "UPDATE pais SET nombre = ? WHERE idPais = ?;";
     private static final String delete = "DELETE FROM pais WHERE idPais = ?; DELETE FROM provincia WHERE Pais = ?";
-	private static final String idPaisByNombre = "SELECT idPais FROM pais WHERE nombre = ?;";
+	private static final String idPaisByNombre = "SELECT idPais FROM pais WHERE nombrePais = ?;";
     
     
 	public List<PaisDTO> readAll() {
@@ -43,7 +43,7 @@ public class PaisDAOSQL implements PaisDAO {
 	private PaisDTO getPaisDTO(ResultSet resultSet) throws SQLException
 	{
 		int id = resultSet.getInt("idPais");
-		String nombre = resultSet.getString("Nombre");
+		String nombre = resultSet.getString("NombrePais");
 		return new PaisDTO(id, nombre);
 	}
 
@@ -75,7 +75,7 @@ public class PaisDAOSQL implements PaisDAO {
 		boolean isUpdateExitoso = false;
 		try {
 		    statement = conexion.prepareStatement(update);
-		    statement.setString(1, editPais.getNombre());
+		    statement.setString(1, editPais.getNombrePais());
 		    statement.setInt(2, 4);
 		    
 		    if (statement.executeUpdate() > 0) {

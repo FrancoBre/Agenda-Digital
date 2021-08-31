@@ -1,5 +1,6 @@
 package modelo;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import dto.PaisDTO;
 import dto.PersonaDTO;
 import dto.ProvinciaDTO;
 import dto.TipoContactoDTO;
+import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.DAOAbstractFactory;
 import persistencia.dao.interfaz.DomicilioDAO;
 import persistencia.dao.interfaz.LocalidadDAO;
@@ -80,7 +82,7 @@ public class Agenda {
 	List<PaisDTO> paises = this.pais.readAll();
 	ArrayList<String> a = new ArrayList<String>();
 	for (PaisDTO paisDTO : paises) {
-	    a.add(paisDTO.getNombre().toString());
+	    a.add(paisDTO.getNombrePais().toString());
 	}
 	return a;
     }
@@ -93,7 +95,7 @@ public class Agenda {
 	List<ProvinciaDTO> provincias = this.provincia.readByPais(idpais);
 	ArrayList<String> a = new ArrayList<String>();
 	for (ProvinciaDTO provinciaDTO : provincias) {
-	    a.add(provinciaDTO.getNombre().toString());
+	    a.add(provinciaDTO.getNombreProvincia().toString());
 	}
 	return a;
     }
@@ -102,7 +104,7 @@ public class Agenda {
 	List<LocalidadDTO> localidad = this.localidad.readByProvincia(idProvincia);
 	ArrayList<String> a = new ArrayList<String>();
 	for (LocalidadDTO localidadDTO : localidad) {
-	    a.add(localidadDTO.getNombre());
+	    a.add(localidadDTO.getNombreLocalidad());
 	}
 	return a;
     }
@@ -135,7 +137,7 @@ public class Agenda {
 	List<TipoContactoDTO> tipo = this.tipoContacto.readAll();
 	ArrayList<String> a = new ArrayList<String>();
 	for (TipoContactoDTO tipoContactoDTO : tipo) {
-	    a.add(tipoContactoDTO.getDescripcion());
+	    a.add(tipoContactoDTO.getTipo());
 	}
 	return a;
     }
@@ -144,7 +146,7 @@ public class Agenda {
 	List<MedioTransporteDTO> medios = this.medioTransporte.readAll();
 	List<String> ret = new ArrayList<String>();
 	for (MedioTransporteDTO medioTransporte : medios) {
-	    ret.add(medioTransporte.getNombre());
+	    ret.add(medioTransporte.getNombreMedioTransporte());
 	}
 	return ret;
     }
@@ -193,7 +195,7 @@ public class Agenda {
 	List<LocalidadDTO> localidad = this.localidad.readByNombreProvincia(nombreProvincia);
 	ArrayList<String> a = new ArrayList<String>();
 	for (LocalidadDTO localidadDTO : localidad) {
-	    a.add(localidadDTO.getNombre());
+	    a.add(localidadDTO.getNombreLocalidad());
 	}
 	return a;
     }
@@ -209,6 +211,30 @@ public class Agenda {
     public void editarDomicilio(DomicilioDTO domicilioEditado) {
 	this.domicilio.update(domicilioEditado);
 
+    }
+
+    public List<DomicilioDTO> obtenerDomicilios() {
+	return this.domicilio.readAll();
+    }
+
+    public List<LocalidadDTO> obtenerLocalidades() {
+	return this.localidad.readAll();
+    }
+
+    public List<MedioTransporteDTO> obtenerMediosTransporte() {
+	return this.medioTransporte.readAll();
+    }
+
+    public List<PaisDTO> obtenerPaises() {
+	return this.pais.readAll();
+    }
+
+    public List<TipoContactoDTO> obtenerTiposContacto() {
+	return this.tipoContacto.readAll();
+    }
+
+    public Connection getConexion() {
+	return Conexion.getConexion().getSQLConexion();
     }
 
 }

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteAgenda2" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2c375e16-5520-4a8c-949d-93c66a4101bd">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="agendaDB2"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT p.nombrePersona, p.telefono, p.email, p.nacimiento, d.calle, d.altura, m.nombreMedioTransporte, l.nombreLocalidad, pa.nombrePais, t.tipo, p.dominioEmail
+FROM  personas p, medio_transporte m, domicilio d, tipo_contacto t, pais pa, localidad l
+WHERE d.idDomicilio = p.domicilio AND m.idMedio_transporte = p.medio_transporte AND l.idLocalidad = d.localidad AND l.pais = pa.idPais AND p.tipo_contacto = t.idTipo_contacto;]]>
+	</queryString>
+	<field name="nombrePersona" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombrePersona"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombrePersona"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
+		<fieldDescription><![CDATA[nombrePersona]]></fieldDescription>
+	</field>
+	<field name="telefono" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="telefono"/>
+		<property name="com.jaspersoft.studio.field.label" value="telefono"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
+		<fieldDescription><![CDATA[telefono]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="email"/>
+		<property name="com.jaspersoft.studio.field.label" value="email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
+		<fieldDescription><![CDATA[email]]></fieldDescription>
+	</field>
+	<field name="nacimiento" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="nacimiento"/>
+		<property name="com.jaspersoft.studio.field.label" value="nacimiento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
+		<fieldDescription><![CDATA[nacimiento]]></fieldDescription>
+	</field>
+	<field name="calle" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="calle"/>
+		<property name="com.jaspersoft.studio.field.label" value="calle"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="domicilio"/>
+		<fieldDescription><![CDATA[calle]]></fieldDescription>
+	</field>
+	<field name="altura" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="altura"/>
+		<property name="com.jaspersoft.studio.field.label" value="altura"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="domicilio"/>
+		<fieldDescription><![CDATA[altura]]></fieldDescription>
+	</field>
+	<field name="nombreMedioTransporte" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombreMedioTransporte"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombreMedioTransporte"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="medio_transporte"/>
+		<fieldDescription><![CDATA[nombreMedioTransporte]]></fieldDescription>
+	</field>
+	<field name="nombreLocalidad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombreLocalidad"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombreLocalidad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="localidad"/>
+		<fieldDescription><![CDATA[nombreLocalidad]]></fieldDescription>
+	</field>
+	<field name="nombrePais" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombrePais"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombrePais"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pais"/>
+		<fieldDescription><![CDATA[nombrePais]]></fieldDescription>
+	</field>
+	<field name="tipo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tipo"/>
+		<property name="com.jaspersoft.studio.field.label" value="tipo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipo_contacto"/>
+		<fieldDescription><![CDATA[tipo]]></fieldDescription>
+	</field>
+	<field name="dominioEmail" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="dominioEmail"/>
+		<property name="com.jaspersoft.studio.field.label" value="dominioEmail"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
+		<fieldDescription><![CDATA[dominioEmail]]></fieldDescription>
+	</field>
+	<group name="dominioEmail">
+		<groupExpression><![CDATA[$F{dominioEmail}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="-20" y="0" width="595" height="43" uuid="6b9bb60b-c411-46b8-b13f-6d552c5bbcab"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Monospaced" size="19"/>
+				</textElement>
+				<text><![CDATA[Reporte de datos ingresados en la agenda]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="47" splitType="Stretch">
+			<staticText>
+				<reportElement x="-20" y="9" width="60" height="30" uuid="b550e71a-1ec0-4d3a-b4de-1ffbc11c995d"/>
+				<text><![CDATA[Nombre y apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="10" width="60" height="30" uuid="fd813eb2-654e-4ea8-953b-1ac97f5a23c6"/>
+				<text><![CDATA[Teléfono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="10" width="60" height="30" uuid="8adb0fcf-5c3b-4c1d-9966-3b57211f754e"/>
+				<text><![CDATA[Correo electrónico]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="10" width="60" height="30" uuid="778762a2-508a-4efb-8218-1a33c4610bd3"/>
+				<text><![CDATA[Fecha de nac]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="10" width="70" height="30" uuid="01e5e4c2-3013-4f0d-a342-be5adbd1cc49"/>
+				<text><![CDATA[Dirección]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="10" width="90" height="30" uuid="334cdce8-b606-411a-8a78-b40b084e3ecb"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Medio de transporte preferido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="9" width="70" height="30" uuid="ca846a9d-4a3b-4147-83e7-06cc2dcb20ac"/>
+				<text><![CDATA[Tipo de contacto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="10" width="60" height="30" uuid="1c899609-8ace-43bb-be81-5ebc5a33a51b"/>
+				<text><![CDATA[País]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="510" y="10" width="65" height="30" uuid="18d9cd69-47dc-4b47-91e3-a7f00f40c973"/>
+				<text><![CDATA[Localidad]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="91" splitType="Stretch">
+			<staticText>
+				<reportElement x="-11" y="60" width="51" height="20" uuid="eb063361-f7cf-4136-b702-d75a98016d96"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Dominio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="60" width="55" height="20" uuid="91dc9a70-fa15-406a-b0b8-f6f9c461cb22"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Cantidad:]]></text>
+			</staticText>
+			<textField evaluationTime="Auto">
+				<reportElement x="-20" y="0" width="60" height="30" uuid="d38ef5e1-06d2-4f7a-b8da-a0e29744c8ba"/>
+				<textFieldExpression><![CDATA[$F{nombrePersona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="0" width="60" height="30" uuid="70954505-4833-42fe-8ef0-61358499a0b8"/>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="60" height="30" uuid="d72302c9-d5ca-4238-a7c6-35f7b0e187a2"/>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="0" width="60" height="30" uuid="f9ee7280-6502-4c92-aa26-aa8d701c06c9"/>
+				<textFieldExpression><![CDATA[$F{nacimiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="0" width="70" height="20" uuid="c0bb3aa6-b2c0-4942-b469-a4f81a6bfc10"/>
+				<textFieldExpression><![CDATA[$F{calle}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="0" width="90" height="30" uuid="32bae73a-b47c-450c-8497-ad872b3acb00"/>
+				<textFieldExpression><![CDATA[$F{nombreMedioTransporte}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="70" height="30" uuid="4f1a9450-e27a-4991-b655-53c30208731d"/>
+				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="0" width="60" height="30" uuid="d0f7e515-303b-43e1-8a19-4e1baf53d290"/>
+				<textFieldExpression><![CDATA[$F{nombrePais}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="510" y="0" width="65" height="30" uuid="aee961b8-73fb-4547-93df-e8eb8c3133a5"/>
+				<textFieldExpression><![CDATA[$F{nombreLocalidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="60" width="100" height="20" uuid="48747e24-bac3-4a15-a0ef-3be7696c4e61"/>
+				<textFieldExpression><![CDATA[$F{dominioEmail}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="60" width="100" height="20" uuid="8a2d4278-5d12-4e31-9bdc-592bcaf746f2"/>
+				<textFieldExpression><![CDATA[$V{dominioEmail_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="20" width="70" height="20" uuid="f4156889-d989-43ad-af62-0aa8c9719a45"/>
+				<textFieldExpression><![CDATA[$F{altura}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="278" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="360" height="278" uuid="e0e31da1-3e88-4b47-8d2e-55295a3711dc"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["reportes/grafico.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

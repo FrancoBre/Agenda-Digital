@@ -2,14 +2,14 @@ package dto;
 
 public class LocalidadDTO {
 	private int idLocalidad;
-	private String nombre;
+	private String nombreLocalidad;
 	private int provincia;
 	private int pais;
 	
-	public LocalidadDTO(int idLocalidad, String nombre, int provincia, int pais) {
+	public LocalidadDTO(int idLocalidad, String nombreLocalidad, int provincia, int pais) {
 		super();
 		this.idLocalidad = idLocalidad;
-		this.nombre = nombre;
+		this.nombreLocalidad = nombreLocalidad;
 		this.provincia = provincia;
 		this.pais = pais;
 	}
@@ -22,12 +22,12 @@ public class LocalidadDTO {
 		this.idLocalidad = idLocalidad;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombreLocalidad() {
+		return nombreLocalidad;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreLocalidad(String nombreLocalidad) {
+		this.nombreLocalidad = nombreLocalidad;
 	}
 
 	public int getProvincia() {

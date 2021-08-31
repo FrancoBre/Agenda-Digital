@@ -17,13 +17,13 @@ import dto.PersonaDTO;
 
 public class PersonaDAOSQL implements PersonaDAO {
 
-    private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono, email, dominioEmail, nacimiento, domicilio, tipo_contacto, medio_transporte) VALUES(default, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String update = "UPDATE personas SET nombre = ? , telefono = ? , email = ? , dominioEmail = ? , nacimiento = ? , domicilio = ?, tipo_contacto = ?, medio_transporte = ? WHERE idPersona = ?;";
+    private static final String insert = "INSERT INTO personas(idPersona, nombrePersona, telefono, email, dominioEmail, nacimiento, domicilio, tipo_contacto, medio_transporte) VALUES(default, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String update = "UPDATE personas SET nombrePersona = ? , telefono = ? , email = ? , dominioEmail = ? , nacimiento = ? , domicilio = ?, tipo_contacto = ?, medio_transporte = ? WHERE idPersona = ?;";
     private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
     private static final String readall = "SELECT * FROM personas";
     private static final String readMaxId = "SELECT idPersona FROM personas ORDER BY idPersona DESC LIMIT 0, 1;";
-    private static final String READALLDATE = "SELECT p.idPersona, p.nombre, p.telefono, p.email, p.dominioEmail , p.nacimiento, d.calle, d.altura, d.piso, d.depto, "
-	    + "l.nombre AS localidad, pr.nombre AS provincia, pa.nombre AS pais, c.Tipo AS Etiqueta, p.medio_transporte "
+    private static final String READALLDATE = "SELECT p.idPersona, p.nombrePersona, p.telefono, p.email, p.dominioEmail , p.nacimiento, d.calle, d.altura, d.piso, d.depto, "
+	    + "l.nombreLocalidad AS localidad, pr.nombreProvincia AS provincia, pa.nombrePais AS pais, c.Tipo AS Etiqueta, p.medio_transporte "
 	    + "FROM personas p, domicilio d, localidad l, provincia pr, pais pa, tipo_contacto c "
 	    + "WHERE p.Domicilio = d.idDomicilio AND d.Localidad=l.idLocalidad AND l.provincia= idProvincia AND pr.pais=pa.idPais AND p.tipo_contacto = c.idTipo_contacto;";
 
@@ -33,14 +33,14 @@ public class PersonaDAOSQL implements PersonaDAO {
 	boolean isInsertExitoso = false;
 	try {
 	    statement = conexion.prepareStatement(insert);
-	    statement.setString(1, persona.getNombre());
+	    statement.setString(1, persona.getNombrePersona());
 	    statement.setString(2, persona.getTelefono());
 	    statement.setString(3, persona.getEmail());
 	    statement.setString(4, persona.getDominioEmail());
 	    statement.setDate(5, persona.getNacimiento());
-	    statement.setInt(6, persona.getIdDomicilio());
-	    statement.setInt(7, persona.getIdTipoContacto());
-	    statement.setInt(8, persona.getIdMedioTransporte());
+	    statement.setInt(6, persona.getDomicilio());
+	    statement.setInt(7, persona.getTipo_contacto());
+	    statement.setInt(8, persona.getMedio_transporte());
 
 	    if (statement.executeUpdate() > 0) {
 		conexion.commit();
@@ -64,14 +64,14 @@ public class PersonaDAOSQL implements PersonaDAO {
 	boolean isUpdateExitoso = false;
 	try {
 	    statement = conexion.prepareStatement(update);
-	    statement.setString(1, persona_a_editar.getNombre());
+	    statement.setString(1, persona_a_editar.getNombrePersona());
 	    statement.setString(2, persona_a_editar.getTelefono());
 	    statement.setString(3, persona_a_editar.getEmail());
 	    statement.setString(4, persona_a_editar.getDominioEmail());
 	    statement.setDate(5, persona_a_editar.getNacimiento());
-	    statement.setInt(6, persona_a_editar.getIdDomicilio());
-	    statement.setInt(7, persona_a_editar.getIdTipoContacto());
-	    statement.setInt(8, persona_a_editar.getIdMedioTransporte());
+	    statement.setInt(6, persona_a_editar.getDomicilio());
+	    statement.setInt(7, persona_a_editar.getTipo_contacto());
+	    statement.setInt(8, persona_a_editar.getMedio_transporte());
 	    statement.setInt(9, persona_a_editar.getIdPersona());
 	    if (statement.executeUpdate() > 0) {
 		conexion.commit();
@@ -150,7 +150,7 @@ public class PersonaDAOSQL implements PersonaDAO {
 
     private PersonaDTO getPersonaDTO(ResultSet resultSet) throws SQLException, ParseException {
 	int id = resultSet.getInt("idPersona");
-	String nombre = resultSet.getString("Nombre");
+	String nombre = resultSet.getString("NombrePersona");
 	String tel = resultSet.getString("Telefono");
 	String email = resultSet.getString("Email");
 	String dominioEmail = resultSet.getString("DominioEmail");

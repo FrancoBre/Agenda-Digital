@@ -4,16 +4,16 @@ import java.sql.Date;
 
 public class PersonaDTO {
     private int idPersona;
-    private String nombre;
+    private String nombrePersona;
     private String telefono;
     private String email;
     private String dominioEmail;
     private Date nacimiento;
-    private DomicilioDTO domicilio;
+    private DomicilioDTO domicilioDTO;
     private TipoContactoDTO tipoContacto;
-    private int idDomicilio;
-    private int idTipoContacto;
-    private int idMedioTransporte;
+    private int domicilio;
+    private int tipo_contacto;
+    private int medio_transporte;
 
     private String calle;
     private String altura;
@@ -24,11 +24,11 @@ public class PersonaDTO {
     private String pais;
     private String Etiqueta;
 
-    public PersonaDTO(int idPersona, String nombre, String telefono, String email, String dominioEmail, Date nacimiento,
+    public PersonaDTO(int idPersona, String nombrePersona, String telefono, String email, String dominioEmail, Date nacimiento,
 	    String calle, String altura, String piso, String depto, String localidad, String provincia, String pais,
-	    String Etiqueta, int idMedioTransporte) {
+	    String Etiqueta, int medio_transporte) {
 	this.idPersona = idPersona;
-	this.nombre = nombre;
+	this.nombrePersona = nombrePersona;
 	this.telefono = telefono;
 	this.email = email;
 	this.dominioEmail = dominioEmail;
@@ -41,46 +41,46 @@ public class PersonaDTO {
 	this.provincia = provincia;
 	this.pais = pais;
 	this.Etiqueta = Etiqueta;
-	this.idMedioTransporte = idMedioTransporte;
+	this.medio_transporte = medio_transporte;
     }
 
-    public PersonaDTO(int idPersona, String nombre, String telefono, String email, String dominioEmail, Date nacimiento,
-	    DomicilioDTO domicilio, TipoContactoDTO tipoContacto, int idMedioTransporte) {
+    public PersonaDTO(int idPersona, String nombrePersona, String telefono, String email, String dominioEmail, Date nacimiento,
+	    DomicilioDTO domicilioDTO, TipoContactoDTO tipoContacto, int medio_transporte) {
 	this.idPersona = idPersona;
-	this.nombre = nombre;
+	this.nombrePersona = nombrePersona;
 	this.telefono = telefono;
 	this.email = email;
 	this.dominioEmail = dominioEmail;
 	this.nacimiento = nacimiento;
-	this.domicilio = domicilio;
+	this.domicilioDTO = domicilioDTO;
 	this.tipoContacto = tipoContacto;
-	this.idMedioTransporte = idMedioTransporte;
+	this.medio_transporte = medio_transporte;
     }
 
-    public PersonaDTO(int idPersona, String nombre, String telefono, String email, String dominioEmail, Date nacimiento,
-	    DomicilioDTO domicilio, int idTipoContacto, int idMedioTransporte) {
+    public PersonaDTO(int idPersona, String nombrePersona, String telefono, String email, String dominioEmail, Date nacimiento,
+	    DomicilioDTO domicilioDTO, int tipo_contacto, int medio_transporte) {
 	this.idPersona = idPersona;
-	this.nombre = nombre;
+	this.nombrePersona = nombrePersona;
 	this.telefono = telefono;
 	this.email = email;
 	this.dominioEmail = dominioEmail;
 	this.nacimiento = nacimiento;
-	this.domicilio = domicilio;
-	this.idTipoContacto = idTipoContacto;
-	this.idMedioTransporte = idMedioTransporte;
+	this.domicilioDTO = domicilioDTO;
+	this.tipo_contacto = tipo_contacto;
+	this.medio_transporte = medio_transporte;
     }
 
-    public PersonaDTO(int idPersona, String nombre, String telefono, String email, String dominioEmail, Date nacimiento,
-	    int idDomicilio, int idTipoContacto, int idMedioTransporte) {
+    public PersonaDTO(int idPersona, String nombrePersona, String telefono, String email, String dominioEmail, Date nacimiento,
+	    int domicilio, int tipo_contacto, int medio_transporte) {
 	this.idPersona = idPersona;
-	this.nombre = nombre;
+	this.nombrePersona = nombrePersona;
 	this.telefono = telefono;
 	this.email = email;
 	this.dominioEmail = dominioEmail;
 	this.nacimiento = nacimiento;
-	this.setIdDomicilio(idDomicilio);
-	this.setIdTipoContacto(idTipoContacto);
-	this.idMedioTransporte = idMedioTransporte;
+	this.setDomicilio(domicilio);
+	this.setTipo_contacto(tipo_contacto);
+	this.medio_transporte = medio_transporte;
     }
 
     public int getIdPersona() {
@@ -91,12 +91,12 @@ public class PersonaDTO {
 	this.idPersona = idPersona;
     }
 
-    public String getNombre() {
-	return this.nombre;
+    public String getNombrePersona() {
+	return this.nombrePersona;
     }
 
-    public void setNombre(String nombre) {
-	this.nombre = nombre;
+    public void setNombrePersona(String nombrePersona) {
+	this.nombrePersona = nombrePersona;
     }
 
     public String getTelefono() {
@@ -107,12 +107,12 @@ public class PersonaDTO {
 	this.telefono = telefono;
     }
 
-    public DomicilioDTO getDomicilio() {
-	return domicilio;
+    public DomicilioDTO getdomicilioDTO() {
+	return domicilioDTO;
     }
 
-    public void setDomicilio(DomicilioDTO domicilio) {
-	this.domicilio = domicilio;
+    public void setDomicilioDTO(DomicilioDTO domicilioDTO) {
+	this.domicilioDTO = domicilioDTO;
     }
 
     public TipoContactoDTO getTipoContacto() {
@@ -139,20 +139,20 @@ public class PersonaDTO {
 	this.nacimiento = nacimiento;
     }
 
-    public int getIdDomicilio() {
-	return idDomicilio;
+    public int getDomicilio() {
+	return domicilio;
     }
 
-    public void setIdDomicilio(int idDomicilio) {
-	this.idDomicilio = idDomicilio;
+    public void setDomicilio(int domicilio) {
+	this.domicilio = domicilio;
     }
 
-    public int getIdTipoContacto() {
-	return idTipoContacto;
+    public int getTipo_contacto() {
+	return tipo_contacto;
     }
 
-    public void setIdTipoContacto(int idTipoContacto) {
-	this.idTipoContacto = idTipoContacto;
+    public void setTipo_contacto(int tipo_contacto) {
+	this.tipo_contacto = tipo_contacto;
     }
 
     //
@@ -229,12 +229,12 @@ public class PersonaDTO {
 	this.dominioEmail = dominioEmail;
     }
 
-    public int getIdMedioTransporte() {
-	return idMedioTransporte;
+    public int getMedio_transporte() {
+	return medio_transporte;
     }
 
-    public void setIdMedioTransporte(int idMedioTransporte) {
-	this.idMedioTransporte = idMedioTransporte;
+    public void setMedio_transporte(int medio_transporte) {
+	this.medio_transporte = medio_transporte;
     }
 
 }

@@ -12,13 +12,13 @@ import persistencia.dao.interfaz.TipoContactoDAO;
 
 public class TipoContactoDAOSQL implements TipoContactoDAO {
 
-	private static final String insert = "INSERT INTO tipo_contacto(idTipo_contacto, Tipo) VALUES(default, ? )";
-	private static final String update = "UPDATE tipo_contacto SET Tipo = ? WHERE idTipo_contacto = ? ;";
-	private static final String deleteTipo = "DELETE FROM tipo_contacto WHERE Tipo = ?";
+	private static final String insert = "INSERT INTO tipo_contacto(idTipo_contacto, tipo) VALUES(default, ? )";
+	private static final String update = "UPDATE tipo_contacto SET tipo = ? WHERE idTipo_contacto = ? ;";
+	private static final String deleteTipo = "DELETE FROM tipo_contacto WHERE tipo = ?";
 	private static final String deleteId = "DELETE FROM tipo_contacto WHERE idTipo_contacto = ?";
 	
 	private static final String readAll = "SELECT * FROM tipo_contacto;";
-	private static final String readIdByNombre = "SELECT idTipo_contacto FROM tipo_contacto WHERE Tipo = ?;";
+	private static final String readIdByNombre = "SELECT idTipo_contacto FROM tipo_contacto WHERE tipo = ?;";
 	private static final String readNombreById = "SELECT nombre FROM tipo_contacto WHERE idTipo_contacto = ?;";
 	
 	
@@ -30,7 +30,7 @@ public class TipoContactoDAOSQL implements TipoContactoDAO {
 		try
 		{
 			statement = conexion.prepareStatement(insert);
-			statement.setString(1, tipoContacto.getDescripcion());
+			statement.setString(1, tipoContacto.getTipo());
 			if(statement.executeUpdate() > 0)
 			{
 				conexion.commit();
@@ -57,8 +57,8 @@ public class TipoContactoDAOSQL implements TipoContactoDAO {
 		try
 		{
 			statement = conexion.prepareStatement(update);
-			statement.setString(1, tipoContacto.getDescripcion());
-			statement.setInt(2, tipoContacto.getIdTipo());
+			statement.setString(1, tipoContacto.getTipo());
+			statement.setInt(2, tipoContacto.getIdTipo_contacto());
 			if(statement.executeUpdate() > 0)
 			{
 				conexion.commit();
@@ -107,7 +107,7 @@ public class TipoContactoDAOSQL implements TipoContactoDAO {
 		try 
 		{
 			statement = conexion.prepareStatement(deleteId);
-			statement.setInt(1, tipoContacto.getIdTipo());
+			statement.setInt(1, tipoContacto.getIdTipo_contacto());
 			if(statement.executeUpdate() > 0)
 			{
 				conexion.commit();
@@ -181,7 +181,7 @@ public class TipoContactoDAOSQL implements TipoContactoDAO {
 			statement.setInt(1, id);
 			resultSet = statement.executeQuery();
 			if(resultSet.next())
-				ret = resultSet.getString("Nombre");
+				ret = resultSet.getString("tipo");
 			
 		}
 		catch (SQLException e) {

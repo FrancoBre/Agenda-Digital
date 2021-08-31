@@ -2,12 +2,12 @@ package dto;
 
 public class MedioTransporteDTO {
     private int idMedioTransporte;
-    private String nombre;
+    private String nombreMedioTransporte;
 
-    public MedioTransporteDTO(int idMedioTransporte, String nombre) {
+    public MedioTransporteDTO(int idMedioTransporte, String nombreMedioTransporte) {
 	super();
 	this.idMedioTransporte = idMedioTransporte;
-	this.nombre = nombre;
+	this.nombreMedioTransporte = nombreMedioTransporte;
     }
 
     public int getIdMedioTransporte() {
@@ -18,12 +18,12 @@ public class MedioTransporteDTO {
 	this.idMedioTransporte = idMedioTransporte;
     }
 
-    public String getNombre() {
-	return nombre;
+    public String getNombreMedioTransporte() {
+	return nombreMedioTransporte;
     }
 
-    public void setNombre(String nombre) {
-	this.nombre = nombre;
+    public void setNombreMedioTransporte(String nombreMedioTransporte) {
+	this.nombreMedioTransporte = nombreMedioTransporte;
     }
 
 }

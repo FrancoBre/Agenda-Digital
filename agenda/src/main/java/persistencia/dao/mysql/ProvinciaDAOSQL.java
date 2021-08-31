@@ -12,13 +12,13 @@ import persistencia.dao.interfaz.ProvinciaDAO;
 
 public class ProvinciaDAOSQL implements ProvinciaDAO {
 	private static final String readByPais = "SELECT * FROM provincia WHERE pais = ? ;";
-	private static final String getNombreById = "SELECT Nombre FROM provincia WHERE idProvincia = ? ;";
+	private static final String getNombreById = "SELECT nombreProvincia FROM provincia WHERE idProvincia = ? ;";
 	
-	private static final String insert = "INSERT INTO provincia(idProvincia, Nombre, Pais) VALUES(default, ?, ?);";
-	private static final String update = "UPDATE provincia SET Nombre = ? WHERE idProvincia = ?;";
+	private static final String insert = "INSERT INTO provincia(idProvincia, nombreProvincia, Pais) VALUES(default, ?, ?);";
+	private static final String update = "UPDATE provincia SET nombreProvincia = ? WHERE idProvincia = ?;";
 	private static final String delete = "DELETE FROM provincia WHERE idProvincia = ?;";
 	
-	private static final String idProvinciaByNombre = "SELECT idProvincia FROM provincia WHERE nombre = ?;";
+	private static final String idProvinciaByNombre = "SELECT idProvincia FROM provincia WHERE nombreProvincia = ?;";
 
 	public List<ProvinciaDTO> readByPais(int idPais) 
 	{
@@ -53,7 +53,7 @@ public class ProvinciaDAOSQL implements ProvinciaDAO {
 			statement = conexion.getSQLConexion().prepareStatement(getNombreById);
 			statement.setInt(1, idProvincia);
 			resultSet = statement.executeQuery();
-			nombre = resultSet.getString("Nombre");
+			nombre = resultSet.getString("nombreProvincia");
 			return nombre;
 		}
 		catch (SQLException e) 
@@ -65,8 +65,8 @@ public class ProvinciaDAOSQL implements ProvinciaDAO {
 
 	private ProvinciaDTO getProvinciaDTO(ResultSet resultSet) throws SQLException {
 		int id = resultSet.getInt("idProvincia");
-		String nombre = resultSet.getString("Nombre");
-		int pais = resultSet.getInt("Pais");
+		String nombre = resultSet.getString("nombreProvincia");
+		int pais = resultSet.getInt("pais");
 		return new ProvinciaDTO(id, nombre, pais);
 	}
 
@@ -78,7 +78,7 @@ public class ProvinciaDAOSQL implements ProvinciaDAO {
 		try
 		{
 			statement = conexion.prepareStatement(insert);
-			statement.setString(1, nuevaProvincia.getNombre());
+			statement.setString(1, nuevaProvincia.getNombreProvincia());
 			statement.setInt(2, nuevaProvincia.getPais());
 			if(statement.executeUpdate() > 0)
 			{
@@ -106,7 +106,7 @@ public class ProvinciaDAOSQL implements ProvinciaDAO {
 		boolean isUpdateExitoso = false;
 		try {
 		    statement = conexion.prepareStatement(update);
-		    statement.setString(1, editProvincia.getNombre());
+		    statement.setString(1, editProvincia.getNombreProvincia());
 		    statement.setInt(2, editProvincia.getIdProvincia());
 		    
 		    if (statement.executeUpdate() > 0) {

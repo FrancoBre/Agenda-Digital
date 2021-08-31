@@ -160,7 +160,7 @@ public class Vista
 
 		for (PersonaDTO p : personasEnTabla)
 		{
-			String nombre = p.getNombre();
+			String nombre = p.getNombrePersona();
 			String telefono = p.getTelefono();
 			String email = p.getEmail();
 			String nacimiento = p.getNacimiento().toString();			

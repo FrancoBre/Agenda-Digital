@@ -32,7 +32,7 @@ public class VentanaPersonaEditar extends VentanaPersona
 
     
     public void setCampos(PersonaDTO p) {
-		super.getNombreInput().setText(p.getNombre());
+		super.getNombreInput().setText(p.getNombrePersona());
 		super.getTelefonoInput().setText(p.getTelefono());
 	}
 }

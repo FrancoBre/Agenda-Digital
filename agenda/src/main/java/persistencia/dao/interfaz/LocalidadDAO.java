@@ -18,6 +18,7 @@ public interface LocalidadDAO {
 	public boolean delete(int idLocalidad);
 
 	public int getIdProvinciaByNombre(String nombreLocalidad);
-	
+
+	public List<LocalidadDTO> readAll();
 	
 }

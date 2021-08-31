@@ -61,7 +61,7 @@ public class ControladorEditar implements ActionListener {
 	    // crear una ventana con mensaje de campos vacios
 	} else {
 	    int idPersona = this.personasEnTabla.get(filasSeleccionadas[0]).getIdPersona();
-	    int idDomicilio = this.personasEnTabla.get(filasSeleccionadas[0]).getIdDomicilio();
+	    int idDomicilio = this.personasEnTabla.get(filasSeleccionadas[0]).getDomicilio();
 
 	    String nombre = this.ventanaPersonaEditar.getNombreInput().getText();
 	    String tel = this.ventanaPersonaEditar.getTelefonoInput().getText();

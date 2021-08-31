@@ -2,12 +2,12 @@ package dto;
 
 public class PaisDTO {
 	private int idPais;
-	private String nombre;
+	private String nombrePais;
 	
-	public PaisDTO(int idPais, String nombre) {
+	public PaisDTO(int idPais, String nombrePais) {
 		super();
 		this.idPais = idPais;
-		this.nombre = nombre;
+		this.nombrePais = nombrePais;
 	}
 
 	public int getIdPais() {
@@ -18,11 +18,11 @@ public class PaisDTO {
 		this.idPais = idPais;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombrePais() {
+		return nombrePais;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombrePais(String nombrePais) {
+		this.nombrePais = nombrePais;
 	}
 }
