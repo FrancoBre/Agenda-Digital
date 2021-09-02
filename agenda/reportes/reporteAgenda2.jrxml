@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteAgenda2" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2c375e16-5520-4a8c-949d-93c66a4101bd">
+	<property name="net.sf.jasperreports.chart.pie.ignore.duplicated.key" value="true"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="agendaDB2"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT p.nombrePersona, p.telefono, p.email, p.nacimiento, d.calle, d.altura, m.nombreMedioTransporte, l.nombreLocalidad, pa.nombrePais, t.tipo, p.dominioEmail
 FROM  personas p, medio_transporte m, domicilio d, tipo_contacto t, pais pa, localidad l
-WHERE d.idDomicilio = p.domicilio AND m.idMedio_transporte = p.medio_transporte AND l.idLocalidad = d.localidad AND l.pais = pa.idPais AND p.tipo_contacto = t.idTipo_contacto;]]>
+WHERE d.idDomicilio = p.domicilio AND m.idMedio_transporte = p.medio_transporte AND l.idLocalidad = d.localidad AND l.pais = pa.idPais AND p.tipo_contacto = t.idTipo_contacto
+GROUP BY p.dominioEmail;]]>
 	</queryString>
 	<field name="nombrePersona" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="nombrePersona"/>
