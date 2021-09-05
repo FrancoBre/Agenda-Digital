@@ -1,6 +1,15 @@
 CREATE DATABASE agenda;
 USE agenda;
 
+CREATE USER 'user'@'localhost' IDENTIFIED BY '1234';
+GRANT ALL PRIVILEGES ON agenda.personas TO 'user'@'localhost';
+GRANT ALL PRIVILEGES ON agenda.tipo_contacto TO 'user'@'localhost';
+GRANT ALL PRIVILEGES ON agenda.pais TO 'user'@'localhost';
+GRANT ALL PRIVILEGES ON agenda.provincias TO 'user'@'localhost';
+GRANT ALL PRIVILEGES ON agenda.localidad TO 'user'@'localhost';
+GRANT ALL PRIVILEGES ON agenda.domicilio TO 'user'@'localhost';
+GRANT ALL PRIVILEGES ON agenda.medio_transporte TO 'user'@'localhost';
+
 CREATE TABLE tipo_contacto (
 	idTipo_contacto int(11) NOT NULL AUTO_INCREMENT, 
 	tipo varchar(45) NOT NULL, 
