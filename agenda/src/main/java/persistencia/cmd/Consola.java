@@ -4,31 +4,34 @@ import java.io.IOException;
 
 public class Consola {
 
-    public static boolean baseLevantada = false;
-
     /*
-     * Levanta localmente la base de datos
-     */
-    private static void connect() {
-	if (!baseLevantada) {
-	    
-	    ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c",
-		    "cd \"C:\\Program Files\\MariaDB 10.2\\bin && use agenda;");
-	    builder.redirectErrorStream(true);
-	    try {
-		Process p = builder.start();
-	    } catch (IOException e) {
-		e.printStackTrace();
-	    }
-
-	}
-
-    }
-
-    /*
-     * 
+     * Se conecta a root desde la base de datos
      */
     public static void connectRoot() {
+	ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c",
+		"cd \"C:\\Program Files\\MariaDB 10.2\\bin && mysql -u root -p root; && use agenda;");
+	builder.redirectErrorStream(true);
 
+	try {
+	    builder.start();
+	} catch (IOException e) {
+	    e.printStackTrace();
+	}
     }
+
+    /*
+     * Se conecta a user desde la base de datos
+     */
+    public static void connectUser() {
+	ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c",
+		"cd \"C:\\Program Files\\MariaDB 10.2\\bin && mysql -u user -p 1234; && use agenda;");
+	builder.redirectErrorStream(true);
+
+	try {
+	    builder.start();
+	} catch (IOException e) {
+	    e.printStackTrace();
+	}
+    }
+
 }
