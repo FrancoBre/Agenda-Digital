@@ -2,20 +2,15 @@ package presentacion.vista;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.EventListener;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
-
-/*import persistencia.conexion.Conexion;*/
 import persistencia.conexion.Conexion;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JCheckBox;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class VistaInicio
