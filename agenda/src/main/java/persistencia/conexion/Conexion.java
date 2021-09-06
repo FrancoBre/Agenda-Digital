@@ -14,13 +14,19 @@ public class Conexion {
     /*
      * Hay que cambiar esto para que pueda ser root o user
      */
-    static final String USER = "root";
-    static final String PASS = "root";
+    private String user;
+    private String pass;
 
     public static Conexion instancia;
     private Connection conn;
     private Statement stmt;
     private Logger log = Logger.getLogger(Conexion.class);
+
+    public Conexion(String user, String pass) {
+	this.user = user;
+	this.pass = pass;
+	System.out.println("user: "+user+" pass: "+pass);
+    }
 
     private Conexion() {
 	try {
@@ -29,9 +35,10 @@ public class Conexion {
 
 	    log.info("Conectandose a la base de datos agenda...");
 
-	    conn = DriverManager.getConnection(DB_URL, USER, PASS);
+	    conn = DriverManager.getConnection(DB_URL, user, pass);
 
 	    log.info("Conexión abierta");
+
 
 	} catch (SQLException se) {
 	    se.printStackTrace();
@@ -77,4 +84,21 @@ public class Conexion {
     public Connection getSQLConexion() {
 	return this.conn;
     }
+
+    public String getUser() {
+	return user;
+    }
+
+    public void setUser(String user) {
+	this.user = user;
+    }
+
+    public String getPass() {
+	return pass;
+    }
+
+    public void setPass(String pass) {
+	this.pass = pass;
+    }
+
 }

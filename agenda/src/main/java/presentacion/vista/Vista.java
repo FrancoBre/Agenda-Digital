@@ -16,9 +16,7 @@ import persistencia.conexion.Conexion;
 
 public class Vista extends JFrame 
 {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	
 	private JTable tablaPersonas;

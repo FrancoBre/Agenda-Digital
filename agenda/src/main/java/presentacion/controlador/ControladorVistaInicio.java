@@ -6,32 +6,35 @@ import modelo.*;
 import presentacion.vista.Vista;
 import presentacion.vista.VistaInicio;
 
-
 public class ControladorVistaInicio implements ActionListener {
     private VistaInicio vistaInicio;
     public Vista vista;
-    private Agenda agenda;
+    private Login login;
 
-    public ControladorVistaInicio(VistaInicio vistaInicio, Agenda agenda) {
-		this.agenda = agenda;
-		this.vistaInicio = vistaInicio;
-		this.vista = Vista.getInstance();
-		
-		
-		this.vistaInicio.getBtnIngreso().addActionListener(e->ingresar(e));
-		
+    public ControladorVistaInicio(VistaInicio vistaInicio, Login login) {
+	this.vistaInicio = vistaInicio;
+	this.vista = Vista.getInstance();
+	this.login = login;
+
+	this.vistaInicio.getBtnIngreso().addActionListener(e -> enviarCredenciales(e));
+
     }
 
-    private void ingresar(ActionEvent e) {
-    	this.vista.mostrarVentana();
+    public void inicializar() {
 
-	}
-
-	public void inicializar() {
-		
-    	this.vistaInicio.show();
+	this.vistaInicio.show();
     }
 
+    public void enviarCredenciales(ActionEvent s) {
+	String user = vistaInicio.getUser_textField().getText();
+	char[] pass = vistaInicio.getPassField().getPassword();
+
+	System.out.println("user: " + user + " pass: " + pass);
+	this.login.enviarCredenciales(user, String.valueOf(pass));
+	
+	this.vistaInicio.cerrarVentana();
+	this.vista.mostrarVentana();
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
