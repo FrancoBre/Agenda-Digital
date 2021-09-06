@@ -6,27 +6,18 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import org.apache.log4j.Logger;
 
+import configuracion.Configuracion;
+import modelo.Login;
+
 public class Conexion {
 
     static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
     static final String DB_URL = "jdbc:mariadb://localhost/agenda";
 
-    /*
-     * Hay que cambiar esto para que pueda ser root o user
-     */
-    private String user;
-    private String pass;
-
     public static Conexion instancia;
     private Connection conn;
     private Statement stmt;
     private Logger log = Logger.getLogger(Conexion.class);
-
-    public Conexion(String user, String pass) {
-	this.user = user;
-	this.pass = pass;
-	System.out.println("user: "+user+" pass: "+pass);
-    }
 
     private Conexion() {
 	try {
@@ -35,18 +26,20 @@ public class Conexion {
 
 	    log.info("Conectandose a la base de datos agenda...");
 
-	    conn = DriverManager.getConnection(DB_URL, user, pass);
-
+	    conn = DriverManager.getConnection(DB_URL, Login.USER, Login.PASS);
+	    
+	    Configuracion.conexionRealizada = true;
+	    
 	    log.info("Conexión abierta");
 
 
 	} catch (SQLException se) {
 	    se.printStackTrace();
-	    log.error("Se ha producido un error 1");
+	    log.error("Se ha producido un error ");
 
 	} catch (Exception e) {
 	    e.printStackTrace();
-	    log.error("Error al crear las bases de datos");
+	    log.error("Error");
 	}
     }
 
@@ -83,22 +76,6 @@ public class Conexion {
 
     public Connection getSQLConexion() {
 	return this.conn;
-    }
-
-    public String getUser() {
-	return user;
-    }
-
-    public void setUser(String user) {
-	this.user = user;
-    }
-
-    public String getPass() {
-	return pass;
-    }
-
-    public void setPass(String pass) {
-	this.pass = pass;
     }
 
 }

@@ -27,10 +27,10 @@ public class ControladorVistaInicio implements ActionListener {
 
     public void enviarCredenciales(ActionEvent s) {
 	String user = vistaInicio.getUser_textField().getText();
-	char[] pass = vistaInicio.getPassField().getPassword();
-
-	System.out.println("user: " + user + " pass: " + pass);
-	this.login.enviarCredenciales(user, String.valueOf(pass));
+	char[] passArr = vistaInicio.getPassField().getPassword();
+	String pass = String.valueOf(passArr);
+	
+	this.login.enviarCredenciales(user, pass);
 	
 	this.vistaInicio.cerrarVentana();
 	this.vista.mostrarVentana();

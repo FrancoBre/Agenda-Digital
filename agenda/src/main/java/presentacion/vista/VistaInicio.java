@@ -99,7 +99,7 @@ public class VistaInicio extends JFrame {
 	this.frmAgenda.addWindowListener(new WindowAdapter() {
 	    @Override
 	    public void windowClosing(WindowEvent e) {
-		int confirm = JOptionPane.showOptionDialog(null, "�Estas seguro que quieres salir de la Agenda?",
+		int confirm = JOptionPane.showOptionDialog(null, "Estas seguro que quieres salir de la Agenda?",
 			"Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
 		if (confirm == 0) {
 		    Conexion.getConexion().cerrarConexion();
@@ -154,7 +154,6 @@ public class VistaInicio extends JFrame {
 	this.User_textField.setText(null);
 	this.PassField.setText(null);
 	this.dispose();
-	System.out.println("cerrau");
     }
 
 }

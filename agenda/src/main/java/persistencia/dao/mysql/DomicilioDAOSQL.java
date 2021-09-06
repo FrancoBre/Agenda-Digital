@@ -23,18 +23,6 @@ public class DomicilioDAOSQL implements DomicilioDAO {
     private static final String readMaxId = "SELECT idDomicilio FROM domicilio ORDER BY idDomicilio DESC LIMIT 0, 1;";
     private static final String readAll = "SELECT * FROM domicilio;";
 
-    /*
-     * domicilio no tiene nombre public String getNombreDomicilioById(int id) {
-     * PreparedStatement statement; Connection conexion =
-     * Conexion.getConexion().getSQLConexion(); ResultSet resultSet; String ret =
-     * null; try { statement = conexion.prepareStatement(getById);
-     * statement.setInt(1, id); resultSet = statement.executeQuery();
-     * if(resultSet.next()) ret = resultSet.getString("Nombre"); } catch
-     * (SQLException e) {
-     * 
-     * } return ret; }
-     */
-
     public boolean insert(DomicilioDTO domicilio) {
 	PreparedStatement statement;
 	Connection conexion = Conexion.getConexion().getSQLConexion();

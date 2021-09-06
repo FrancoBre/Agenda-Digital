@@ -236,5 +236,5 @@ public class Agenda {
     public Connection getConexion() {
 	return Conexion.getConexion().getSQLConexion();
     }
-
+    
 }
