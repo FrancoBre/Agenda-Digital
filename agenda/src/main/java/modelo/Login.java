@@ -11,13 +11,15 @@ public class Login {
 	
     }
     
-    public void enviarCredenciales(String user, String pass) {
+    public boolean enviarCredenciales(String user, String pass) {
 	
-	Login.USER = user;
-	Login.PASS = pass;
-	
-	Conexion.getConexion();
-	
+		Login.USER = user;
+		Login.PASS = pass;
+		
+
+		Conexion.getConexion();
+
+		return true;
     }
     
 }
