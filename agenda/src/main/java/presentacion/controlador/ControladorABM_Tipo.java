@@ -34,7 +34,6 @@ public class ControladorABM_Tipo implements ActionListener
 		{
 			ventanaTipo.getOpcionesComboBox().setModel((new DefaultComboBoxModel<String>(abm)));
 			setABM_default();
-			this.vista.show();
 		}	
 		
 		public void mostrarABM_tipo(ActionEvent e) {

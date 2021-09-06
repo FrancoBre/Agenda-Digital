@@ -1,10 +1,7 @@
 package presentacion.vista;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -17,9 +14,13 @@ import javax.swing.JButton;
 /*import persistencia.conexion.Conexion;*/
 import persistencia.conexion.Conexion;
 
-public class Vista
+public class Vista extends JFrame 
 {
-	private JFrame frame;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private JTable tablaPersonas;
 	private JButton btnAgregar;
 	private JButton btnEditar; //*
@@ -29,25 +30,32 @@ public class Vista
 	private DefaultTableModel modelPersonas;
 	private  String[] nombreColumnas = {"Nombre y apellido","Telefono","Email","Nacimiento","Calle", "Altura", "Piso", "Depto", "Localidad", "Provincia", "Pais", "Etiqueta"};
 	private JButton btnABM_PPL;
+	private static Vista INSTANCE;
+	
+	
+	public static Vista getInstance()
+	{
+		if(INSTANCE == null)
+		{
+			INSTANCE = new Vista(); 	
+			return new Vista();
+		}
+		else
+			return INSTANCE;
+	}
 	
 	public Vista() 
 	{
 		super();
-		initialize();
-	}
-
-
-	private void initialize() 
-	{
-		frame = new JFrame();
-		frame.setTitle("Agenda 2");
-		frame.setBounds(100, 100, 1200, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		
+		this.setTitle("Agenda ");
+		this.setBounds(100, 100, 1200, 300);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1190, 262);
-		frame.getContentPane().add(panel);
+		this.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JScrollPane spPersonas = new JScrollPane();
@@ -88,26 +96,12 @@ public class Vista
 		btnABM_PPL.setBounds(505, 228, 178, 23);
 		panel.add(btnABM_PPL);
 		
+		this.setVisible(false);
 	}
 	
-	public void show()
+	public void mostrarVentana()
 	{
-		this.frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.frame.addWindowListener(new WindowAdapter() 
-		{
-			@Override
-		    public void windowClosing(WindowEvent e) {
-		        int confirm = JOptionPane.showOptionDialog(
-		             null, "�Estas seguro que quieres salir de la Agenda?", 
-		             "Confirmación", JOptionPane.YES_NO_OPTION,
-		             JOptionPane.QUESTION_MESSAGE, null, null, null);
-		        if (confirm == 0) {
-		        	Conexion.getConexion().cerrarConexion();
-		           System.exit(0);
-		        }
-		    }
-		});
-		this.frame.setVisible(true);
+		this.setVisible(true);
 	}
 	
 	public JButton getBtnAgregar() 

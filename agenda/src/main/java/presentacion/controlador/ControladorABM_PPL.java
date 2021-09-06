@@ -48,7 +48,6 @@ public class ControladorABM_PPL implements ActionListener
 			ventanaPPL.getOpcionesComboBox2().setModel((new DefaultComboBoxModel<String>(abm)));
 			ventanaPPL.getOpcionesComboBox3().setModel((new DefaultComboBoxModel<String>(abm)));
 			setABM_default(1, 1);
-			this.vista.show();
 		}	
 		
 		public void mostrarABM_PPL(ActionEvent e) {

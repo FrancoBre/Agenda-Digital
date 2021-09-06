@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import modelo.*;
-import persistencia.conexion.Conexion;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.Vista;
 import dto.PersonaDTO;
@@ -16,16 +15,15 @@ public class ControladorVista implements ActionListener {
     private int[] filasSeleccionadas = null;
 
     public ControladorVista(Vista vista, Agenda agenda) {
-	this.vista = vista;
-	this.agenda = agenda;
-	this.vista.getBtnBorrar().addActionListener(s -> borrarPersona(s));
-	this.vista.getBtnReporte().addActionListener(r -> mostrarReporte(r));
+		this.vista = vista;
+		this.agenda = agenda;
+		this.vista.getBtnBorrar().addActionListener(s -> borrarPersona(s));
+		this.vista.getBtnReporte().addActionListener(r -> mostrarReporte(r));
 
     }
 
     public void inicializar() {
-	this.refrescarTabla();
-	this.vista.show();
+    	this.refrescarTabla();
     }
 
     private void mostrarReporte(ActionEvent r) {
@@ -35,18 +33,18 @@ public class ControladorVista implements ActionListener {
 
     public void borrarPersona(ActionEvent s) {
 
-	filasSeleccionadas = this.vista.getTablaPersonas().getSelectedRows();
-	this.refrescarTabla(); // importante: Para evitar un error
-	for (int fila : filasSeleccionadas) {
-	    this.agenda.borrarPersona(this.personasEnTabla.get(fila));
-	}
+		filasSeleccionadas = this.vista.getTablaPersonas().getSelectedRows();
+		this.refrescarTabla(); // importante: Para evitar un error
+		for (int fila : filasSeleccionadas) {
+		    this.agenda.borrarPersona(this.personasEnTabla.get(fila));
+		}
 
-	this.refrescarTabla();
+		this.refrescarTabla();
     }
 
     private void refrescarTabla() {
-	this.personasEnTabla = agenda.obtenerPersonas();
-	this.vista.llenarTabla(this.personasEnTabla);
+		this.personasEnTabla = agenda.obtenerPersonas();
+		this.vista.llenarTabla(this.personasEnTabla);
     }
 
     @Override

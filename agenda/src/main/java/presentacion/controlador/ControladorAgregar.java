@@ -13,30 +13,29 @@ import dto.DomicilioDTO;
 import dto.PersonaDTO;
 
 public class ControladorAgregar implements ActionListener {
-    private Vista vista;
-    private List<PersonaDTO> personasEnTabla;
-    private VentanaPersonaAgregar ventanaPersonaAgregar;
-    private Agenda agenda;
-
-    public ControladorAgregar(Vista vista, Agenda agenda) {
-	this.vista = vista;
-	this.agenda = agenda;
-
-	this.vista.getBtnAgregar().addActionListener(a -> ventanaAgregarPersona(a));
-
-	this.ventanaPersonaAgregar = VentanaPersonaAgregar.getInstance();
-
-	this.ventanaPersonaAgregar.getBtnAction().addActionListener(p -> guardarPersona(p));
-	this.ventanaPersonaAgregar.getComboBoxMes().addActionListener(e -> agregarDias(e));
-	this.ventanaPersonaAgregar.getPaisInput().addActionListener(combobox -> cambioItemsProvincia(combobox));
-	this.ventanaPersonaAgregar.getProvinciaInput()
+	    private Vista vista;
+	    private List<PersonaDTO> personasEnTabla;
+	    private VentanaPersonaAgregar ventanaPersonaAgregar;
+	    private Agenda agenda;
+	
+	    public ControladorAgregar(Vista vista, Agenda agenda) {
+		this.vista = vista;
+		this.agenda = agenda;
+	
+		this.vista.getBtnAgregar().addActionListener(a -> ventanaAgregarPersona(a));
+	
+		this.ventanaPersonaAgregar = VentanaPersonaAgregar.getInstance();
+		this.ventanaPersonaAgregar.getBtnAction().addActionListener(p -> guardarPersona(p));
+		this.ventanaPersonaAgregar.getComboBoxMes().addActionListener(e -> agregarDias(e));
+		this.ventanaPersonaAgregar.getPaisInput().addActionListener(combobox -> cambioItemsProvincia(combobox));
+		this.ventanaPersonaAgregar.getProvinciaInput()
 		.addActionListener(comboLocalidad -> cambioItemsLocalidad(comboLocalidad));
-	addComboboxItems();
+		addComboboxItems();
     }
 
     public void inicializar() {
-	this.refrescarTabla();
-	this.vista.show();
+    	this.refrescarTabla();
+//    	this.vista.show();
     }
 
     private void addComboboxItems() {

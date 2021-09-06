@@ -37,8 +37,7 @@ public class ControladorEditar implements ActionListener {
     }
 
     public void inicializar() {
-	this.refrescarTabla();
-	this.vista.show();
+    	this.refrescarTabla();
     }
 
     private void ventanaEditarPersona(ActionEvent e) {
