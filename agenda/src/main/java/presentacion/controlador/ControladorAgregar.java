@@ -39,81 +39,82 @@ public class ControladorAgregar implements ActionListener {
     }
 
     private void addComboboxItems() {
-		addPaisesItems(agenda.getNombrePaises());
-		addTipoContacto(agenda.getNombreTipoContacto());
-		addMedioTransporteItems(agenda.getNombreMedioTransporte());
-		addIntegerComboBox(agenda.getYears(), Fecha.getMonths());
-		llenarDias(31);
+	addPaisesItems(agenda.getNombrePaises());
+	addTipoContacto(agenda.getNombreTipoContacto());
+	addMedioTransporteItems(agenda.getNombreMedioTransporte());
+	addIntegerComboBox(agenda.getYears(), Fecha.getMonths());
+	llenarDias(31);
     }
 
     private void ventanaAgregarPersona(ActionEvent a) {
-    	this.ventanaPersonaAgregar.mostrarVentana();
+	this.ventanaPersonaAgregar.mostrarVentana();
     }
 
     private void guardarPersona(ActionEvent p) {
-		if (!ventanaPersonaAgregar.validarRequeridos()) {
-		    // crear una ventana con mensaje de campos vacios
-		} else {
-		    String nombre = this.ventanaPersonaAgregar.getNombreInput().getText();
-		    String tel = this.ventanaPersonaAgregar.getTelefonoInput().getText();
-	
-		    StringBuilder emailSB = new StringBuilder();
-		    emailSB.append(this.ventanaPersonaAgregar.getLeftEmailInput().getText());
-		    emailSB.append("@");
-		    emailSB.append(this.ventanaPersonaAgregar.getRightEmailInput().getText());
-		    emailSB.append(".");
-		    emailSB.append(this.ventanaPersonaAgregar.getDomainEmailInput().getText());
-		    String email = emailSB.toString();
-	
-		    String dominioEmail = this.ventanaPersonaAgregar.getRightEmailInput().getText();
-	
-		    String tipoContacto = (String) this.ventanaPersonaAgregar.getTipoContactoInput().getSelectedItem();
-		    String medioTransporte = (String) this.ventanaPersonaAgregar.getMedioTransporteInput().getSelectedItem();
-	
-		    String calle = this.ventanaPersonaAgregar.getCalleInput().getText();
-		    String altura = this.ventanaPersonaAgregar.getAlturaInput().getText();
-		    String pisoStr = this.ventanaPersonaAgregar.getPisoInput().getText();
-		    String piso = pisoStr.trim();
-		    String deptoStr = this.ventanaPersonaAgregar.getDeptoInput().getText();
-		    String depto = deptoStr.trim();
-		    String localidad = (String) this.ventanaPersonaAgregar.getLocalidadInput().getSelectedItem();
-	
-		    int year = (int) this.ventanaPersonaAgregar.getComboBoxAnio().getSelectedItem();
-		    int month = (int) this.ventanaPersonaAgregar.getComboBoxMes().getSelectedItem();
-		    int date = (int) this.ventanaPersonaAgregar.getComboBoxDia().getSelectedItem();
-		    String nacimiento = year + " " + month + " " + date;
-	
-		    // unused
-		    String pais = (String) this.ventanaPersonaAgregar.getPaisInput().getSelectedItem();
-		    String provincia = (String) this.ventanaPersonaAgregar.getProvinciaInput().getSelectedItem();
-	
-		    // Estos datos tendrían que venir de la eleccion del usuario en la vista, y
-		    // corresponden al id de cada entidad
-		    int idLocalidad = this.agenda.getIdLocalidadByNombre(localidad);
-		    int idTipoContacto = this.agenda.getIdTipoContactoByNombre(tipoContacto);
-		    int idMedioTransporte = this.agenda.getIdMedioTransporteByNombre(medioTransporte);
-	
-		    int idDomicilio = this.agenda.getDomicilioMaxId() + 1;
-	
-		    DomicilioDTO nuevoDomicilio = new DomicilioDTO(idDomicilio, calle, altura, piso, depto, idLocalidad);
-	
-		    PersonaDTO nuevaPersona;
-	
-		    nuevaPersona = null;
-	
-		    try {
-			nuevaPersona = new PersonaDTO(0, nombre, tel, email, dominioEmail, Fecha.parseNacimiento(nacimiento),
-				idDomicilio, idTipoContacto, idMedioTransporte);
-		    } catch (ParseException e) {
-			e.printStackTrace();
-		    }
-	
-		    this.agenda.agregarDomicilio(nuevoDomicilio);
-	
-		    this.agenda.agregarPersona(nuevaPersona);
-		}
-		this.refrescarTabla();
-		this.ventanaPersonaAgregar.cerrar();
+	if (!ventanaPersonaAgregar.validarRequeridos()) {
+	    // crear una ventana con mensaje de campos vacios
+	} else {
+	    String nombre = this.ventanaPersonaAgregar.getNombreInput().getText();
+	    String tel = this.ventanaPersonaAgregar.getTelefonoInput().getText();
+
+	    StringBuilder emailSB = new StringBuilder();
+	    emailSB.append(this.ventanaPersonaAgregar.getLeftEmailInput().getText());
+	    emailSB.append("@");
+	    emailSB.append(this.ventanaPersonaAgregar.getRightEmailInput().getText());
+	    emailSB.append(".");
+	    emailSB.append(this.ventanaPersonaAgregar.getDomainEmailInput().getText());
+	    String email = emailSB.toString();
+
+	    String dominioEmail = this.ventanaPersonaAgregar.getRightEmailInput().getText();
+
+	    String tipoContacto = (String) this.ventanaPersonaAgregar.getTipoContactoInput().getSelectedItem();
+	    String medioTransporte = (String) this.ventanaPersonaAgregar.getMedioTransporteInput().getSelectedItem();
+
+	    String calle = this.ventanaPersonaAgregar.getCalleInput().getText();
+	    String altura = this.ventanaPersonaAgregar.getAlturaInput().getText();
+	    String pisoStr = this.ventanaPersonaAgregar.getPisoInput().getText();
+	    String piso = pisoStr.trim();
+	    String deptoStr = this.ventanaPersonaAgregar.getDeptoInput().getText();
+	    String depto = deptoStr.trim();
+	    String localidad = (String) this.ventanaPersonaAgregar.getLocalidadInput().getSelectedItem();
+
+	    int year = (int) this.ventanaPersonaAgregar.getComboBoxAnio().getSelectedItem();
+	    int month = (int) this.ventanaPersonaAgregar.getComboBoxMes().getSelectedItem();
+	    int date = (int) this.ventanaPersonaAgregar.getComboBoxDia().getSelectedItem();
+	    String nacimiento = year + " " + month + " " + date;
+
+	    // unused
+	    String pais = (String) this.ventanaPersonaAgregar.getPaisInput().getSelectedItem();
+	    String provincia = (String) this.ventanaPersonaAgregar.getProvinciaInput().getSelectedItem();
+
+	    // Estos datos tendrían que venir de la eleccion del usuario en la vista, y
+	    // corresponden al id de cada entidad
+	    int idLocalidad = this.agenda.getIdLocalidadByNombre(localidad);
+	    int idTipoContacto = this.agenda.getIdTipoContactoByNombre(tipoContacto);
+	    int idMedioTransporte = this.agenda.getIdMedioTransporteByNombre(medioTransporte);
+
+	    int idDomicilio = this.agenda.getDomicilioMaxId() + 1;
+
+	    DomicilioDTO nuevoDomicilio = new DomicilioDTO(idDomicilio, calle, altura, piso, depto, idLocalidad);
+
+	    PersonaDTO nuevaPersona;
+
+	    nuevaPersona = null;
+
+	    try {
+		nuevaPersona = new PersonaDTO(0, nombre, tel, email, dominioEmail, Fecha.parseNacimiento(nacimiento),
+			idDomicilio, idTipoContacto, idMedioTransporte);
+	    } catch (ParseException e) {
+		e.printStackTrace();
+	    }
+
+	    this.agenda.agregarDomicilio(nuevoDomicilio);
+
+	    this.agenda.agregarPersona(nuevaPersona);
+
+	}
+	this.refrescarTabla();
+	this.ventanaPersonaAgregar.cerrar();
     }
 
     private void refrescarTabla() {
